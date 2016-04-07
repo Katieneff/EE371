@@ -6,7 +6,7 @@ module testBench;
 	wire clk, rst;
 	
 	counter myCounter(out[3:0], clk, rst);
-	Tester aTester();
+	Tester aTester(out[3:0], clk, rst);
 
 
 	initial 
@@ -30,5 +30,35 @@ module Tester(out, clk, rst);
 	begin	
 		$display("\t\t bits \t clk \t rst");
 		$monitor("\t\t %b\t %b\t %b", out, reset, clk)
+	end
+	
+	initial
+	begin
+		#stimDelay;
+		rst = 'b0; clk = 'b0;
+		#stimDelay clk = 'b1;
+		#stimDelay clk = 'b0; rst = 'b1;
+		
+		// 4 iterations to test reset
+		for (i = 0; i < 3; i = i + 1) begin
+			#stimDelay clk = 'b1;
+			#stimDelay clk = 'b0;
+		end
+		rst = 'b0;
+		#stimDelay clk = 'b1;
+		#stimDelay clk = 'b0;  rst = 'b1;
+		
+		// 16 iterations to test counter
+		for (i=0; i < 15; i = i + 1) begin
+			#stimDelay clk = 'b1;
+			#stimDelay clk = 'b0;
+		end
+		
+		#stimDelay clk = 'b1;
+		#stimDelay clk = 'b0;
+		
+		#(2*stimDelay);
+		$finish
+	end
 
 endmodule
