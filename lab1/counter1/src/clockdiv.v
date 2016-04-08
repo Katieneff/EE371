@@ -1,8 +1,14 @@
-module clockdiv(outclk, inclk);
-    output outclk;
-	 input inclk;
-	 reg [25:0] ticks;
-	 always @(posedge inclk)
-	     ticks = ticks + 1'b1;
-    assign outclk = ticks[24];
-endmodule
+module clock_divider (clk, divided_clocks);
+ input clk;
+ output reg [31:0] divided_clocks;
+
+
+ initial
+ divided_clocks = 0;
+ 
+ always @(posedge clk)
+	divided_clocks = divided_clocks + 1;
+
+endmodule 
+
+
