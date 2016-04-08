@@ -29,7 +29,7 @@ module Tester(out, clk, rst);
 	initial
 	begin	
 		$display("\t\t bits \t clk \t rst");
-		$monitor("\t\t %b\t %b\t %b", out, rst, clk);
+		$monitor("\t\t %b\t %b\t %b", out, clk, rst);
 	end
 	
 	integer i;

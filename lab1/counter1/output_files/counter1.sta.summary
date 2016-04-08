@@ -1,0 +1,373 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'CLOCK_50'
+Slack : -2.933
+TNS   : -31.257
+
+Type  : Slow 1100mV 85C Model Setup 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -1.279
+TNS   : -2.286
+
+Type  : Slow 1100mV 85C Model Setup 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -1.227
+TNS   : -1.227
+
+Type  : Slow 1100mV 85C Model Setup 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -1.227
+TNS   : -1.227
+
+Type  : Slow 1100mV 85C Model Setup 'clockdiv:div|ticks[24]'
+Slack : -1.182
+TNS   : -1.182
+
+Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
+Slack : -0.064
+TNS   : -0.064
+
+Type  : Slow 1100mV 85C Model Hold 'clockdiv:div|ticks[24]'
+Slack : 0.171
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'counter:cnt|DFlipFlop:dff0|q'
+Slack : 0.228
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'counter:cnt|DFlipFlop:dff1|q'
+Slack : 0.332
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.884
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -1.122
+TNS   : -1.122
+
+Type  : Slow 1100mV 85C Model Recovery 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.859
+TNS   : -1.716
+
+Type  : Slow 1100mV 85C Model Recovery 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.807
+TNS   : -0.807
+
+Type  : Slow 1100mV 85C Model Recovery 'clockdiv:div|ticks[24]'
+Slack : -0.665
+TNS   : -0.665
+
+Type  : Slow 1100mV 85C Model Removal 'counter:cnt|DFlipFlop:dff0|q'
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Removal 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.438
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Removal 'counter:cnt|DFlipFlop:dff1|q'
+Slack : 0.717
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Removal 'clockdiv:div|ticks[24]'
+Slack : 0.747
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.682
+TNS   : -17.040
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clockdiv:div|ticks[24]'
+Slack : -0.394
+TNS   : -1.064
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.394
+TNS   : -1.018
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.394
+TNS   : -0.538
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -0.394
+TNS   : -0.513
+
+Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
+Slack : -3.138
+TNS   : -33.114
+
+Type  : Slow 1100mV 0C Model Setup 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -1.313
+TNS   : -1.313
+
+Type  : Slow 1100mV 0C Model Setup 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -1.294
+TNS   : -1.294
+
+Type  : Slow 1100mV 0C Model Setup 'clockdiv:div|ticks[24]'
+Slack : -1.278
+TNS   : -1.278
+
+Type  : Slow 1100mV 0C Model Setup 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -1.221
+TNS   : -2.180
+
+Type  : Slow 1100mV 0C Model Hold 'CLOCK_50'
+Slack : -0.120
+TNS   : -0.120
+
+Type  : Slow 1100mV 0C Model Hold 'clockdiv:div|ticks[24]'
+Slack : 0.268
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'counter:cnt|DFlipFlop:dff0|q'
+Slack : 0.331
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'counter:cnt|DFlipFlop:dff1|q'
+Slack : 0.418
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.824
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -1.045
+TNS   : -1.045
+
+Type  : Slow 1100mV 0C Model Recovery 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.801
+TNS   : -1.601
+
+Type  : Slow 1100mV 0C Model Recovery 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.742
+TNS   : -0.742
+
+Type  : Slow 1100mV 0C Model Recovery 'clockdiv:div|ticks[24]'
+Slack : -0.621
+TNS   : -0.621
+
+Type  : Slow 1100mV 0C Model Removal 'counter:cnt|DFlipFlop:dff0|q'
+Slack : 0.313
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Removal 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.392
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Removal 'counter:cnt|DFlipFlop:dff1|q'
+Slack : 0.662
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Removal 'clockdiv:div|ticks[24]'
+Slack : 0.704
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.701
+TNS   : -15.696
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clockdiv:div|ticks[24]'
+Slack : -0.394
+TNS   : -1.052
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.394
+TNS   : -1.026
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.394
+TNS   : -0.529
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -0.394
+TNS   : -0.523
+
+Type  : Fast 1100mV 85C Model Setup 'CLOCK_50'
+Slack : -2.175
+TNS   : -9.384
+
+Type  : Fast 1100mV 85C Model Setup 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -0.641
+TNS   : -0.641
+
+Type  : Fast 1100mV 85C Model Setup 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.635
+TNS   : -0.635
+
+Type  : Fast 1100mV 85C Model Setup 'clockdiv:div|ticks[24]'
+Slack : -0.623
+TNS   : -0.623
+
+Type  : Fast 1100mV 85C Model Setup 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.618
+TNS   : -1.089
+
+Type  : Fast 1100mV 85C Model Hold 'clockdiv:div|ticks[24]'
+Slack : -0.089
+TNS   : -0.089
+
+Type  : Fast 1100mV 85C Model Hold 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.067
+TNS   : -0.067
+
+Type  : Fast 1100mV 85C Model Hold 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -0.005
+TNS   : -0.005
+
+Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
+Slack : 0.068
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.478
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -0.396
+TNS   : -0.396
+
+Type  : Fast 1100mV 85C Model Recovery 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.209
+TNS   : -0.209
+
+Type  : Fast 1100mV 85C Model Recovery 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.199
+TNS   : -0.397
+
+Type  : Fast 1100mV 85C Model Recovery 'clockdiv:div|ticks[24]'
+Slack : -0.101
+TNS   : -0.101
+
+Type  : Fast 1100mV 85C Model Removal 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.039
+TNS   : -0.039
+
+Type  : Fast 1100mV 85C Model Removal 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.021
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Removal 'counter:cnt|DFlipFlop:dff1|q'
+Slack : 0.176
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Removal 'clockdiv:div|ticks[24]'
+Slack : 0.362
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.749
+TNS   : -12.161
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff0|q'
+Slack : 0.080
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clockdiv:div|ticks[24]'
+Slack : 0.112
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff1|q'
+Slack : 0.126
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.147
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
+Slack : -1.852
+TNS   : -8.408
+
+Type  : Fast 1100mV 0C Model Setup 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -0.616
+TNS   : -0.616
+
+Type  : Fast 1100mV 0C Model Setup 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.605
+TNS   : -0.605
+
+Type  : Fast 1100mV 0C Model Setup 'clockdiv:div|ticks[24]'
+Slack : -0.598
+TNS   : -0.598
+
+Type  : Fast 1100mV 0C Model Setup 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.502
+TNS   : -0.871
+
+Type  : Fast 1100mV 0C Model Hold 'clockdiv:div|ticks[24]'
+Slack : -0.082
+TNS   : -0.082
+
+Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
+Slack : -0.067
+TNS   : -0.067
+
+Type  : Fast 1100mV 0C Model Hold 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.063
+TNS   : -0.063
+
+Type  : Fast 1100mV 0C Model Hold 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -0.009
+TNS   : -0.009
+
+Type  : Fast 1100mV 0C Model Hold 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.413
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'counter:cnt|DFlipFlop:dff1|q'
+Slack : -0.298
+TNS   : -0.298
+
+Type  : Fast 1100mV 0C Model Recovery 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.128
+TNS   : -0.255
+
+Type  : Fast 1100mV 0C Model Recovery 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.128
+TNS   : -0.128
+
+Type  : Fast 1100mV 0C Model Recovery 'clockdiv:div|ticks[24]'
+Slack : -0.041
+TNS   : -0.041
+
+Type  : Fast 1100mV 0C Model Removal 'counter:cnt|DFlipFlop:dff0|q'
+Slack : -0.082
+TNS   : -0.082
+
+Type  : Fast 1100mV 0C Model Removal 'counter:cnt|DFlipFlop:dff2|q'
+Slack : -0.032
+TNS   : -0.063
+
+Type  : Fast 1100mV 0C Model Removal 'counter:cnt|DFlipFlop:dff1|q'
+Slack : 0.114
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Removal 'clockdiv:div|ticks[24]'
+Slack : 0.314
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.775
+TNS   : -14.355
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff0|q'
+Slack : 0.100
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clockdiv:div|ticks[24]'
+Slack : 0.121
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff1|q'
+Slack : 0.128
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'counter:cnt|DFlipFlop:dff2|q'
+Slack : 0.146
+TNS   : 0.000
+
+------------------------------------------------------------

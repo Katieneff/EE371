@@ -1,3 +1,5 @@
+`include "dflipflop.v"
+
 module counter(out, clk, rst);
 	output wire [3:0] out;
 	input clk, rst;
@@ -11,8 +13,8 @@ module counter(out, clk, rst);
 
 	assign out = PS;
 	assign NS[0] = PS_n[0];
-	assign NS[1] = PS[0] & PS_n[1] | PS_n[0] & PS[1];
-	assign NS[2] = PS[2] & PS[0] | PS[2] & PS[1] | PS_n[3] & PS_n[2] & PS_n[1];
-	assign PS[3] = PS[3] & PS[2] | PS[3] & PS[1] | PS[3] & PS[0] | PS_n[3] & PS_n[2] & PS_n[1] & PS_n[0];
+	assign NS[1] = PS[0] & PS[1] | PS_n[0] & PS_n[1];
+	assign NS[2] = PS[2] & PS[0] | PS[2] & PS[1] | PS_n[2] & PS_n[1] & PS_n[0];
+	assign NS[3] = PS[3] & PS[2] | PS[3] & PS[1] | PS[3] & PS[0] | PS_n[3] & PS_n[2] & PS_n[1] & PS_n[0];
 
 endmodule

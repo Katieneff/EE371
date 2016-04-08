@@ -1,0 +1,234 @@
+Analysis & Synthesis report for counter1
+Thu Apr 07 18:52:16 2016
+Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Partition Status Summary
+  7. Partition Dependent Files
+  8. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                              ;
++-----------------------------+---------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Thu Apr 07 18:52:16 2016       ;
+; Quartus II 64-Bit Version   ; 14.1.0 Build 186 12/03/2014 SJ Full Version ;
+; Revision Name               ; counter1                                    ;
+; Top-level Entity Name       ; main                                        ;
+; Family                      ; Cyclone V                                   ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
+; Total registers             ; N/A until Partition Merge                   ;
+; Total pins                  ; N/A until Partition Merge                   ;
+; Total virtual pins          ; N/A until Partition Merge                   ;
+; Total block memory bits     ; N/A until Partition Merge                   ;
+; Total PLLs                  ; N/A until Partition Merge                   ;
+; Total DLLs                  ; N/A until Partition Merge                   ;
++-----------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; main               ; counter1           ;
+; Family name                                                                     ; Cyclone V          ; Cyclone IV GX      ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                       ; Off                ; Off                ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; PowerPlay Power Optimization During Synthesis                                   ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Synthesis Seed                                                                  ; 1                  ; 1                  ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                      ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                        ; Library ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------+---------+
+; src/buffer.v                     ; yes             ; User Verilog HDL File  ; C:/Users/neffk2/EE371/lab1/counter1/src/buffer.v    ;         ;
+; src/clockdiv.v                   ; yes             ; User Verilog HDL File  ; C:/Users/neffk2/EE371/lab1/counter1/src/clockdiv.v  ;         ;
+; src/counter.v                    ; yes             ; User Verilog HDL File  ; C:/Users/neffk2/EE371/lab1/counter1/src/counter.v   ;         ;
+; src/dflipflop.v                  ; yes             ; User Verilog HDL File  ; C:/Users/neffk2/EE371/lab1/counter1/src/dflipflop.v ;         ;
+; src/main.v                       ; yes             ; User Verilog HDL File  ; C:/Users/neffk2/EE371/lab1/counter1/src/main.v      ;         ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------+
+; Partition Status Summary                                                                                                          ;
++----------------+-------------+----------------------------------------------------------------------------------------------------+
+; Partition Name ; Synthesized ; Reason                                                                                             ;
++----------------+-------------+----------------------------------------------------------------------------------------------------+
+; Top            ; no          ; No relevant changes but device changed from CYCLONEV_C7_GX150F_V_F484C8 to CYCLONEV_SE90M_V_F896C6 ;
++----------------+-------------+----------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------+
+; Partition Dependent Files                                                        ;
++-----------------+-------------------+---------+----------------------------------+
+; File            ; Location          ; Library ; Checksum                         ;
++-----------------+-------------------+---------+----------------------------------+
+; src/buffer.v    ; Project Directory ; work    ; 577b4f6cd4cd10c2a445645e3b3ccf76 ;
+; src/clockdiv.v  ; Project Directory ; work    ; 156c722cbc6a7eb3e1bab25789a7cf1f ;
+; src/counter.v   ; Project Directory ; work    ; 32c0a3a43bff5d97403de6e959e4d7a1 ;
+; src/dflipflop.v ; Project Directory ; work    ; a2a16eafb27d9d6f51d211912c7b252c ;
+; src/main.v      ; Project Directory ; work    ; 0b5c3e09a4c93ecd6ac58fcd304e1bf9 ;
++-----------------+-------------------+---------+----------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 14.1.0 Build 186 12/03/2014 SJ Full Version
+    Info: Processing started: Thu Apr 07 18:52:06 2016
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off counter1 -c counter1
+Info (125069): Default assignment values were changed in the current version of the Quartus II software -- changes to default assignments values are contained in file c:/altera/14.1/quartus/bin64/assignment_defaults.qdf
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 2 entities, in source file src/buffer.v
+    Info (12023): Found entity 1: buffer
+    Info (12023): Found entity 2: buffer2
+Info (12021): Found 1 design units, including 1 entities, in source file src/clockdiv.v
+    Info (12023): Found entity 1: clockdiv
+Info (12021): Found 1 design units, including 1 entities, in source file src/counter.v
+    Info (12023): Found entity 1: counter
+Info (12021): Found 1 design units, including 1 entities, in source file src/dflipflop.v
+    Info (12023): Found entity 1: DFlipFlop
+Info (12021): Found 1 design units, including 1 entities, in source file src/main.v
+    Info (12023): Found entity 1: main
+Warning (12019): Can't analyze file -- file src/testbench.v is missing
+Info (12127): Elaborating entity "main" for the top level hierarchy
+Info (12128): Elaborating entity "clockdiv" for hierarchy "clockdiv:div"
+Info (12128): Elaborating entity "buffer" for hierarchy "buffer:resetBuff"
+Info (12128): Elaborating entity "counter" for hierarchy "counter:cnt"
+Info (12128): Elaborating entity "DFlipFlop" for hierarchy "counter:cnt|DFlipFlop:dff0"
+Info (12206): 0 design partitions require synthesis
+Info (12207): 1 design partition does not require synthesis
+    Info (12230): Partition "Top" does not require synthesis because there were no relevant design changes.  However, it was previously synthesized for a different part in the same product family.
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 676 megabytes
+    Info: Processing ended: Thu Apr 07 18:52:16 2016
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:21
+
+
