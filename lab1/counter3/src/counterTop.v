@@ -1,5 +1,3 @@
-`include "counter.v"
-
 module testBench;
 	
 	wire [3:0] out;
