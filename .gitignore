@@ -6,6 +6,14 @@
 *.rpt
 *_pin_model_dump.txt
 *_rtl_netlist
+*.done
+*.jdi
+*.summary
+*.smsg
+*.pin
+*.jdi
+*.cdf
+
 
 # Some sort of cache used by Quartus II
 db/
