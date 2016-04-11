@@ -41,7 +41,7 @@ module Tester(out, clk, rst);
 		#stimDelay clk = 'b0; rst = 'b1;
 		
 		// 4 iterations to test reset
-		for (i = 0; i < 3; i = i + 1) begin
+		for (i = 0; i < 4; i = i + 1) begin
 			#stimDelay clk = 'b1;
 			#stimDelay clk = 'b0;
 		end
@@ -50,7 +50,7 @@ module Tester(out, clk, rst);
 		#stimDelay clk = 'b0;  rst = 'b1;
 		
 		// 16 iterations to test counter
-		for (i=0; i < 15; i = i + 1) begin
+		for (i=0; i < 16; i = i + 1) begin
 			#stimDelay clk = 'b1;
 			#stimDelay clk = 'b0;
 		end

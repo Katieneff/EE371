@@ -13,6 +13,8 @@
 *.pin
 *.jdi
 *.cdf
+*.vdc
+*.vvp
 
 
 # Some sort of cache used by Quartus II

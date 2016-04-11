@@ -35,7 +35,6 @@ Major Functions: If I am calculating everything in the main function, then do I 
 #include <stdio.h>
 #include <stdlib.h>
 
-// the main program
 int main(void) {
 
 	double rate = 0.0;      //
