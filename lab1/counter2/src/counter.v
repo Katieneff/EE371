@@ -1,5 +1,3 @@
-`include "dflipflop.v"
-
 module counter(out, clk, rst);
 	output wire [3:0] out;
 	input clk, rst;

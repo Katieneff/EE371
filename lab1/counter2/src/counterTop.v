@@ -1,4 +1,4 @@
-`include "counter.v"
+
 
 module testBench;
 	

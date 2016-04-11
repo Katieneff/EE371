@@ -1,0 +1,31 @@
+Author: Adolfo Pineda
+Title: Currency Calculator
+
+Abstract: 		 The Currency Calculator program uses inputs from the user to
+				 to calculate 
+
+Introduction: 	 Ever wonder how much an item from the United States costs in
+				 another country? Or how about wanting to know how much an item
+				 from another country costs in the United States? The currency
+				 calculator can help you deduce these costs. The only thing
+				 you need to know is the exchange rate and follow the instructions
+				 the calculator gives you.
+   
+Inputs: (double) exchange rate - There are no limits set to this input, but the
+				 user should be aware that negative or zero conversion rates do
+				 not exist; This the exchange rate used between countries.
+				
+        (double) currency amount - There are no limits set to this input, but the
+				 user should be aware that negative dollars do not exist. Also,
+				 if a non-integer is inputed, then the program does not compute
+				 anything and asks the user if they would like to calculate
+				 another value; This is the money amount the user wants converted.
+				  
+Outputs:(double) total amount - There are no limits set to the size of the conversion
+				 rate or the currency amount, but the output will be rounded to 2 decimal
+				 places (in other words, the nearest cent);
+                  
+Major Functions: If I am calculating everything in the main function, then do I still
+				 have to have a major function? or do I have to break up my code into
+				 major functions? Also, I have char inputs but they're just asking
+				 the user for yes or no answers. Do I have to include this as well?
