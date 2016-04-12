@@ -90,7 +90,7 @@ int main(void) {
 
         printf("\n");
 		printf("Would like to convert another value?\n");
-		printf("Input either 'y' for yes or 'n' for no\n");
+		printf("Please enter either 'y' for yes or 'n' for no\n");
 		scanf("%s", &anotherValue);
 		printf("\n");
 		r = 1; 
