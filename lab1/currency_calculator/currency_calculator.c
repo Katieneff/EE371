@@ -1,9 +1,13 @@
 /*///////////////////////////////////////////////////////////////////////////////////
 Author: Adolfo Pineda
+		Katie neff
+		Sharyar Khalid
 Title: Currency Calculator
 
-Abstract: 		 The Currency Calculator program uses inputs from the user to
-				 to calculate
+Abstract: 		 The following program allows the user to enter the rate of change 
+				 of currency as compared with the U.S dollar. It then asks the user
+				 how much the user wanted to be converted to either to dollars or 
+				 from dollar to which ever country's currency the user entered. 
 
 Introduction: 	 Ever wonder how much an item from the United States costs in
 				 another country? Or how about wanting to know how much an item
@@ -42,9 +46,12 @@ int main(void) {
 	double total = 0.0;
 	int repeat = 1;
 	int diffConversion = 1;
-	char isDollars[10];
-	char anotherValue[10];
-	char sameRate[10];
+	char isDollars;
+	char anotherValue;
+	char sameRate;
+	int s ;
+	int h;
+	int r; 
 
 	while (repeat) {
         total = 0.0;
@@ -60,45 +67,70 @@ int main(void) {
 		printf("\n");
 
 		printf("Is this amount in US dollars?\n");
-		printf("Input either 'y' for yes or 'n' for no\n");
+		printf("Please enter either 'y' for yes or 'n' for no\n");
 		scanf("%s", &isDollars);
+		s = 1;
 		printf("\n");
-
-		if(isDollars[0] == 'y') {
+		
+		while(s){
+		if(isDollars == 'y'|| isDollars == 'Y') {
 			total = amount * rate;
 			printf("Your total is %.2lf\n", total);
-		} else if (isDollars[0] == 'n'){
+			s = 0;
+		} else if (isDollars == 'n' || isDollars == 'N'){
 			total = amount / rate;
 			printf("Your total is $%.2lf\n", total);
+			s = 0; 
 		} else {
-			printf("input is invalid\n");
+			printf("Input is invalid\n");
+			printf("Please enter either 'y' for yes or 'n' for no\n");
+			scanf("%s", &isDollars);
+		}
 		}
 
         printf("\n");
 		printf("Would like to convert another value?\n");
-		printf("Input either 'y' for yes or 'n' for no\n");
+		printf("Please enter either 'y' for yes or 'n' for no\n");
 		scanf("%s", &anotherValue);
 		printf("\n");
-		if (anotherValue[0] == 'n') {
-			repeat = 0;
-		} else if (anotherValue[0] != 'y') {
-			printf("Not sure what you wanted so I'll assume you want this to end\n");
-			repeat = 0;
-		} else {
-            printf("Would like to use the same exchange rate?\n");
-            printf("Input either 'y' for yes or 'n' for no\n");
-            scanf("%s", &sameRate);
-            printf("\n");
-            if (sameRate[0] == 'y') {
-                diffConversion = 0;
-            } else if (sameRate[0] != 'n') {
-                printf("Not sure what you wanted so I'll assume you don't\n");
-                diffConversion = 0;
-            } else {
-                diffConversion = 1;
-            }
-        }
-	}
-
-    return 0;
-}
+		r = 1; 
+			while (r){
+				if ( anotherValue == 'Y' || anotherValue == 'y'){
+					printf("Would you like to use the same exchange rate?\n");
+					printf("Please enter either 'y' for yes or 'n' for no\n");
+					scanf("%s", &sameRate);
+					printf("\n");
+					h = 1;
+					r = 0;
+						while (h)
+							{
+						
+							if(sameRate == 'Y' || sameRate == 'y'){
+								diffConversion = 0;
+								h = 0;
+							}else if (sameRate == 'N' || sameRate == 'n'){
+								diffConversion = 1; 
+								h = 0;
+							}else {
+								printf("Input is invalid\n");
+								printf("Please enter either a 'y' for yes or 'n' for no\n");
+								scanf("%s", &sameRate);
+							}
+							}
+							}
+				else if (anotherValue == 'n' || anotherValue == 'N'){
+					printf("Goodbye have a nice day!\n");
+					repeat = 0;
+					r = 0;
+					
+				}else{
+					printf("Input is invalid\n");
+					printf("Please enter either a 'y' for yes or 'n' no \n");
+					scanf("%s", &anotherValue);
+					h = 1; 
+					 } 
+					 }
+					 }
+			 
+	return 0;
+}	
