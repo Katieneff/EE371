@@ -14,10 +14,10 @@ module counter(out, clk, rst);
 		if (!rst) begin
 			out = 4'b0000;
 		end else begin
-			out[0] <= ~out[3];
-			out[1] <= out[0];
-			out[2] <= out[1];
-			out[3] <= out[2];
+			out[3] <= ~out[0];
+			out[2] <= out[3];
+			out[1] <= out[2];
+			out[0] <= out[1];
 		end
 	end
 endmodule
