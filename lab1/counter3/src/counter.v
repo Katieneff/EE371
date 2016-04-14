@@ -1,8 +1,15 @@
+/*
+Author:  Katie Neff
+Title: 	 counter
+Summary: 4-bit synchronous Johnson down counter with active low reset
+		 that uses behavioural model logic.
+*/
+
 module counter(out, clk, rst);
 	output reg [3:0] out;
 	input clk, rst;
 
-	
+	// Counter logic that emulates a Johnson down counter
 	always @(posedge clk) begin
 		if (!rst) begin
 			out = 4'b0000;
