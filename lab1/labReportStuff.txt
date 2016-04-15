@@ -1,0 +1,56 @@
+ABSTRACT
+
+In this lab, we are introduced to the Altera DE1-SoC board and the Quartus Modeling Environment. 
+The lab allows us to extend our knowledge of Verilog and tests our skills in gate level modeling, 
+behavioral modeling and also schematic modeling in Quartus. To do this, we developed several different 
+types of counters. These included a ripple up counter, a synchronous down counter (at dataflow level), 
+a synchronous Johnson Counter (at behavioural level) and also a synchronous down counter using schematic 
+level design in Quartus. This lab also introduced us to Codeblocks IDE, allowing us to write, compile and 
+debug a program written in C. The program allows users to convert any currency amount back and forth from 
+the United States Dollar.
+
+INTRODUCTION
+
+This is the first lab in the course, and aims to introduce us to the Quartus development environment, along with 
+the DE1 board as our target platform. It also introduces us to C programming using Codeblocks, and also 
+introduces us to iVerilog along with gtkwave to simulate designs. 
+
+
+
+CONCLUSION
+
+In conclusion, the lab went extremely smoothly, and work was delegated equally to meet all requirements 
+mentioned in the design specification. As a team we were able to help each other understand key components 
+and teach one another whenever we were stuck. There were some concepts that were new to all of us, but using 
+online tutorials and documentation found online, we were able to overcome all challenges and successfully build 
+and test our lab components. We learnt each other’s strengths and weaknesses and look forward to the future labs.
+
+Design Specification
+
+The lab consisted of two separate parts, with the first part relying on us designing, building and testing 
+through simulations various counters in circuits. There were four different types of counter designs that we had 
+to create, all using Verilog as the top level design language. The designs were loaded onto a DE1_SoC board and 
+run on the Cyclone V FPGA. The second part of the lab required us to compile and execute a currency converter 
+calculator, with introductory messages and clear instructions of use. The program introduces the user to the 
+application, and then asks whether the user would like to convert from or to US dollars. After that, it prompts 
+the user to enter a currency type, following the exchange rate. After the program has received these inputs, it 
+shows the required output on the screen
+
+SUMMARY
+
+This lab introduced us to various new tools such as iVerilog and gtkwave tools, and we used these tools to 
+develop counters in different modeling styles. This allowed us to enhance our knowledge of the Verilog HDL along 
+with gate level modeling, behavioural modeling and also introduced us to schematic modeling levels available in 
+Quartus. We developed a ripple up counter, a synchronous down counter, a synchronous Johnson counter as well as a 
+synchronous down counter in schematic design. The first three counters were built on iVerilog, and the schematic 
+for the down counter was done in Quartus. 
+
+In the final part of lab, we learnt how to develop a basic currency exchange calculator in C. This was done using 
+Code Blocks IDE. It allows users to convert to and from US dollars based on the exchange rate provided by the user.
+
+
+
+
+
+
+
