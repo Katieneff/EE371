@@ -1,12 +1,21 @@
+/*
+Author:  Katie Neff
+Title: 	 testBench
+Summary: Test bench module that drives the tests for a counter 
+*/
+
 module testBench;
 	
 	wire [3:0] out;
 	wire clk, rst;
 	
+	// Declare an instance of the counter module
 	counter myCounter(out[3:0], clk, rst);
+	
+	// Declare an instance of the Tester module
 	Tester aTester(out[3:0], clk, rst);
 
-
+	// File for gtkwave
 	initial 
 	begin
 		$dumpfile("counter.vcd");
@@ -17,16 +26,22 @@ module testBench;
 endmodule
 
 
+/*
+Author:  Katie Neff
+Title: 	 Tester
+Summary: Testing module for the counter to show what it is counting.
+*/
 
 module Tester(out, clk, rst);
-	input [3:0] out;
-	output reg clk, rst;
+	input [3:0] out; // 4-bit data of the counter as input
+	output reg clk, rst; // Clock and Reset for the counters
 	
 	parameter stimDelay = 20;
 	
 	initial
 	begin	
-		$display("\t\t bits \t clk \t rst");
+		// Displays the data and labels for the counter
+		$display("\t\t bits \t rst \t clk");
 		$monitor("\t\t %b\t %b\t %b", out, rst, clk);
 	end
 	

@@ -1,8 +1,14 @@
-Author: Adolfo Pineda
+Author: Adolfo Pineda.
+		Katelyn Neff 
+		Sharyar khalid 
+		
 Title: Currency Calculator
 
-Abstract: 		 The Currency Calculator program uses inputs from the user to
-				 to calculate 
+
+Abstract: 		 The following program allows the user to enter the rate of change 
+				 of currency as compared with the U.S dollar. It then asks the user
+				 how much the user wanted to convert to either to dollars or 
+				 from dollar to which ever country's currency the user entered 
 
 Introduction: 	 Ever wonder how much an item from the United States costs in
 				 another country? Or how about wanting to know how much an item
@@ -25,7 +31,5 @@ Outputs:(double) total amount - There are no limits set to the size of the conve
 				 rate or the currency amount, but the output will be rounded to 2 decimal
 				 places (in other words, the nearest cent);
                   
-Major Functions: If I am calculating everything in the main function, then do I still
-				 have to have a major function? or do I have to break up my code into
-				 major functions? Also, I have char inputs but they're just asking
-				 the user for yes or no answers. Do I have to include this as well?
+Major Functions: The only major function used was the 'main' function where most of the 
+				 above mentioned uses of the program were implemented. 
