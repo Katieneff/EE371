@@ -48,8 +48,14 @@ for the down counter was done in Quartus.
 In the final part of lab, we learnt how to develop a basic currency exchange calculator in C. This was done using 
 Code Blocks IDE. It allows users to convert to and from US dollars based on the exchange rate provided by the user.
 
+System Description
 
-
+In our C program, we have once source of input and one output format. The user enters data using the keyboard connected to 
+the computer, and the console outputs the required information and data. Error handling takes place in order to obtain accurate 
+data. These include making sure that the user enters the correct letter when prompted to enter a specific letter for example if the prompt
+asks the user to enter either a Y or N and the user enters any other letter the program will give an error 
+reminding the user to only enter Y or N. There are no timing constraints, as long as the user enters the required details 
+when prompted. 
 
 
 
