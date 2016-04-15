@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1460406898 source:c:\users\user\desktop\currency_calculatorfixed.c
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+
+1460409417 source:c:\users\user\desktop\ee_371\ee371\lab1\currency_calculator\currency_calculator.c
+	<stdio.h>
+	<stdlib.h>
+
+1460274724 source:c:\users\user\desktop\currency_calculator.c
+	<stdio.h>
+	<stdlib.h>
+

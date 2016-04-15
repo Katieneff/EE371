@@ -3,7 +3,8 @@ Author: Adolfo Pineda
 Title: Currency Calculator
 
 Abstract: 		 The Currency Calculator program uses inputs from the user to
-				 to calculate
+				 to calculate the worth of an item in US dollars from foreign
+				 currency, or from foreign currency
 
 Introduction: 	 Ever wonder how much an item from the United States costs in
 				 another country? Or how about wanting to know how much an item
