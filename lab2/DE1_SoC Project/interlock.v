@@ -1,15 +1,17 @@
 
-module interlock(innerDoor , outerDoor , resetLeds , fillStarting , fillFinish , drainStarting , drainFinish ,
+module interlock(filling , draining , innerDoor , outerDoor , resetLeds , 
 					bathLeaving , bathArriving , personCheck , pressureCheck , drain , 
-					fill , innerDoorSwitch , outerDoorSwitch , clk , reset);
+					fill , innerDoorSwitch , outerDoorSwitch , clk , reset , drainFinished , 
+					fillFinished , waitFinished , waiting, h5, h4);
+	
 	input bathLeaving, bathArriving , personCheck , pressureCheck , drain , fill;
 	input innerDoorSwitch , outerDoorSwitch  , clk , reset;
+	input waitFinished , drainFinished , fillFinished;
 	output reg innerDoor , outerDoor;
 	output reg [3:0] resetLeds;
-	output reg fillStarting , fillFinish , drainStarting , drainFinish;
-	
-	
+	output reg filling , draining , waiting;
 	reg [3:0] ps;
+	output reg h5, h4; 
 
 	wire nReset;
 
@@ -19,7 +21,9 @@ module interlock(innerDoor , outerDoor , resetLeds , fillStarting , fillFinish ,
 	parameter [3:0] swChkInOpen = 4'b1010 , swChkInClose = 4'b1011;
 	parameter [3:0] timerFill = 4'b1100 , timerDrain = 4'b1101;
 	parameter [3:0] resetting = 4'b0000 , pressureStatus = 4'b0001;
-	parameter [3:0] doorStatus = 4'b0010;
+	parameter [3:0] doorStatus = 4'b0010 , waiting5 = 4'b0011;
+	parameter [3:0] closedLowIn = 4'b1110;
+	parameter [6:0] i = ~7'b0000110, n = ~7'b0110111, off = ~7'b0000000;
 	
 	
 	not resetNot (nReset , reset);
@@ -31,6 +35,8 @@ module interlock(innerDoor , outerDoor , resetLeds , fillStarting , fillFinish ,
 				resetLeds [3:0] <= 4'b1111;
 				innerDoor <= 1'b1;
 				outerDoor <= 1'b1;
+				draining <= 0;
+				filling <= 0;
 			end
 		else
 		begin
@@ -43,7 +49,8 @@ module interlock(innerDoor , outerDoor , resetLeds , fillStarting , fillFinish ,
 						ps <= doorStatus;
 						innerDoor <= 1'b0;
 						outerDoor <= 1'b0;
-						resetLeds [3:0] <= 4'b0000;
+						//resetLeds [3:0] <= 4'b0000;
+						resetLeds <= doorStatus;
 					end
 				end
 				
@@ -51,7 +58,8 @@ module interlock(innerDoor , outerDoor , resetLeds , fillStarting , fillFinish ,
 				begin
 					if(!outerDoorSwitch && !innerDoorSwitch)
 					begin
-						ps <= pressureCheck;
+						ps <= pressureStatus;
+						resetLeds <= pressureStatus;
 					end
 				
 				end
@@ -61,11 +69,13 @@ module interlock(innerDoor , outerDoor , resetLeds , fillStarting , fillFinish ,
 					if(!pressureCheck)
 					begin
 						ps <= closedLow;
+						resetLeds <= closedLow;
 					end
 					else
 					begin
 						ps <= timerDrain;
-						
+						draining <= 1;
+						resetLeds <= timerDrain;
 					end
 				
 				end
@@ -74,35 +84,89 @@ module interlock(innerDoor , outerDoor , resetLeds , fillStarting , fillFinish ,
 				begin
 				if(bathArriving)	
 					begin
-						ps <= timerFill;
+						ps <= waiting5;
+						waiting <= 1'b1;
+						resetLeds <= waiting5;
 					end
 					else if(bathLeaving)
 					begin
-						ps <= swChkInOpen;
-						innerDoor <= 1'b1;
-					end
+						ps <= waiting5;
+						waiting <= 1'b1;
+						//innerDoor <= 1'b1;
+						resetLeds <= waiting5;
+						end
+						
+						else if(!bathArriving && !bathLeaving)
+							begin
+							h5 <= ~7'b0110000;
+						   h4 <= ~7'b0110111;
+							ps <= closedLow;
+							resetLeds <= closedLow;
+							end
+							
+						
 				end
+				
+				closedLowIn:
+				begin 
+				if (innerDoorSwitch) 
+				begin
+						innerDoor <=1'b1;
+						h5 <= i;
+						h4 <=n ; 
+						ps <= swChkInClose;
+						resetLeds <=swChkInClose; 
+				end 
+				
+				else if (bathArriving && !innerDoorSwitch) 
+				begin
+					innerDoor <=1'b1; 
+					ps <= closedLowIn;
+					resetLeds <= closedLowIn;
+				end 
+				end 
+				
 				
 				closedHigh:
 				begin
-					if(bathArriving)
+					if(bathArriving&&!outerDoor)
 					begin
 						ps <= swChkOutOpen;
 						outerDoor <= 1'b1;
+						resetLeds <= swChkOutOpen;
+						end
+					else if (bathArriving&&outerDoor)
+					begin
+						ps <= timerDrain;
+						//outerDoor <= 1'b1;
+						draining <=1'b1;
+						resetLeds <= timerDrain;
 					end
 					else if(!bathArriving)
 					begin
 						ps <= timerDrain;
-						drainFinish <= 1'b0;
+						draining <= 1'b1;
+						resetLeds <= timerDrain;
 					end
 				end
 				
 				outerOpen:
 				begin
-					if(!bathArriving)
+					if(outerDoorSwitch)
 					begin
-						ps <= swChkOutClose;
+						h5 <= i;
+						h4 <= n;
+						ps <= outerOpen;
+						outerDoor <= 1'b1;
+						resetLeds <= outerOpen;
+					end
+					else if (!outerDoorSwitch)
+					begin 
+						h5 = i;
+						h4 = n;
 						outerDoor <= 1'b0;
+						ps <= swChkOutClose;
+						resetLeds <= swChkOutClose;
 					end
 				end
 				
@@ -112,46 +176,92 @@ module interlock(innerDoor , outerDoor , resetLeds , fillStarting , fillFinish ,
 					begin
 						ps <= swChkInClose;
 						innerDoor <= 1'b0;
+						resetLeds <= swChkInClose;
 					end
 				end
 				
 				swChkOutOpen:
 				begin
-					if(outerDoorSwitch)
+					if(outerDoorSwitch && !personCheck)
 					begin
 						ps <= outerOpen;
+						resetLeds <= outerOpen;
 					end
 				end
 				
 				swChkOutClose:
 				begin
-					if(!outerDoorSwitch)
+					if(!outerDoorSwitch && !personCheck)
 					begin
-						ps <= closedHigh;
+						ps <= timerDrain;
+						draining <=1'b1;
+						resetLeds <= timerDrain;
 					end
 				
 				end
 				
 				swChkInOpen:
 				begin
-					if(innerDoorSwitch)
+				if (bathArriving)
+				begin
+					ps <= timerFill;
+					filling = 1'b1;
+					resetLeds = timerFill;
+					end 
+					/*if(innerDoorSwitch && !personCheck)
 					begin
 						ps <= innerOpen;
-					end
+						resetLeds <= innerOpen;
+					end*/
 				
 				end
 				
 				swChkInClose:
 				begin
-					if(!innerDoorSwitch)
+					if(!innerDoorSwitch && !personCheck)
 					begin
 						ps <= closedLow;
+						innerDoor <= 1'b0;
+						resetLeds <= closedLow;
+					end
+				end
+				
+				timerDrain:
+				begin
+					if(drainFinished)
+					begin
+						ps <= closedLowIn;
+						draining <= 1'b0;
+						resetLeds <= closedLowIn;
+					end
+				end
+				
+				timerFill:
+			   begin	
+				filling<=1'b1;
+				
+					if(fillFinished)
+					begin
+						ps <= closedHigh;
+						filling <= 1'b0;
+						resetLeds <= ~closedHigh;
+					end
+				end
+				
+				waiting5:
+				begin
+					if(waitFinished)
+					begin
+						ps <= timerFill;
+						resetLeds <= timerFill;
+						//innerDoor <= 1'b1;
+						waiting <= 1'b0;
 					end
 				end
 				
 				default:
 				begin
-				
+					resetLeds [3:0] <= 4'b0001;
 				end
 			endcase
 		end
