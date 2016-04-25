@@ -24,6 +24,7 @@ module interlock(filling , draining , innerDoor , outerDoor , resetLeds ,
 	parameter [3:0] doorStatus = 4'b0010 , waiting5 = 4'b0011;
 	parameter [3:0] closedLowIn = 4'b1110;
 	parameter [6:0] i = ~7'b0000110, n = ~7'b0110111, off = ~7'b0000000;
+	parameter [3:0] bufferState = 4'b1111;
 	
 	
 	not resetNot (nReset , reset);
@@ -88,42 +89,53 @@ module interlock(filling , draining , innerDoor , outerDoor , resetLeds ,
 						waiting <= 1'b1;
 						resetLeds <= waiting5;
 					end
-					else if(bathLeaving)
-					begin
-						ps <= waiting5;
-						waiting <= 1'b1;
-						//innerDoor <= 1'b1;
-						resetLeds <= waiting5;
-						end
-						
-						else if(!bathArriving && !bathLeaving)
+					
+					else if(bathLeaving&&innerDoorSwitch)
 							begin
-							h5 <= ~7'b0110000;
-						   h4 <= ~7'b0110111;
-							ps <= closedLow;
-							resetLeds <= closedLow;
+							ps <= waiting5;
+							innerDoor <= 1'b0;
+							outerDoor <=1'b0;
+							waiting <= 1'b1;
+							resetLeds <= waiting5;
 							end
 							
+					else if(innerDoorSwitch)
+					begin
+						ps <= closedLow;
+						innerDoor <= 1'b1;
+						h5 <= i;
+						h4 <= n;
+						resetLeds <= closedLow;
+						end
+						
 						
 				end
 				
 				closedLowIn:
 				begin 
-				if (innerDoorSwitch) 
-				begin
-						innerDoor <=1'b1;
-						h5 <= i;
-						h4 <=n ; 
-						ps <= swChkInClose;
-						resetLeds <=swChkInClose; 
-				end 
-				
-				else if (bathArriving && !innerDoorSwitch) 
+				if (bathArriving && !innerDoorSwitch) 
 				begin
 					innerDoor <=1'b1; 
 					ps <= closedLowIn;
 					resetLeds <= closedLowIn;
 				end 
+				   else if (innerDoorSwitch) 
+					begin 
+							innerDoor <=1'b1;
+							h5 <=i;
+							h4 <=n;
+							ps <= swChkInClose;
+							resetLeds <= swChkInClose;
+							
+							end 
+					else 
+				    begin
+						innerDoor <=1'b1; 
+						ps <= closedLowIn;
+						resetLeds <=closedLowIn; 
+						
+				end 
+
 				end 
 				
 				
@@ -135,18 +147,11 @@ module interlock(filling , draining , innerDoor , outerDoor , resetLeds ,
 						outerDoor <= 1'b1;
 						resetLeds <= swChkOutOpen;
 						end
-					else if (bathArriving&&outerDoor)
+					else if (bathLeaving)
 					begin
-						ps <= timerDrain;
-						//outerDoor <= 1'b1;
-						draining <=1'b1;
-						resetLeds <= timerDrain;
-					end
-					else if(!bathArriving)
-					begin
-						ps <= timerDrain;
-						draining <= 1'b1;
-						resetLeds <= timerDrain;
+						ps <= swChkOutOpen;
+						outerDoor <= 1'b1;
+						resetLeds <= swChkOutOpen;
 					end
 				end
 				
@@ -220,9 +225,9 @@ module interlock(filling , draining , innerDoor , outerDoor , resetLeds ,
 				begin
 					if(!innerDoorSwitch && !personCheck)
 					begin
-						ps <= closedLow;
+						ps <= bufferState;
 						innerDoor <= 1'b0;
-						resetLeds <= closedLow;
+						resetLeds <= bufferState;
 					end
 				end
 				
@@ -244,7 +249,7 @@ module interlock(filling , draining , innerDoor , outerDoor , resetLeds ,
 					begin
 						ps <= closedHigh;
 						filling <= 1'b0;
-						resetLeds <= ~closedHigh;
+						resetLeds <= closedHigh;
 					end
 				end
 				
@@ -258,6 +263,25 @@ module interlock(filling , draining , innerDoor , outerDoor , resetLeds ,
 						waiting <= 1'b0;
 					end
 				end
+				bufferState:
+				begin
+						if (bathArriving)
+						begin 
+						ps <= bufferState;
+						resetLeds <= bufferState;
+				end
+			         else if (bathLeaving)
+						begin
+					      ps<=bufferState;
+							resetLeds <= bufferState;
+						end 
+						
+						else 
+						begin 
+						     ps<= closedLow;
+							  resetLeds <= closedLow;
+						end 
+				end 
 				
 				default:
 				begin
