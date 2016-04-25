@@ -1,0 +1,20 @@
+So i just have the arrival working properly
+- when you first map in on to the Board press and hold key 0 for reset of the system . 
+- LEDR 7 to 4 will show you which state you are in
+- Then to start arrival procedure turn on SW0 
+- A timer will start and countdown from 5 to 0 
+- then Hex display will ask you to pressurize 
+- press and hold key 1 to pressurize 
+- it will count down from 7 to 0 to show that it has pressurized 
+- then it will turn on led 2 indicating that it is okay to open outer gate 
+- User should turn on SW2 which is the outer gate opener switch 
+- at this point i wanted hex 5 and hex 4 to display in but doesnt seem to be working 
+- then you have to turn off sw2 to make sure the outer door closes 
+- then Hex 0 and 1 will ask you to depressurize 
+- press and hold key 2 to depressurize (evacuate chamber) 
+- then led 3 will light up indicating its safe to open inner door 
+- open inner door by turning in sw3 
+- after turning on sw 3 i wanted again hex 5 and 4 to display 'in' oh and at this point you should probably 
+  turn off sw 0 other wise if you dont u'll see what happpens LOL (stil have to fix that it just restarts 
+  after to you the inner door and arrival signal is still on) 
+ - then yeah you just turn off sw 3 for inner door and led 7 to 4 will show you that it goes to its initial state. 
