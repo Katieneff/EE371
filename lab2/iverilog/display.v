@@ -36,7 +36,7 @@ module display (letter , num , clk , drainVal , fillVal , draining , filling , w
 				end
 			else if(filling)
 				begin
-				letter <= ~7'b1110001;
+				letter <= ~7'b1110011;
 				case(fillVal)
 					// Light: 6543210 
 					0: num <= ~7'b0111111; 
