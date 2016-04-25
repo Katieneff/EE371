@@ -1,5 +1,3 @@
-
-
 module DE1_SoC (CLOCK_50 , LEDR , SW , HEX0 , HEX1 , HEX2 , HEX3, KEY);
 	input [3:0] KEY;
 	input [9:0] SW;
