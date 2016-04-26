@@ -77,22 +77,46 @@ module interlock(
 	
 	always@(posedge clk) begin
 		if (nReset) begin
-				ps <= resetting;
-				resetLeds [3:0] <= 4'b1111;
-				innerDoor <= 1'b1;
-				outerDoor <= 1'b1;
+				ps <= closedLow;
+				resetLeds [3:0] <= closedLow;
+				innerDoor <= 1'b0;
+				outerDoor <= 1'b0;
 				draining <= 0;
 				filling <= 0;
 		end else begin
 			case (ps)
-				resetting: begin   // <----  Can we put this block in the if (nReset) block?
-					if (!personCheck) begin
-						ps <= doorStatus;
+				resetting: begin
+					if (!personCheck && !pressureCheck && !bathLeaving) begin
+						ps <= timerFill;
 						innerDoor <= 1'b0;
 						outerDoor <= 1'b0;
-						//resetLeds [3:0] <= 4'b0000;
-						resetLeds <= doorStatus;
+						resetLeds <= timerFill;
 					end
+					else if (bathLeaving && !pressureCheck && !personCheck)
+					begin 
+					       ps <=swChkInOpen ;
+							 resetLeds <= swChkInOpen; 
+							 innerDoor <= 1'b1; 
+					end 
+					else if (pressureCheck && bathLeaving) 
+					begin
+					      ps <= timerDrain ;
+							resetLeds <= timerDrain; 
+							draining <= 1 ; 
+							
+					end 
+					else if(!personCheck && pressureCheck)
+					begin 
+					     ps <= swChkOutOpen;
+						  resetLeds <= swChkOutOpen;
+						  outerDoor <= 1'b1; 
+				   end 
+					else if ( personCheck && !pressureCheck) 
+					begin
+				         ps <= swChkInOpen;
+						   resetLeds <= swChkInOpen;
+						   innerDoor <= 1'b1; 	
+					end 
 				end
 				
 				// Check the door status. Both the inner door and outter door
@@ -100,11 +124,10 @@ module interlock(
 				doorStatus: begin
 					if (!outerDoorSwitch && !innerDoorSwitch) begin
 						ps <= pressureStatus;
-						resetLeds <= pressureStatus; // Maybe wire LEDS to PS for simplicity?
+						resetLeds <= pressureStatus; 
 					end
 				end
 				
-				// Check pressure. If pressure
 				pressureStatus: begin
 					if (!pressureCheck) begin
 						ps <= closedLow;
@@ -116,14 +139,13 @@ module interlock(
 					end
 				end
 				
-				//
 				closedLow: begin
 					if (bathArriving) begin
 							ps <= waiting5;
 							waiting <= 1'b1;
 							resetLeds <= waiting5;
 					end else 
-					if(bathLeaving && innerDoorSwitch) begin
+					if(bathLeaving) begin
 							ps <= waiting5;
 							innerDoor <= 1'b0;
 							outerDoor <=1'b0;
@@ -140,23 +162,19 @@ module interlock(
 				end
 				
 				closedLowIn: begin 
-					if (bathArriving && !innerDoorSwitch) begin
+					if (!innerDoorSwitch) begin
 						innerDoor <=1'b1; 
 						ps <= closedLowIn;
 						resetLeds <= closedLowIn;
 					end else 
 					if (innerDoorSwitch) begin 
-						innerDoor <=1'b1;
+						innerDoor <= 1'b1;
 						h5 <=i;
 						h4 <=n;
-						ps <= swChkInClose;
-						resetLeds <= swChkInClose;
-					end else begin
-						innerDoor <=1'b1; 
-						ps <= closedLowIn;
-						resetLeds <=closedLowIn; 
+						ps <= swChkInOpen;
+						resetLeds <= swChkInOpen;
 					end 
-				end 
+					end  
 				
 				
 				closedHigh: begin
@@ -206,21 +224,39 @@ module interlock(
 				swChkOutClose: begin
 					if (!outerDoorSwitch && !personCheck) begin
 						ps <= timerDrain;
-						draining <=1'b1;
+						draining <= 1'b1;
 						resetLeds <= timerDrain;
 					end
 				end
 				
 				swChkInOpen: begin
-					if (bathArriving) begin
-						ps <= timerFill;
-						filling = 1'b1;
-						resetLeds = timerFill;
+					if (!innerDoorSwitch) begin
+						ps <= swChkInOpen;
+						innerDoor = 1'b1;
+						resetLeds = swChkInOpen;
+					end 
+					else if (innerDoorSwitch)
+					begin
+					     ps<= swChkInClose;
+						  innerDoor <= 1'b1; 
+						  resetLeds <= swChkInClose;
 					end 
 				end
 				
 				swChkInClose: begin
-					if (!innerDoorSwitch && !personCheck) begin
+				        if (!innerDoorSwitch && bathLeaving && !bathArriving) 
+						  begin
+						        ps <= timerFill;
+								  resetLeds <= timerFill;
+								  innerDoor <= 1'b0;  
+						  end 
+						  else if (!innerDoorSwitch && bathArriving && !bathLeaving)
+						  begin
+									ps <= timerFill;
+									resetLeds <= timerFill; 
+								   innerDoor <= 1'b0;
+						  end
+					else if (!innerDoorSwitch && !personCheck) begin
 						ps <= bufferState;
 						innerDoor <= 1'b0;
 						resetLeds <= bufferState;
@@ -246,9 +282,11 @@ module interlock(
 				
 				waiting5: begin
 					if (waitFinished) begin
-						ps <= timerFill;
-						resetLeds <= timerFill;
-						//innerDoor <= 1'b1;
+					   if (bathArriving || bathLeaving) 
+						begin
+					        ps <= resetting;
+							  resetLeds<= resetting;  
+						end 
 						waiting <= 1'b0;
 					end
 				end
