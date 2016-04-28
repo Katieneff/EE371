@@ -1,5 +1,3 @@
-
-
 module display (letter , num , clk , drainVal , fillVal , draining , filling , waiting , waitVal);
 
 	output reg [6:0] letter , num;
