@@ -1,4 +1,8 @@
-
+/*This is the interlock module where most of the functions of this lab happens
+  This module takes care of arriving, departing, checking pressure and checking 
+  if there is a person in the interlock. This module also takes care of the 
+  pressurization and depressurization of the interlock chamber*/
+  
 module interlock(
 						filling , 
 						draining, 
@@ -18,11 +22,9 @@ module interlock(
 						drainFinished, 
 						fillFinished, 
 						waitFinished, 
-						waiting, 
-						h5, 
-						h4
+						waiting
 					);
-	
+	// The following inputs come from the main module 
 	input bathLeaving, 
 			bathArriving, 
 			personCheck, 
@@ -36,21 +38,30 @@ module interlock(
 			waitFinished, 
 			drainFinished, 
 			fillFinished;
-			
+	// The following outputs are displayed onto LEDR 3 and 2 	
 	output reg innerDoor, 
 				  outerDoor;
-	output reg [3:0] resetLeds; // Present state of the machine
 	
+	/*The following output displays the state in which the interlock 
+	  is currently in, it displays these states on LEDRs 7 to 4 */
+	output reg [3:0] resetLeds; 
+	
+	/* These following outputs go to the timer module. They act as a 
+		signal to activate either pressurization, depressurization or 
+		the waiting timer. These signals activate depending on which 
+		state the interlock module is in*/
 	output reg filling, 
 				  draining, 
 				  waiting;
 				  
-	output reg h5, h4; // Displays 		  
+			  
 				  
 	reg [3:0] ps;
 	
 	wire nReset;
 	not resetNot (nReset , reset);
+	
+	// Follow are the states that this module goes through 
 
 	parameter [3:0] closedLow = 4'b0100, 
 						 closedHigh = 4'b0101;
@@ -76,7 +87,9 @@ module interlock(
 	
 	
 	always@(posedge clk) begin
-		if (nReset) begin
+	// Following if statement checks to see if the user has 
+	// pressed the reset key, which is key 0. 
+		if (nReset) begin 
 				ps <= closedLow;
 				resetLeds [3:0] <= closedLow;
 				innerDoor <= 1'b0;
@@ -85,6 +98,9 @@ module interlock(
 				filling <= 0;
 		end else begin
 			case (ps)
+			   // The following state makes sure if the interlock is empty or not 
+				// It checks if the pressure is already high in the chamber
+				// or if there is already a person in there 
 				resetting: begin
 					if (!personCheck && !pressureCheck && !bathLeaving) begin
 						ps <= timerFill;
@@ -119,26 +135,10 @@ module interlock(
 					end 
 				end
 				
-				// Check the door status. Both the inner door and outter door
-				// must be closed before moving to next state (checking pressure)
-				doorStatus: begin
-					if (!outerDoorSwitch && !innerDoorSwitch) begin
-						ps <= pressureStatus;
-						resetLeds <= pressureStatus; 
-					end
-				end
-				
-				pressureStatus: begin
-					if (!pressureCheck) begin
-						ps <= closedLow;
-						resetLeds <= closedLow;
-					end else begin
-						ps <= timerDrain;
-						draining <= 1;
-						resetLeds <= timerDrain;
-					end
-				end
-				
+				// The following state is the initial state that the interlock module 
+				// goes into and then wait for either the arrival signal or departure signal
+				// when either of those are activated the interlock module goes into the 
+				// wait5 module where the 5 minute countdown begins. 
 				closedLow: begin
 					if (bathArriving) begin
 							ps <= waiting5;
@@ -155,12 +155,12 @@ module interlock(
 					if (innerDoorSwitch) begin
 						ps <= closedLow;
 						innerDoor <= 1'b1;
-						h5 <= i;
-						h4 <= n;
 						resetLeds <= closedLow;
 					end	
 				end
 				
+				// This is the state when the interlock is depressurizzed and the inner 
+				// door is closed 
 				closedLowIn: begin 
 					if (!innerDoorSwitch) begin
 						innerDoor <=1'b1; 
@@ -169,14 +169,13 @@ module interlock(
 					end else 
 					if (innerDoorSwitch) begin 
 						innerDoor <= 1'b1;
-						h5 <=i;
-						h4 <=n;
 						ps <= swChkInOpen;
 						resetLeds <= swChkInOpen;
 					end 
 					end  
 				
-				
+				// The interlock module arrives in this state when the chamber is pressurized
+				// and the outer door is closed, as well as the inner door. 
 				closedHigh: begin
 					if (bathArriving && !outerDoor) begin
 						ps <= swChkOutOpen;
@@ -190,22 +189,21 @@ module interlock(
 					end
 				end
 				
+				// The onterlock module arrives in this state when the interlock is 
+				// pressurized and the outer door is open 
 				outerOpen: begin
 					if (outerDoorSwitch) begin
-						h5 <= i;
-						h4 <= n;
 						ps <= outerOpen;
 						outerDoor <= 1'b1;
 						resetLeds <= outerOpen;
 					end else if (!outerDoorSwitch) begin 
-						h5 = i;
-						h4 = n;
 						outerDoor <= 1'b0;
 						ps <= swChkOutClose;
 						resetLeds <= swChkOutClose;
 					end
 				end
 				
+				// The inter lock comes to this module if the innerDoor is opened 
 				innerOpen: begin
 					if (!bathLeaving) begin
 						ps <= swChkInClose;
@@ -214,6 +212,8 @@ module interlock(
 					end
 				end
 				
+				//The interlock goes to this state if the bathysphere is arriving and 
+				// the outer door is not open or if the bathysphere is about to depart.
 				swChkOutOpen: begin
 					if (outerDoorSwitch && !personCheck) begin
 						ps <= outerOpen;
@@ -221,6 +221,9 @@ module interlock(
 					end
 				end
 				
+				// The interlock arrives to this module after the outer door is open and 
+				// stays in here until the outer door is closed then it goes to depressurization
+				// state 
 				swChkOutClose: begin
 					if (!outerDoorSwitch && !personCheck) begin
 						ps <= timerDrain;
@@ -229,6 +232,8 @@ module interlock(
 					end
 				end
 				
+				// The interlock arrives in this state after the inner door is open 
+				// and stays in here until the inner door is closed. 
 				swChkInOpen: begin
 					if (!innerDoorSwitch) begin
 						ps <= swChkInOpen;
@@ -243,6 +248,7 @@ module interlock(
 					end 
 				end
 				
+				// Arrives in this state after the inner door is open and then closed 
 				swChkInClose: begin
 				        if (!innerDoorSwitch && bathLeaving && !bathArriving) 
 						  begin
@@ -262,7 +268,7 @@ module interlock(
 						resetLeds <= bufferState;
 					end
 				end
-				
+				// this is the state where depressurization is activated 
 				timerDrain: begin
 					if (drainFinished) begin
 						ps <= closedLowIn;
@@ -271,6 +277,7 @@ module interlock(
 					end
 				end
 				
+				// This is the state where pressurization is activated 
 				timerFill: begin	
 					filling<=1'b1;
 					if (fillFinished) begin
@@ -280,6 +287,7 @@ module interlock(
 					end
 				end
 				
+				// This is the state where the timer for waiting 5 mminutes is activated 
 				waiting5: begin
 					if (waitFinished) begin
 					   if (bathArriving || bathLeaving) 

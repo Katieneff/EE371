@@ -1,3 +1,15 @@
+/*Authors : Adolfo Pineda
+				Katelyn Elizabeth Neff 
+				Sharyar Khalid 
+				
+  This is the main module which calls all other module
+  this module calls the interlock module that does all the 
+  main features of this lab, then it calls the timer module and 
+  sends it the approriate inputs depending on which state the 
+  interlock module is. It also calls the display module that outputs 
+  on the HEX display allowing the user to see what he/she is currently 
+  doing*/
+  
 module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 	
 	input [3:0] KEY;
@@ -12,9 +24,7 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 	wire [6:0] letter, number;
 	
 	assign HEX1 = letter;
-	assign HEX0 = number;
-	assign HEX5 = h5;
-	assign HEX4 = h4; 
+	assign HEX0 = number; 
 
 	assign LEDR[9] = SW[9];
 	assign LEDR[8] = SW[8];	
@@ -24,7 +34,8 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 	always@(posedge CLOCK_50) begin
 		tBase <= tBase + 1'b1;
 	end
-
+	
+	// The following module does most of the main functions of this lab 
 	interlock inter(
 							.draining(draining), 
 							.filling(filling), 
@@ -44,11 +55,10 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 							.fillFinished(fillFinished), 
 							.drainFinished(drainFinished),
 							.waiting(waiting), 
-							.waitFinished(waitFinished), 
-							.h5(h5),
-							.h4(h4)
+							.waitFinished(waitFinished)
 						);
-
+	// The following displays the output of either pressurizing, waiting or depressurizing 
+	// onto HEX0 and HEX 1 
 	display disp(
 						.letter(letter), 
 						.num(number), 
@@ -60,7 +70,9 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 						.waiting(waiting), 
 						.waitVal(waitVal)
 					);
-	
+	/* The following module initiates when the interlock module 
+	   is in the pressurization state and allows the user to press and 
+		hold key 1 to immitate the pressurization of the interlock chamber*/
 	timer pressurize(
 							.val(fillVal),
 							.finished(fillFinished), 
@@ -69,7 +81,10 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 							.change(!KEY[1]), 
 							.start(filling)
 						);
-	
+						
+	/*This module initiates when the interlock module is in the depressurize 
+	  state and allows the user to press and hold key 2 to immitate the depressurization 
+	  of the interlock chamber*/
 	timer depressurize(
 								.val(drainVal), 
 								.finished(drainFinished), 
@@ -78,7 +93,10 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 								.change(!KEY[2]), 
 								.start(draining)
 							);
-
+	/*This module initiate when the bathysphere signals either arriving or departing and the 
+	  interlock module goes into the waiting state then a signal to this module activates it 
+	  and a countdown goes from 5 to 0 immitating the 5 minute waiting times for both departure 
+	  and arrival of the bathysphere */
 	timer waiting5Sec(
 								.val(waitVal), 
 								.finished(waitFinished), 
