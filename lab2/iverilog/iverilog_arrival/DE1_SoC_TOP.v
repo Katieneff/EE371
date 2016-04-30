@@ -45,7 +45,6 @@ module tester(clk, key, sw, led, wait_var, finished_var);
 	output reg [3:0] key;
 	output reg [9:0] sw;
 	input [9:0] led;
-	//input [6:0] HEX0;
 	input wait_var, finished_var;
 	
 		parameter stimDelay = 10;
@@ -60,8 +59,6 @@ module tester(clk, key, sw, led, wait_var, finished_var);
 	initial //Stimulus
 	
 	begin
-		//#stimDelay;
-		//#stimDelay;
 		sw = 9'b0; key[3:0] = 4'b1111; clk = 1'b0;
 		#stimDelay;
 		#stimDelay clk = 1'b1; key[0] = 0;
@@ -72,19 +69,15 @@ module tester(clk, key, sw, led, wait_var, finished_var);
 		#stimDelay clk = 1'b0;
 		#stimDelay clk = 1'b1;
 		#stimDelay clk = 1'b0;
-		#stimDelay;
 		#stimDelay clk = 1'b1;
-		//#stimDelay key[0] = 1'b0 ; sw[0] = 0;
 		#stimDelay clk = 1'b0;
 		#stimDelay clk = 1'b1;
-		//#stimDelay key[0] = 1'b1;
 		#stimDelay clk = 1'b0;
 		#stimDelay clk = 1'b1;
 		#stimDelay clk = 1'b0;
 		#stimDelay clk = 1'b1;
 		#stimDelay clk = 1'b0;
 		#stimDelay clk = 1'b1;
-		//#stimDelay sw[1] = 1'b1;
 		#stimDelay clk = 1'b0;
 		#stimDelay clk = 1'b1;
 		#stimDelay clk = 1'b0;
@@ -152,6 +145,23 @@ module tester(clk, key, sw, led, wait_var, finished_var);
 		#stimDelay clk = 1'b0;
 		#stimDelay clk = 1'b1;
 		#stimDelay clk = 1'b0;
+		#stimDelay clk = 1'b1; key[2] = 1; sw[0] = 0;
+		#stimDelay clk = 1'b0;
+		#stimDelay clk = 1'b1;
+		#stimDelay clk = 1'b0;
+		#stimDelay clk = 1'b1;
+		#stimDelay clk = 1'b0;
+		#stimDelay clk = 1'b1; sw[3] = 1;
+		#stimDelay clk = 1'b0;
+		#stimDelay clk = 1'b1;
+		#stimDelay clk = 1'b0;
+		#stimDelay clk = 1'b1; sw[3] = 0;
+		#stimDelay clk = 1'b0;
+		#stimDelay clk = 1'b1;
+		#stimDelay clk = 1'b0;
+		#stimDelay clk = 1'b1;
+		#stimDelay clk = 1'b0;
+		
 		
 	$finish;
 	
