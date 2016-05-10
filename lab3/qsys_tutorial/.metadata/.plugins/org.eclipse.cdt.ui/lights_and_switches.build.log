@@ -1,0 +1,23 @@
+01:00:47 **** Build of configuration Nios II for project lights_and_switches ****
+make all 
+Info: Building ../lights_and_switches_bsp/
+C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../lights_and_switches_bsp/
+[BSP build complete]
+Info: Compiling lights.c to obj/default/lights.o
+nios2-elf-gcc -xc -MP -MMD -c -I../lights_and_switches_bsp//HAL/inc -I../lights_and_switches_bsp/ -I../lights_and_switches_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/lights.o lights.c
+lights.c:10:6: warning: return type of 'main' is not 'int' [-Wmain]
+ void main() {
+      ^
+Info: Linking lights_and_switches.elf
+nios2-elf-g++  -T'../lights_and_switches_bsp//linker.x' -msys-crt0='../lights_and_switches_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../lights_and_switches_bsp/  -msmallc  -Wl,-Map=lights_and_switches.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o lights_and_switches.elf obj/default/lights.o -lm -msys-lib=m
+c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: lights_and_switches.elf section `.text' will not fit in region `onchip_memory'
+c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: address 0x2394 of lights_and_switches.elf section `.rwdata' is not within region `onchip_memory'
+c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: address 0x2678 of lights_and_switches.elf section `.bss' is not within region `onchip_memory'
+c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: address 0x2394 of lights_and_switches.elf section `.rwdata' is not within region `onchip_memory'
+c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: address 0x2678 of lights_and_switches.elf section `.bss' is not within region `onchip_memory'
+c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: region `onchip_memory' overflowed by 1656 bytes
+collect2.exe: error: ld returned 1 exit status
+make: *** [lights_and_switches.elf] Error 1
+
+01:00:48 Build Finished (took 622ms)
+
