@@ -96,7 +96,7 @@ agreement for further details.
 		(text "reset_n" (rect 117 283 276 576)(font "Arial" (color 0 0 0)))
 		(text "we" (rect 96 299 204 611)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "export" (rect 117 323 270 656)(font "Arial" (color 0 0 0)))
-		(text " microprocessor " (rect 218 344 532 698)(font "Arial" ))
+		(text " system " (rect 253 344 554 698)(font "Arial" ))
 		(line (pt 112 32)(pt 176 32)(line_width 1))
 		(line (pt 176 32)(pt 176 344)(line_width 1))
 		(line (pt 112 344)(pt 176 344)(line_width 1))

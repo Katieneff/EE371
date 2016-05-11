@@ -1,8 +1,28 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst unsaved.clk_0 -pg 1 -lvl 1 -y 30
-preplace inst unsaved -pg 1 -lvl 1 -y 40 -regy -20
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
-levelinfo -pg 1 0 50 270
-levelinfo -hier unsaved 60 90 260
+preplace inst microprocessor.we -pg 1 -lvl 3 -y 510
+preplace inst microprocessor.jtag_uart -pg 1 -lvl 3 -y 210
+preplace inst microprocessor.nios2_sram.clock_bridge -pg 1
+preplace inst microprocessor.LEDs -pg 1 -lvl 3 -y 310
+preplace inst microprocessor.oe -pg 1 -lvl 3 -y 410
+preplace inst microprocessor.nios2_sram.reset_bridge -pg 1
+preplace inst microprocessor.clk_0 -pg 1 -lvl 1 -y 190
+preplace inst microprocessor.onchip_memory -pg 1 -lvl 3 -y 130
+preplace inst microprocessor.nios2_sram.cpu -pg 1
+preplace inst microprocessor -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst microprocessor.address -pg 1 -lvl 3 -y 30
+preplace inst microprocessor.nios2_sram -pg 1 -lvl 2 -y 170
+preplace inst microprocessor.data -pg 1 -lvl 3 -y 610
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.we,(SLAVE)we.external_connection) 1 0 3 NJ 540 NJ 540 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)LEDs.external_connection,(SLAVE)microprocessor.leds) 1 0 3 NJ 340 NJ 340 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)clk_0.clk_in,(SLAVE)microprocessor.clk) 1 0 1 NJ
+preplace netloc INTERCONNECT<net_container>microprocessor</net_container>(SLAVE)address.reset,(MASTER)clk_0.clk_reset,(SLAVE)we.reset,(SLAVE)nios2_sram.reset,(SLAVE)jtag_uart.reset,(SLAVE)data.reset,(SLAVE)oe.reset,(SLAVE)onchip_memory.reset1,(SLAVE)LEDs.reset,(MASTER)nios2_sram.debug_reset_request) 1 1 2 290 110 690
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.address,(SLAVE)address.external_connection) 1 0 3 NJ 60 NJ 60 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)microprocessor.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)oe.external_connection,(SLAVE)microprocessor.oe) 1 0 3 NJ 440 NJ 440 NJ
+preplace netloc FAN_OUT<net_container>microprocessor</net_container>(SLAVE)jtag_uart.clk,(SLAVE)data.clk,(MASTER)clk_0.clk,(SLAVE)we.clk,(SLAVE)onchip_memory.clk1,(SLAVE)address.clk,(SLAVE)oe.clk,(SLAVE)LEDs.clk,(SLAVE)nios2_sram.clk) 1 1 2 270 90 670
+preplace netloc POINT_TO_POINT<net_container>microprocessor</net_container>(MASTER)nios2_sram.irq,(SLAVE)jtag_uart.irq) 1 2 1 N
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.data,(SLAVE)data.external_connection) 1 0 3 NJ 640 NJ 640 NJ
+preplace netloc INTERCONNECT<net_container>microprocessor</net_container>(SLAVE)we.s1,(SLAVE)data.s1,(MASTER)nios2_sram.data_master,(SLAVE)address.s1,(SLAVE)nios2_sram.debug_mem_slave,(SLAVE)onchip_memory.s1,(MASTER)nios2_sram.instruction_master,(SLAVE)oe.s1,(SLAVE)LEDs.s1,(SLAVE)jtag_uart.avalon_jtag_slave) 1 1 2 310 130 710
+levelinfo -pg 1 0 60 910
+levelinfo -hier microprocessor 70 100 430 750 900
