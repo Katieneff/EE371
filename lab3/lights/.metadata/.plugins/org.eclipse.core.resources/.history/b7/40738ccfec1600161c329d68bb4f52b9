@@ -1,0 +1,17 @@
+#include "sys/alt_stdio.h"
+#define switches (volatile char *) 0x0003000
+#define leds (volatile char *) 0x0003010
+
+int main()
+{ 
+  alt_putstr("Hello from Nios II!\n");
+
+
+  char * c;
+  fscanf("%c", c);
+
+  if (*c == 'G') {
+	  while (1)
+		  *leds = *switches;
+  }
+}

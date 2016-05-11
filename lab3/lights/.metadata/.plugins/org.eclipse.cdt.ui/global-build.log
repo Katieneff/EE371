@@ -1,0 +1,27 @@
+14:45:04 **** Build of configuration Nios II for project hello_word ****
+make all 
+Info: Building ../hello_word_bsp/
+C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../hello_word_bsp/
+[BSP build complete]
+Info: Compiling hello_world_small.c to obj/default/hello_world_small.o
+nios2-elf-gcc -xc -MP -MMD -c -I../hello_word_bsp//HAL/inc -I../hello_word_bsp/ -I../hello_word_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/hello_world_small.o hello_world_small.c
+Info: Linking hello_word.elf
+nios2-elf-g++  -T'../hello_word_bsp//linker.x' -msys-crt0='../hello_word_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../hello_word_bsp/  -msmallc  -Wl,-Map=hello_word.map   -Os -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o hello_word.elf obj/default/hello_world_small.o -lm -msys-lib=m
+nios2-elf-insert hello_word.elf --thread_model hal --cpu_name nios2_processor --qsys true --simulation_enabled false --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios_system --quartus_project_dir "C:/Users/neffk2/EE371/lab3/lights" --jdi ../..//output_files/lights.jdi --sopcinfo C:/Users/neffk2/EE371/lab3/lights/software/hello_word_bsp/../../nios_system.sopcinfo
+Info: (hello_word.elf) 1464 Bytes program size (code + initialized data).
+Info:                  2520 Bytes free for stack + heap.
+Info: Creating hello_word.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source hello_word.elf >hello_word.objdump
+[hello_word build complete]
+14:45:12 **** Build of configuration Nios II for project hello_word ****
+make all 
+Info: Building ../hello_word_bsp/
+C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../hello_word_bsp/
+[BSP build complete]
+[hello_word build complete]
+14:45:13 **** Incremental Build of configuration Nios II for project hello_word ****
+make all 
+Info: Building ../hello_word_bsp/
+C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../hello_word_bsp/
+[BSP build complete]
+[hello_word build complete]

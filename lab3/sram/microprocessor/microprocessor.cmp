@@ -1,0 +1,13 @@
+	component microprocessor is
+		port (
+			address_export : out std_logic_vector(7 downto 0);                    -- export
+			clk_clk        : in  std_logic                    := 'X';             -- clk
+			data_in_port   : in  std_logic_vector(7 downto 0) := (others => 'X'); -- in_port
+			data_out_port  : out std_logic_vector(7 downto 0);                    -- out_port
+			leds_export    : out std_logic_vector(7 downto 0);                    -- export
+			oe_export      : out std_logic;                                       -- export
+			reset_reset_n  : in  std_logic                    := 'X';             -- reset_n
+			we_export      : out std_logic                                        -- export
+		);
+	end component microprocessor;
+

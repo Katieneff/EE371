@@ -1,0 +1,6 @@
+12:30:31 **** Clean-only build of configuration Nios II for project lights2 ****
+make clean 
+[lights2 clean complete]
+
+12:30:31 Build Finished (took 123ms)
+

@@ -1,0 +1,9 @@
+14:45:13 **** Incremental Build of configuration Nios II for project hello_word ****
+make all 
+Info: Building ../hello_word_bsp/
+C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../hello_word_bsp/
+[BSP build complete]
+[hello_word build complete]
+
+14:45:13 Build Finished (took 526ms)
+
