@@ -1,0 +1,6 @@
+12:54:05 **** Clean-only build of configuration Nios II for project interlock_bsp ****
+make clean 
+[BSP clean complete]
+
+12:54:05 Build Finished (took 110ms)
+

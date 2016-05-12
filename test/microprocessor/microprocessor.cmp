@@ -1,0 +1,11 @@
+	component microprocessor is
+		port (
+			arrivalsignals_export : out std_logic_vector(1 downto 0);        -- export
+			clk_clk               : in  std_logic                    := 'X'; -- clk
+			depressurize_export   : out std_logic;                           -- export
+			doors_export          : out std_logic_vector(1 downto 0);        -- export
+			pressurize_export     : out std_logic;                           -- export
+			reset_reset_n         : in  std_logic                    := 'X'  -- reset_n
+		);
+	end component microprocessor;
+
