@@ -1,9 +1,9 @@
-19:08:19 **** Incremental Build of configuration Nios II for project sram ****
+15:55:07 **** Incremental Build of configuration Nios II for project sram ****
 make all 
 Info: Building ../sram_bsp/
 C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../sram_bsp/
 [BSP build complete]
 [sram build complete]
 
-19:08:19 Build Finished (took 531ms)
+15:55:08 Build Finished (took 577ms)
 

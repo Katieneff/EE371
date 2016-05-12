@@ -12,9 +12,9 @@ module main(CLOCK_50, LEDR, KEY);
 	wire we, oe;
 	
 
-	//wire  clk;
-	//clockdiv clockdiv(clk, CLOCK_50);
-		//assign LEDR[8:8] = clk;
+	wire clk;
+	clockdiv clockdiv(clk, CLOCK_50);
+
 
 	 microprocessor m(
 		 .address_export(address), // address.export
