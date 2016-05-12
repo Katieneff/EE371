@@ -1,0 +1,524 @@
+Archive member included to satisfy reference by file (symbol)
+
+../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+                              obj/default/hello_world_small.o (alt_getchar)
+../interlock_bsp/\libhal_bsp.a(alt_load.o)
+                              ../interlock_bsp//obj/HAL/src/crt0.o (alt_load)
+../interlock_bsp/\libhal_bsp.a(alt_main.o)
+                              ../interlock_bsp//obj/HAL/src/crt0.o (alt_main)
+../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+                              obj/default/hello_world_small.o (alt_printf)
+../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_printf.o) (alt_putchar)
+../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_main.o) (alt_irq_init)
+../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_getchar.o) (altera_avalon_jtag_uart_read)
+../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_putchar.o) (altera_avalon_jtag_uart_write)
+../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_load.o) (alt_dcache_flush_all)
+../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_getchar.o) (alt_fd_list)
+../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_load.o) (alt_icache_flush_all)
+../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o) (altera_nios2_gen2_irq_init)
+../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+                              ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o) (alt_icache_flush)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+reset            0x0000000000001000 0x0000000000000020
+onchip_memory    0x0000000000001020 0x0000000000000fe0
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD ../interlock_bsp//obj/HAL/src/crt0.o
+LOAD obj/default/hello_world_small.o
+LOAD c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/lib\libstdc++.a
+LOAD c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/lib\libm.a
+LOAD c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2\libgcc.a
+START GROUP
+LOAD c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/lib\libsmallc.a
+LOAD c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2\libgcc.a
+LOAD ../interlock_bsp/\libhal_bsp.a
+LOAD c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2/../../../../../H-x86_64-mingw32/nios2-elf/lib\libm.a
+END GROUP
+LOAD c:/altera/15.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.2\libgcc.a
+                0x0000000000001000                __alt_mem_onchip_memory = 0x1000
+
+.entry          0x0000000000001000       0x20
+ *(.entry)
+ .entry         0x0000000000001000       0x20 ../interlock_bsp//obj/HAL/src/crt0.o
+                0x0000000000001000                __reset
+                0x000000000000101c                _exit
+
+.exceptions     0x0000000000001020        0x0
+                0x0000000000001020                PROVIDE (__ram_exceptions_start, ABSOLUTE (.))
+                0x0000000000001020                . = ALIGN (0x20)
+ *(.irq)
+ *(.exceptions.entry.label)
+ *(.exceptions.entry.user)
+ *(.exceptions.entry.ecc_fatal)
+ *(.exceptions.entry)
+ *(.exceptions.irqtest.user)
+ *(.exceptions.irqtest)
+ *(.exceptions.irqhandler.user)
+ *(.exceptions.irqhandler)
+ *(.exceptions.irqreturn.user)
+ *(.exceptions.irqreturn)
+ *(.exceptions.notirq.label)
+ *(.exceptions.notirq.user)
+ *(.exceptions.notirq)
+ *(.exceptions.soft.user)
+ *(.exceptions.soft)
+ *(.exceptions.unknown.user)
+ *(.exceptions.unknown)
+ *(.exceptions.exit.label)
+ *(.exceptions.exit.user)
+ *(.exceptions.exit)
+ *(.exceptions)
+                0x0000000000001020                PROVIDE (__ram_exceptions_end, ABSOLUTE (.))
+                0x0000000000001020                PROVIDE (__flash_exceptions_start, LOADADDR (.exceptions))
+
+.text           0x0000000000001020      0x680
+                0x0000000000001020                PROVIDE (stext, ABSOLUTE (.))
+ *(.interp)
+ *(.hash)
+ *(.dynsym)
+ *(.dynstr)
+ *(.gnu.version)
+ *(.gnu.version_d)
+ *(.gnu.version_r)
+ *(.rel.init)
+ *(.rela.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rela.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rela.ctors)
+ *(.rel.dtors)
+ *(.rela.dtors)
+ *(.rel.got)
+ *(.rela.got)
+ *(.rel.sdata .rel.sdata.* .rel.gnu.linkonce.s.*)
+ *(.rela.sdata .rela.sdata.* .rela.gnu.linkonce.s.*)
+ *(.rel.sbss .rel.sbss.* .rel.gnu.linkonce.sb.*)
+ *(.rela.sbss .rela.sbss.* .rela.gnu.linkonce.sb.*)
+ *(.rel.sdata2 .rel.sdata2.* .rel.gnu.linkonce.s2.*)
+ *(.rela.sdata2 .rela.sdata2.* .rela.gnu.linkonce.s2.*)
+ *(.rel.sbss2 .rel.sbss2.* .rel.gnu.linkonce.sb2.*)
+ *(.rela.sbss2 .rela.sbss2.* .rela.gnu.linkonce.sb2.*)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+ *(.rel.plt)
+ *(.rela.plt)
+ *(.rel.dyn)
+ *(.init)
+ *(.plt)
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x0000000000001020       0x4c ../interlock_bsp//obj/HAL/src/crt0.o
+                0x0000000000001020                _start
+ .text          0x000000000000106c        0x0 obj/default/hello_world_small.o
+ .text.startup  0x000000000000106c      0x1f8 obj/default/hello_world_small.o
+                0x000000000000106c                main
+ .text          0x0000000000001264       0x44 ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+                0x0000000000001264                alt_getchar
+ .text          0x00000000000012a8       0xf8 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+                0x00000000000012a8                alt_load
+ .text          0x00000000000013a0       0x2c ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+                0x00000000000013a0                alt_main
+ .text          0x00000000000013cc      0x16c ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+                0x00000000000013cc                alt_printf
+ .text          0x0000000000001538       0x48 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+                0x0000000000001538                alt_putchar
+ .text          0x0000000000001580       0x24 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x0000000000001580                alt_irq_init
+                0x00000000000015a0                alt_sys_init
+ .text          0x00000000000015a4       0x5c ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+                0x00000000000015a4                altera_avalon_jtag_uart_read
+ .text          0x0000000000001600       0x34 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                0x0000000000001600                altera_avalon_jtag_uart_write
+ .text          0x0000000000001634       0x18 ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                0x0000000000001634                alt_dcache_flush_all
+ .text          0x000000000000164c        0x8 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ .text          0x0000000000001654        0xc ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                0x0000000000001654                alt_icache_flush_all
+ .text          0x0000000000001660        0x8 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                0x0000000000001660                altera_nios2_gen2_irq_init
+ .text          0x0000000000001668       0x38 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+                0x0000000000001668                alt_icache_flush
+ *(.gnu.warning.*)
+ *(.fini)
+                0x00000000000016a0                PROVIDE (__etext, ABSOLUTE (.))
+                0x00000000000016a0                PROVIDE (_etext, ABSOLUTE (.))
+                0x00000000000016a0                PROVIDE (etext, ABSOLUTE (.))
+ *(.eh_frame_hdr)
+                0x00000000000016a0                . = ALIGN (0x4)
+                0x00000000000016a0                PROVIDE (__preinit_array_start, ABSOLUTE (.))
+ *(.preinit_array)
+                0x00000000000016a0                PROVIDE (__preinit_array_end, ABSOLUTE (.))
+                0x00000000000016a0                PROVIDE (__init_array_start, ABSOLUTE (.))
+ *(.init_array)
+                0x00000000000016a0                PROVIDE (__init_array_end, ABSOLUTE (.))
+                0x00000000000016a0                PROVIDE (__fini_array_start, ABSOLUTE (.))
+ *(.fini_array)
+                0x00000000000016a0                PROVIDE (__fini_array_end, ABSOLUTE (.))
+ *(.eh_frame)
+ *(.gcc_except_table .gcc_except_table.*)
+ *(.dynamic)
+                0x00000000000016a0                PROVIDE (__CTOR_LIST__, ABSOLUTE (.))
+ *(.ctors)
+ *(SORT(.ctors.*))
+                0x00000000000016a0                PROVIDE (__CTOR_END__, ABSOLUTE (.))
+                0x00000000000016a0                PROVIDE (__DTOR_LIST__, ABSOLUTE (.))
+ *(.dtors)
+ *(SORT(.dtors.*))
+                0x00000000000016a0                PROVIDE (__DTOR_END__, ABSOLUTE (.))
+ *(.jcr)
+                0x00000000000016a0                . = ALIGN (0x4)
+
+.rodata         0x00000000000016a0      0x14c
+                0x00000000000016a0                PROVIDE (__ram_rodata_start, ABSOLUTE (.))
+                0x00000000000016a0                . = ALIGN (0x4)
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.4
+                0x00000000000016a0      0x13f obj/default/hello_world_small.o
+                                        0x140 (size before relaxing)
+ *fill*         0x00000000000017df        0x1 
+ .rodata.str1.4
+                0x00000000000017e0        0xc ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ *(.rodata1)
+                0x00000000000017ec                . = ALIGN (0x4)
+                0x00000000000017ec                PROVIDE (__ram_rodata_end, ABSOLUTE (.))
+                0x00000000000016a0                PROVIDE (__flash_rodata_start, LOADADDR (.rodata))
+
+.rwdata         0x00000000000017ec       0x70 load address 0x000000000000185c
+                0x00000000000017ec                PROVIDE (__ram_rwdata_start, ABSOLUTE (.))
+                0x00000000000017ec                . = ALIGN (0x4)
+ *(.got.plt)
+ *(.got)
+ *(.data1)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp//obj/HAL/src/crt0.o
+ .data          0x00000000000017ec        0x0 obj/default/hello_world_small.o
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .data          0x00000000000017ec        0x0 ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .data          0x00000000000017ec       0x58 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+                0x00000000000017ec                alt_fd_list
+                0x000000000000181c                alt_dev_null
+ .data          0x0000000000001844        0x0 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .data          0x0000000000001844        0x0 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .data          0x0000000000001844        0x0 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+                0x0000000000009844                _gp = ABSOLUTE ((. + 0x8000))
+                0x0000000000009844                PROVIDE (gp, _gp)
+ *(.rwdata .rwdata.*)
+ *(.sdata .sdata.* .gnu.linkonce.s.*)
+ .sdata         0x0000000000001844        0x4 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x0000000000001844                jtag_uart
+ .sdata         0x0000000000001848       0x14 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+                0x0000000000001848                alt_max_fd
+                0x000000000000184c                alt_dev_list
+                0x0000000000001854                alt_fs_list
+ *(.sdata2 .sdata2.* .gnu.linkonce.s2.*)
+                0x000000000000185c                . = ALIGN (0x4)
+                0x000000000000185c                _edata = ABSOLUTE (.)
+                0x000000000000185c                PROVIDE (edata, ABSOLUTE (.))
+                0x000000000000185c                PROVIDE (__ram_rwdata_end, ABSOLUTE (.))
+                0x000000000000185c                PROVIDE (__flash_rwdata_start, LOADADDR (.rwdata))
+
+.bss            0x00000000000018cc        0xc
+                0x00000000000018cc                __bss_start = ABSOLUTE (.)
+                0x00000000000018cc                PROVIDE (__sbss_start, ABSOLUTE (.))
+                0x00000000000018cc                PROVIDE (___sbss_start, ABSOLUTE (.))
+ *(.dynsbss)
+ *(.sbss .sbss.* .gnu.linkonce.sb.*)
+ .sbss          0x00000000000018cc        0xc ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+                0x00000000000018cc                alt_envp
+                0x00000000000018d0                alt_argv
+                0x00000000000018d4                alt_argc
+ *(.sbss2 .sbss2.* .gnu.linkonce.sb2.*)
+ *(.scommon)
+                0x00000000000018d8                PROVIDE (__sbss_end, ABSOLUTE (.))
+                0x00000000000018d8                PROVIDE (___sbss_end, ABSOLUTE (.))
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp//obj/HAL/src/crt0.o
+ .bss           0x00000000000018d8        0x0 obj/default/hello_world_small.o
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .bss           0x00000000000018d8        0x0 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+ *(COMMON)
+                0x00000000000018d8                . = ALIGN (0x4)
+                0x00000000000018d8                __bss_end = ABSOLUTE (.)
+
+.onchip_memory  0x00000000000018d8        0x0
+                0x00000000000018d8                PROVIDE (_alt_partition_onchip_memory_start, ABSOLUTE (.))
+ *(.onchip_memory .onchip_memory. onchip_memory.*)
+                0x00000000000018d8                . = ALIGN (0x4)
+                0x00000000000018d8                PROVIDE (_alt_partition_onchip_memory_end, ABSOLUTE (.))
+                0x00000000000018d8                _end = ABSOLUTE (.)
+                0x00000000000018d8                end = ABSOLUTE (.)
+                0x00000000000018d8                __alt_stack_base = ABSOLUTE (.)
+                0x00000000000018d8                PROVIDE (_alt_partition_onchip_memory_load_addr, LOADADDR (.onchip_memory))
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x23
+ *(.comment)
+ .comment       0x0000000000000000       0x23 obj/default/hello_world_small.o
+                                         0x24 (size before relaxing)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .comment       0x0000000000000000       0x24 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x0000000000000000      0x1e8
+ *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000       0x28 ../interlock_bsp//obj/HAL/src/crt0.o
+ .debug_aranges
+                0x0000000000000028       0x20 obj/default/hello_world_small.o
+ .debug_aranges
+                0x0000000000000048       0x20 ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_aranges
+                0x0000000000000068       0x20 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_aranges
+                0x0000000000000088       0x20 ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_aranges
+                0x00000000000000a8       0x20 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_aranges
+                0x00000000000000c8       0x20 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_aranges
+                0x00000000000000e8       0x20 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_aranges
+                0x0000000000000108       0x20 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_aranges
+                0x0000000000000128       0x20 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_aranges
+                0x0000000000000148       0x20 ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_aranges
+                0x0000000000000168       0x20 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_aranges
+                0x0000000000000188       0x20 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_aranges
+                0x00000000000001a8       0x20 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_aranges
+                0x00000000000001c8       0x20 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x0000000000000000     0x17d6
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x0000000000000000       0x7b ../interlock_bsp//obj/HAL/src/crt0.o
+ .debug_info    0x000000000000007b      0x251 obj/default/hello_world_small.o
+ .debug_info    0x00000000000002cc      0x33b ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_info    0x0000000000000607      0x1ba ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_info    0x00000000000007c1      0x17b ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_info    0x000000000000093c      0x153 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_info    0x0000000000000a8f      0x138 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_info    0x0000000000000bc7      0x17a ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_info    0x0000000000000d41      0x1ad ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_info    0x0000000000000eee      0x190 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_info    0x000000000000107e       0x9f ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_info    0x000000000000111d      0x492 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_info    0x00000000000015af       0xc5 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_info    0x0000000000001674       0x8b ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_info    0x00000000000016ff       0xd7 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+
+.debug_abbrev   0x0000000000000000      0xb0a
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000       0x12 ../interlock_bsp//obj/HAL/src/crt0.o
+ .debug_abbrev  0x0000000000000012       0xb7 obj/default/hello_world_small.o
+ .debug_abbrev  0x00000000000000c9      0x11f ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_abbrev  0x00000000000001e8       0xd8 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_abbrev  0x00000000000002c0      0x120 ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_abbrev  0x00000000000003e0       0xde ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_abbrev  0x00000000000004be       0xd4 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_abbrev  0x0000000000000592      0x107 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_abbrev  0x0000000000000699      0x102 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_abbrev  0x000000000000079b       0xd5 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_abbrev  0x0000000000000870       0x5a ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_abbrev  0x00000000000008ca       0xd9 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_abbrev  0x00000000000009a3       0x8a ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_abbrev  0x0000000000000a2d       0x42 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_abbrev  0x0000000000000a6f       0x9b ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+
+.debug_line     0x0000000000000000      0xa1b
+ *(.debug_line)
+ .debug_line    0x0000000000000000       0x72 ../interlock_bsp//obj/HAL/src/crt0.o
+ .debug_line    0x0000000000000072       0xaa obj/default/hello_world_small.o
+ .debug_line    0x000000000000011c       0xb7 ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_line    0x00000000000001d3       0xa6 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_line    0x0000000000000279       0xbd ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_line    0x0000000000000336      0x108 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_line    0x000000000000043e       0x55 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_line    0x0000000000000493      0x101 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_line    0x0000000000000594       0xfb ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_line    0x000000000000068f       0xf0 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_line    0x000000000000077f       0x5a ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_line    0x00000000000007d9       0xee ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_line    0x00000000000008c7       0x87 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_line    0x000000000000094e       0x50 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_line    0x000000000000099e       0x7d ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+
+.debug_frame    0x0000000000000000      0x254
+ *(.debug_frame)
+ .debug_frame   0x0000000000000000       0x2c obj/default/hello_world_small.o
+ .debug_frame   0x000000000000002c       0x2c ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_frame   0x0000000000000058       0x30 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_frame   0x0000000000000088       0x2c ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_frame   0x00000000000000b4       0x54 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_frame   0x0000000000000108       0x30 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_frame   0x0000000000000138       0x3c ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_frame   0x0000000000000174       0x20 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_frame   0x0000000000000194       0x20 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_frame   0x00000000000001b4       0x20 ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_frame   0x00000000000001d4       0x20 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_frame   0x00000000000001f4       0x20 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_frame   0x0000000000000214       0x20 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_frame   0x0000000000000234       0x20 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+
+.debug_str      0x0000000000000000      0x6e1
+ *(.debug_str)
+ .debug_str     0x0000000000000000      0x102 obj/default/hello_world_small.o
+                                        0x140 (size before relaxing)
+ .debug_str     0x0000000000000102      0x13a ../interlock_bsp/\libhal_bsp.a(alt_getchar.o)
+                                        0x223 (size before relaxing)
+ .debug_str     0x000000000000023c      0x11b ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+                                        0x229 (size before relaxing)
+ .debug_str     0x0000000000000357       0x5e ../interlock_bsp/\libhal_bsp.a(alt_main.o)
+                                        0x1a2 (size before relaxing)
+ .debug_str     0x00000000000003b5       0x59 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+                                         0xff (size before relaxing)
+ .debug_str     0x000000000000040e       0x34 ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+                                        0x178 (size before relaxing)
+ .debug_str     0x0000000000000442       0x86 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+                                        0x211 (size before relaxing)
+ .debug_str     0x00000000000004c8       0x3d ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+                                        0x20c (size before relaxing)
+ .debug_str     0x0000000000000505       0x32 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                                        0x202 (size before relaxing)
+ .debug_str     0x0000000000000537       0x1f ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                                        0x142 (size before relaxing)
+ .debug_str     0x0000000000000556      0x120 ../interlock_bsp/\libhal_bsp.a(alt_dev.o)
+                                        0x2f2 (size before relaxing)
+ .debug_str     0x0000000000000676       0x30 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                                        0x15b (size before relaxing)
+ .debug_str     0x00000000000006a6       0x20 ../interlock_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                                        0x149 (size before relaxing)
+ .debug_str     0x00000000000006c6       0x1b ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+                                        0x148 (size before relaxing)
+
+.debug_loc      0x0000000000000000      0x43c
+ *(.debug_loc)
+ .debug_loc     0x0000000000000000       0x60 obj/default/hello_world_small.o
+ .debug_loc     0x0000000000000060      0x1c6 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_loc     0x0000000000000226       0x2c ../interlock_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_loc     0x0000000000000252       0x21 ../interlock_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_loc     0x0000000000000273       0xcd ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_loc     0x0000000000000340       0x8b ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_loc     0x00000000000003cb       0x1f ../interlock_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_loc     0x00000000000003ea       0x52 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_alt_sim_info
+                0x0000000000000000       0x30
+ *(.debug_alt_sim_info)
+ .debug_alt_sim_info
+                0x0000000000000000       0x30 ../interlock_bsp//obj/HAL/src/crt0.o
+                0x0000000000002000                __alt_data_end = 0x2000
+                0x0000000000002000                PROVIDE (__alt_stack_pointer, __alt_data_end)
+                0x00000000000018d8                PROVIDE (__alt_stack_limit, __alt_stack_base)
+                0x00000000000018d8                PROVIDE (__alt_heap_start, end)
+                0x0000000000002000                PROVIDE (__alt_heap_limit, 0x2000)
+OUTPUT(interlock.elf elf32-littlenios2)
+
+.debug_ranges   0x0000000000000000       0xc0
+ .debug_ranges  0x0000000000000000       0x20 ../interlock_bsp//obj/HAL/src/crt0.o
+ .debug_ranges  0x0000000000000020       0x10 obj/default/hello_world_small.o
+ .debug_ranges  0x0000000000000030       0x48 ../interlock_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_ranges  0x0000000000000078       0x18 ../interlock_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_ranges  0x0000000000000090       0x20 ../interlock_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_ranges  0x00000000000000b0       0x10 ../interlock_bsp/\libhal_bsp.a(alt_icache_flush.o)

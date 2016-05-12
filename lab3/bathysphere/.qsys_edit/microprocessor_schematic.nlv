@@ -1,24 +1,52 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst microprocessor.switches -pg 1 -lvl 3 -y 320
+preplace inst microprocessor.drainFinished -pg 1 -lvl 3 -y 230
 preplace inst microprocessor.nios2_gen2_0.reset_bridge -pg 1
-preplace inst microprocessor.jtag_uart -pg 1 -lvl 3 -y 120
+preplace inst microprocessor.jtag_uart -pg 1 -lvl 3 -y 610
+preplace inst microprocessor.waitFinished -pg 1 -lvl 3 -y 1770
+preplace inst microprocessor.filling -pg 1 -lvl 3 -y 970
 preplace inst microprocessor.nios2_gen2_0.cpu -pg 1
-preplace inst microprocessor.LEDs -pg 1 -lvl 3 -y 220
-preplace inst microprocessor.clk_0 -pg 1 -lvl 1 -y 100
-preplace inst microprocessor.onchip_memory -pg 1 -lvl 3 -y 40
-preplace inst microprocessor.keys -pg 1 -lvl 3 -y 420
+preplace inst microprocessor.fillFinished -pg 1 -lvl 3 -y 870
+preplace inst microprocessor.drain -pg 1 -lvl 3 -y 130
+preplace inst microprocessor.personCheck -pg 1 -lvl 3 -y 1470
+preplace inst microprocessor.clk_0 -pg 1 -lvl 1 -y 590
+preplace inst microprocessor.onchip_memory -pg 1 -lvl 3 -y 530
+preplace inst microprocessor.draining -pg 1 -lvl 3 -y 330
+preplace inst microprocessor.resetLeds -pg 1 -lvl 3 -y 1670
+preplace inst microprocessor.fill -pg 1 -lvl 3 -y 430
+preplace inst microprocessor.waiting -pg 1 -lvl 3 -y 1870
+preplace inst microprocessor.outerDoorSwitch -pg 1 -lvl 3 -y 1370
+preplace inst microprocessor.bathArriving -pg 1 -lvl 3 -y 1970
 preplace inst microprocessor -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst microprocessor.nios2_gen2_0 -pg 1 -lvl 2 -y 110
+preplace inst microprocessor.pressureCheck -pg 1 -lvl 3 -y 1570
+preplace inst microprocessor.innerDoorSwitch -pg 1 -lvl 3 -y 1170
+preplace inst microprocessor.innerDoor -pg 1 -lvl 3 -y 1070
+preplace inst microprocessor.nios2_gen2_0 -pg 1 -lvl 2 -y 600
+preplace inst microprocessor.bathLeaving -pg 1 -lvl 3 -y 30
+preplace inst microprocessor.outerDoor -pg 1 -lvl 3 -y 1270
 preplace inst microprocessor.nios2_gen2_0.clock_bridge -pg 1
-preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)LEDs.external_connection,(SLAVE)microprocessor.leds) 1 0 3 NJ 250 NJ 250 NJ
-preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.keys,(SLAVE)keys.external_connection) 1 0 3 NJ 450 NJ 450 NJ
-preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)clk_0.clk_in,(SLAVE)microprocessor.clk) 1 0 1 NJ
-preplace netloc INTERCONNECT<net_container>microprocessor</net_container>(MASTER)nios2_gen2_0.data_master,(SLAVE)switches.s1,(SLAVE)keys.s1,(SLAVE)onchip_memory.s1,(SLAVE)LEDs.s1,(SLAVE)jtag_uart.avalon_jtag_slave,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)nios2_gen2_0.debug_mem_slave) 1 1 2 310 70 670
-preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)microprocessor.reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.switches,(SLAVE)switches.external_connection) 1 0 3 NJ 350 NJ 350 NJ
-preplace netloc FAN_OUT<net_container>microprocessor</net_container>(MASTER)clk_0.clk,(SLAVE)onchip_memory.clk1,(SLAVE)LEDs.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)jtag_uart.clk,(SLAVE)keys.clk,(SLAVE)switches.clk) 1 1 2 290 30 730
-preplace netloc INTERCONNECT<net_container>microprocessor</net_container>(SLAVE)nios2_gen2_0.reset,(SLAVE)switches.reset,(MASTER)clk_0.clk_reset,(SLAVE)onchip_memory.reset1,(SLAVE)jtag_uart.reset,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)LEDs.reset,(SLAVE)keys.reset) 1 1 2 270 50 690
-preplace netloc POINT_TO_POINT<net_container>microprocessor</net_container>(SLAVE)jtag_uart.irq,(MASTER)nios2_gen2_0.irq) 1 2 1 710
-levelinfo -pg 1 0 60 930
-levelinfo -hier microprocessor 70 100 430 770 920
+preplace netloc INTERCONNECT<net_container>microprocessor</net_container>(SLAVE)nios2_gen2_0.reset,(SLAVE)resetLeds.reset,(SLAVE)innerDoor.reset,(SLAVE)jtag_uart.reset,(SLAVE)outerDoor.reset,(SLAVE)waitFinished.reset,(SLAVE)waiting.reset,(SLAVE)draining.reset,(SLAVE)personCheck.reset,(SLAVE)drain.reset,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)innerDoorSwitch.reset,(SLAVE)bathLeaving.reset,(SLAVE)pressureCheck.reset,(SLAVE)drainFinished.reset,(SLAVE)bathArriving.reset,(SLAVE)fill.reset,(SLAVE)outerDoorSwitch.reset,(SLAVE)fillFinished.reset,(SLAVE)filling.reset,(MASTER)clk_0.clk_reset,(SLAVE)onchip_memory.reset1) 1 1 2 320 880 780
+preplace netloc FAN_OUT<net_container>microprocessor</net_container>(SLAVE)waitFinished.clk,(SLAVE)pressureCheck.clk,(SLAVE)onchip_memory.clk1,(SLAVE)waiting.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)bathArriving.clk,(SLAVE)innerDoorSwitch.clk,(SLAVE)drain.clk,(SLAVE)bathLeaving.clk,(SLAVE)personCheck.clk,(SLAVE)outerDoorSwitch.clk,(SLAVE)fill.clk,(SLAVE)draining.clk,(SLAVE)outerDoor.clk,(SLAVE)jtag_uart.clk,(SLAVE)drainFinished.clk,(SLAVE)fillFinished.clk,(MASTER)clk_0.clk,(SLAVE)filling.clk,(SLAVE)resetLeds.clk,(SLAVE)innerDoor.clk) 1 1 2 340 860 800
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.fillfinished,(SLAVE)fillFinished.external_connection) 1 0 3 NJ 900 NJ 900 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.drainfinished,(SLAVE)drainFinished.external_connection) 1 0 3 NJ 780 NJ 780 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.outerdoor,(SLAVE)outerDoor.external_connection) 1 0 3 NJ 1300 NJ 1300 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)draining.external_connection,(SLAVE)microprocessor.draining) 1 0 3 NJ 800 NJ 800 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.pressurecheck,(SLAVE)pressureCheck.external_connection) 1 0 3 NJ 1600 NJ 1600 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)drain.external_connection,(SLAVE)microprocessor.drain) 1 0 3 NJ 760 NJ 760 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)resetLeds.external_connection,(SLAVE)microprocessor.resetleds) 1 0 3 NJ 1700 NJ 1700 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.waitfinished,(SLAVE)waitFinished.external_connection) 1 0 3 NJ 1800 NJ 1800 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)innerDoor.external_connection,(SLAVE)microprocessor.innerdoor) 1 0 3 NJ 1100 NJ 1100 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.fill,(SLAVE)fill.external_connection) 1 0 3 NJ 820 NJ 820 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.bathleaving,(SLAVE)bathLeaving.external_connection) 1 0 3 NJ 740 NJ 740 NJ
+preplace netloc INTERCONNECT<net_container>microprocessor</net_container>(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)draining.s1,(SLAVE)bathArriving.s1,(MASTER)nios2_gen2_0.data_master,(SLAVE)outerDoor.s1,(SLAVE)bathLeaving.s1,(SLAVE)fillFinished.s1,(SLAVE)personCheck.s1,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)drain.s1,(SLAVE)fill.s1,(SLAVE)resetLeds.s1,(SLAVE)waiting.s1,(SLAVE)pressureCheck.s1,(SLAVE)drainFinished.s1,(SLAVE)innerDoor.s1,(SLAVE)nios2_gen2_0.debug_mem_slave,(SLAVE)waitFinished.s1,(SLAVE)innerDoorSwitch.s1,(SLAVE)outerDoorSwitch.s1,(SLAVE)onchip_memory.s1,(SLAVE)filling.s1) 1 1 2 360 840 740
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)waiting.external_connection,(SLAVE)microprocessor.waiting) 1 0 3 NJ 1900 NJ 1900 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.personcheck,(SLAVE)personCheck.external_connection) 1 0 3 NJ 1500 NJ 1500 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)bathArriving.external_connection,(SLAVE)microprocessor.batharriving) 1 0 3 NJ 2000 NJ 2000 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.outerdoorswitch,(SLAVE)outerDoorSwitch.external_connection) 1 0 3 NJ 1400 NJ 1400 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)microprocessor.filling,(SLAVE)filling.external_connection) 1 0 3 NJ 1000 NJ 1000 NJ
+preplace netloc EXPORT<net_container>microprocessor</net_container>(SLAVE)innerDoorSwitch.external_connection,(SLAVE)microprocessor.innerdoorswitch) 1 0 3 NJ 1200 NJ 1200 NJ
+preplace netloc POINT_TO_POINT<net_container>microprocessor</net_container>(SLAVE)jtag_uart.irq,(MASTER)nios2_gen2_0.irq) 1 2 1 840
+levelinfo -pg 1 0 110 1080
+levelinfo -hier microprocessor 120 150 480 920 1070

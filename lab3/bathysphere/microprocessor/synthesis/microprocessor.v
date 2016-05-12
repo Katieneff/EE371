@@ -4,25 +4,18 @@
 
 `timescale 1 ps / 1 ps
 module microprocessor (
-		output wire       batharriving_export,    //    batharriving.export
-		output wire       bathleaving_export,     //     bathleaving.export
-		input  wire       clk_clk,                //             clk.clk
-		output wire       drain_export,           //           drain.export
-		output wire       drainfinished_export,   //   drainfinished.export
-		input  wire       draining_export,        //        draining.export
-		output wire       fill_export,            //            fill.export
-		output wire       fillfinished_export,    //    fillfinished.export
-		input  wire       filling_export,         //         filling.export
-		input  wire       innerdoor_export,       //       innerdoor.export
-		output wire       innerdoorswitch_export, // innerdoorswitch.export
-		input  wire       outerdoor_export,       //       outerdoor.export
-		output wire       outerdoorswitch_export, // outerdoorswitch.export
-		output wire       personcheck_export,     //     personcheck.export
-		output wire       pressurecheck_export,   //   pressurecheck.export
-		input  wire       reset_reset_n,          //           reset.reset_n
-		input  wire [3:0] resetleds_export,       //       resetleds.export
-		output wire       waitfinished_export,    //    waitfinished.export
-		input  wire       waiting_export          //         waiting.export
+		output wire  batharriving_export,  //  batharriving.export
+		output wire  bathleaving_export,   //   bathleaving.export
+		output wire  chamberfull_export,   //   chamberfull.export
+		input  wire  clk_clk,              //           clk.clk
+		output wire  drain_export,         //         drain.export
+		output wire  drainfinished_export, // drainfinished.export
+		output wire  fill_export,          //          fill.export
+		output wire  fillfinished_export,  //  fillfinished.export
+		output wire  innerdooropen_export, // innerdooropen.export
+		output wire  outerdooropen_export, // outerdooropen.export
+		output wire  personinside_export,  //  personinside.export
+		input  wire  reset_reset_n         //         reset.reset_n
 	);
 
 	wire  [31:0] nios2_gen2_0_data_master_readdata;                          // mm_interconnect_0:nios2_gen2_0_data_master_readdata -> nios2_gen2_0:d_readdata
@@ -61,16 +54,6 @@ module microprocessor (
 	wire         mm_interconnect_0_onchip_memory_s1_write;                   // mm_interconnect_0:onchip_memory_s1_write -> onchip_memory:write
 	wire  [31:0] mm_interconnect_0_onchip_memory_s1_writedata;               // mm_interconnect_0:onchip_memory_s1_writedata -> onchip_memory:writedata
 	wire         mm_interconnect_0_onchip_memory_s1_clken;                   // mm_interconnect_0:onchip_memory_s1_clken -> onchip_memory:clken
-	wire  [31:0] mm_interconnect_0_filling_s1_readdata;                      // filling:readdata -> mm_interconnect_0:filling_s1_readdata
-	wire   [1:0] mm_interconnect_0_filling_s1_address;                       // mm_interconnect_0:filling_s1_address -> filling:address
-	wire  [31:0] mm_interconnect_0_innerdoor_s1_readdata;                    // innerDoor:readdata -> mm_interconnect_0:innerDoor_s1_readdata
-	wire   [1:0] mm_interconnect_0_innerdoor_s1_address;                     // mm_interconnect_0:innerDoor_s1_address -> innerDoor:address
-	wire  [31:0] mm_interconnect_0_draining_s1_readdata;                     // draining:readdata -> mm_interconnect_0:draining_s1_readdata
-	wire   [1:0] mm_interconnect_0_draining_s1_address;                      // mm_interconnect_0:draining_s1_address -> draining:address
-	wire  [31:0] mm_interconnect_0_outerdoor_s1_readdata;                    // outerDoor:readdata -> mm_interconnect_0:outerDoor_s1_readdata
-	wire   [1:0] mm_interconnect_0_outerdoor_s1_address;                     // mm_interconnect_0:outerDoor_s1_address -> outerDoor:address
-	wire  [31:0] mm_interconnect_0_resetleds_s1_readdata;                    // resetLeds:readdata -> mm_interconnect_0:resetLeds_s1_readdata
-	wire   [1:0] mm_interconnect_0_resetleds_s1_address;                     // mm_interconnect_0:resetLeds_s1_address -> resetLeds:address
 	wire         mm_interconnect_0_bathleaving_s1_chipselect;                // mm_interconnect_0:bathLeaving_s1_chipselect -> bathLeaving:chipselect
 	wire  [31:0] mm_interconnect_0_bathleaving_s1_readdata;                  // bathLeaving:readdata -> mm_interconnect_0:bathLeaving_s1_readdata
 	wire   [1:0] mm_interconnect_0_bathleaving_s1_address;                   // mm_interconnect_0:bathLeaving_s1_address -> bathLeaving:address
@@ -81,26 +64,26 @@ module microprocessor (
 	wire   [1:0] mm_interconnect_0_batharriving_s1_address;                  // mm_interconnect_0:bathArriving_s1_address -> bathArriving:address
 	wire         mm_interconnect_0_batharriving_s1_write;                    // mm_interconnect_0:bathArriving_s1_write -> bathArriving:write_n
 	wire  [31:0] mm_interconnect_0_batharriving_s1_writedata;                // mm_interconnect_0:bathArriving_s1_writedata -> bathArriving:writedata
-	wire         mm_interconnect_0_personcheck_s1_chipselect;                // mm_interconnect_0:personCheck_s1_chipselect -> personCheck:chipselect
-	wire  [31:0] mm_interconnect_0_personcheck_s1_readdata;                  // personCheck:readdata -> mm_interconnect_0:personCheck_s1_readdata
-	wire   [1:0] mm_interconnect_0_personcheck_s1_address;                   // mm_interconnect_0:personCheck_s1_address -> personCheck:address
-	wire         mm_interconnect_0_personcheck_s1_write;                     // mm_interconnect_0:personCheck_s1_write -> personCheck:write_n
-	wire  [31:0] mm_interconnect_0_personcheck_s1_writedata;                 // mm_interconnect_0:personCheck_s1_writedata -> personCheck:writedata
-	wire         mm_interconnect_0_pressurecheck_s1_chipselect;              // mm_interconnect_0:pressureCheck_s1_chipselect -> pressureCheck:chipselect
-	wire  [31:0] mm_interconnect_0_pressurecheck_s1_readdata;                // pressureCheck:readdata -> mm_interconnect_0:pressureCheck_s1_readdata
-	wire   [1:0] mm_interconnect_0_pressurecheck_s1_address;                 // mm_interconnect_0:pressureCheck_s1_address -> pressureCheck:address
-	wire         mm_interconnect_0_pressurecheck_s1_write;                   // mm_interconnect_0:pressureCheck_s1_write -> pressureCheck:write_n
-	wire  [31:0] mm_interconnect_0_pressurecheck_s1_writedata;               // mm_interconnect_0:pressureCheck_s1_writedata -> pressureCheck:writedata
-	wire         mm_interconnect_0_innerdoorswitch_s1_chipselect;            // mm_interconnect_0:innerDoorSwitch_s1_chipselect -> innerDoorSwitch:chipselect
-	wire  [31:0] mm_interconnect_0_innerdoorswitch_s1_readdata;              // innerDoorSwitch:readdata -> mm_interconnect_0:innerDoorSwitch_s1_readdata
-	wire   [1:0] mm_interconnect_0_innerdoorswitch_s1_address;               // mm_interconnect_0:innerDoorSwitch_s1_address -> innerDoorSwitch:address
-	wire         mm_interconnect_0_innerdoorswitch_s1_write;                 // mm_interconnect_0:innerDoorSwitch_s1_write -> innerDoorSwitch:write_n
-	wire  [31:0] mm_interconnect_0_innerdoorswitch_s1_writedata;             // mm_interconnect_0:innerDoorSwitch_s1_writedata -> innerDoorSwitch:writedata
-	wire         mm_interconnect_0_outerdoorswitch_s1_chipselect;            // mm_interconnect_0:outerDoorSwitch_s1_chipselect -> outerDoorSwitch:chipselect
-	wire  [31:0] mm_interconnect_0_outerdoorswitch_s1_readdata;              // outerDoorSwitch:readdata -> mm_interconnect_0:outerDoorSwitch_s1_readdata
-	wire   [1:0] mm_interconnect_0_outerdoorswitch_s1_address;               // mm_interconnect_0:outerDoorSwitch_s1_address -> outerDoorSwitch:address
-	wire         mm_interconnect_0_outerdoorswitch_s1_write;                 // mm_interconnect_0:outerDoorSwitch_s1_write -> outerDoorSwitch:write_n
-	wire  [31:0] mm_interconnect_0_outerdoorswitch_s1_writedata;             // mm_interconnect_0:outerDoorSwitch_s1_writedata -> outerDoorSwitch:writedata
+	wire         mm_interconnect_0_personinside_s1_chipselect;               // mm_interconnect_0:personInside_s1_chipselect -> personInside:chipselect
+	wire  [31:0] mm_interconnect_0_personinside_s1_readdata;                 // personInside:readdata -> mm_interconnect_0:personInside_s1_readdata
+	wire   [1:0] mm_interconnect_0_personinside_s1_address;                  // mm_interconnect_0:personInside_s1_address -> personInside:address
+	wire         mm_interconnect_0_personinside_s1_write;                    // mm_interconnect_0:personInside_s1_write -> personInside:write_n
+	wire  [31:0] mm_interconnect_0_personinside_s1_writedata;                // mm_interconnect_0:personInside_s1_writedata -> personInside:writedata
+	wire         mm_interconnect_0_chamberfull_s1_chipselect;                // mm_interconnect_0:chamberFull_s1_chipselect -> chamberFull:chipselect
+	wire  [31:0] mm_interconnect_0_chamberfull_s1_readdata;                  // chamberFull:readdata -> mm_interconnect_0:chamberFull_s1_readdata
+	wire   [1:0] mm_interconnect_0_chamberfull_s1_address;                   // mm_interconnect_0:chamberFull_s1_address -> chamberFull:address
+	wire         mm_interconnect_0_chamberfull_s1_write;                     // mm_interconnect_0:chamberFull_s1_write -> chamberFull:write_n
+	wire  [31:0] mm_interconnect_0_chamberfull_s1_writedata;                 // mm_interconnect_0:chamberFull_s1_writedata -> chamberFull:writedata
+	wire         mm_interconnect_0_innerdooropen_s1_chipselect;              // mm_interconnect_0:innerDoorOpen_s1_chipselect -> innerDoorOpen:chipselect
+	wire  [31:0] mm_interconnect_0_innerdooropen_s1_readdata;                // innerDoorOpen:readdata -> mm_interconnect_0:innerDoorOpen_s1_readdata
+	wire   [1:0] mm_interconnect_0_innerdooropen_s1_address;                 // mm_interconnect_0:innerDoorOpen_s1_address -> innerDoorOpen:address
+	wire         mm_interconnect_0_innerdooropen_s1_write;                   // mm_interconnect_0:innerDoorOpen_s1_write -> innerDoorOpen:write_n
+	wire  [31:0] mm_interconnect_0_innerdooropen_s1_writedata;               // mm_interconnect_0:innerDoorOpen_s1_writedata -> innerDoorOpen:writedata
+	wire         mm_interconnect_0_outerdooropen_s1_chipselect;              // mm_interconnect_0:outerDoorOpen_s1_chipselect -> outerDoorOpen:chipselect
+	wire  [31:0] mm_interconnect_0_outerdooropen_s1_readdata;                // outerDoorOpen:readdata -> mm_interconnect_0:outerDoorOpen_s1_readdata
+	wire   [1:0] mm_interconnect_0_outerdooropen_s1_address;                 // mm_interconnect_0:outerDoorOpen_s1_address -> outerDoorOpen:address
+	wire         mm_interconnect_0_outerdooropen_s1_write;                   // mm_interconnect_0:outerDoorOpen_s1_write -> outerDoorOpen:write_n
+	wire  [31:0] mm_interconnect_0_outerdooropen_s1_writedata;               // mm_interconnect_0:outerDoorOpen_s1_writedata -> outerDoorOpen:writedata
 	wire         mm_interconnect_0_drain_s1_chipselect;                      // mm_interconnect_0:drain_s1_chipselect -> drain:chipselect
 	wire  [31:0] mm_interconnect_0_drain_s1_readdata;                        // drain:readdata -> mm_interconnect_0:drain_s1_readdata
 	wire   [1:0] mm_interconnect_0_drain_s1_address;                         // mm_interconnect_0:drain_s1_address -> drain:address
@@ -121,16 +104,9 @@ module microprocessor (
 	wire   [1:0] mm_interconnect_0_drainfinished_s1_address;                 // mm_interconnect_0:drainFinished_s1_address -> drainFinished:address
 	wire         mm_interconnect_0_drainfinished_s1_write;                   // mm_interconnect_0:drainFinished_s1_write -> drainFinished:write_n
 	wire  [31:0] mm_interconnect_0_drainfinished_s1_writedata;               // mm_interconnect_0:drainFinished_s1_writedata -> drainFinished:writedata
-	wire  [31:0] mm_interconnect_0_waiting_s1_readdata;                      // waiting:readdata -> mm_interconnect_0:waiting_s1_readdata
-	wire   [1:0] mm_interconnect_0_waiting_s1_address;                       // mm_interconnect_0:waiting_s1_address -> waiting:address
-	wire         mm_interconnect_0_waitfinished_s1_chipselect;               // mm_interconnect_0:waitFinished_s1_chipselect -> waitFinished:chipselect
-	wire  [31:0] mm_interconnect_0_waitfinished_s1_readdata;                 // waitFinished:readdata -> mm_interconnect_0:waitFinished_s1_readdata
-	wire   [1:0] mm_interconnect_0_waitfinished_s1_address;                  // mm_interconnect_0:waitFinished_s1_address -> waitFinished:address
-	wire         mm_interconnect_0_waitfinished_s1_write;                    // mm_interconnect_0:waitFinished_s1_write -> waitFinished:write_n
-	wire  [31:0] mm_interconnect_0_waitfinished_s1_writedata;                // mm_interconnect_0:waitFinished_s1_writedata -> waitFinished:writedata
 	wire         irq_mapper_receiver0_irq;                                   // jtag_uart:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                       // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [bathArriving:reset_n, bathLeaving:reset_n, drain:reset_n, drainFinished:reset_n, draining:reset_n, fill:reset_n, fillFinished:reset_n, filling:reset_n, innerDoor:reset_n, innerDoorSwitch:reset_n, irq_mapper:reset, jtag_uart:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory:reset, outerDoor:reset_n, outerDoorSwitch:reset_n, personCheck:reset_n, pressureCheck:reset_n, resetLeds:reset_n, rst_translator:in_reset, waitFinished:reset_n, waiting:reset_n]
+	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [bathArriving:reset_n, bathLeaving:reset_n, chamberFull:reset_n, drain:reset_n, drainFinished:reset_n, fill:reset_n, fillFinished:reset_n, innerDoorOpen:reset_n, irq_mapper:reset, jtag_uart:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory:reset, outerDoorOpen:reset_n, personInside:reset_n, rst_translator:in_reset]
 	wire         rst_controller_reset_out_reset_req;                         // rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                     // nios2_gen2_0:debug_reset_request -> rst_controller:reset_in1
 
@@ -156,6 +132,17 @@ module microprocessor (
 		.out_port   (bathleaving_export)                           // external_connection.export
 	);
 
+	microprocessor_bathArriving chamberfull (
+		.clk        (clk_clk),                                     //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
+		.address    (mm_interconnect_0_chamberfull_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_chamberfull_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_chamberfull_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_chamberfull_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_chamberfull_s1_readdata),   //                    .readdata
+		.out_port   (chamberfull_export)                           // external_connection.export
+	);
+
 	microprocessor_bathArriving drain (
 		.clk        (clk_clk),                               //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),       //               reset.reset_n
@@ -176,14 +163,6 @@ module microprocessor (
 		.chipselect (mm_interconnect_0_drainfinished_s1_chipselect), //                    .chipselect
 		.readdata   (mm_interconnect_0_drainfinished_s1_readdata),   //                    .readdata
 		.out_port   (drainfinished_export)                           // external_connection.export
-	);
-
-	microprocessor_draining draining (
-		.clk      (clk_clk),                                //                 clk.clk
-		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
-		.address  (mm_interconnect_0_draining_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_draining_s1_readdata), //                    .readdata
-		.in_port  (draining_export)                         // external_connection.export
 	);
 
 	microprocessor_bathArriving fill (
@@ -208,31 +187,15 @@ module microprocessor (
 		.out_port   (fillfinished_export)                           // external_connection.export
 	);
 
-	microprocessor_draining filling (
-		.clk      (clk_clk),                               //                 clk.clk
-		.reset_n  (~rst_controller_reset_out_reset),       //               reset.reset_n
-		.address  (mm_interconnect_0_filling_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_filling_s1_readdata), //                    .readdata
-		.in_port  (filling_export)                         // external_connection.export
-	);
-
-	microprocessor_draining innerdoor (
-		.clk      (clk_clk),                                 //                 clk.clk
-		.reset_n  (~rst_controller_reset_out_reset),         //               reset.reset_n
-		.address  (mm_interconnect_0_innerdoor_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_innerdoor_s1_readdata), //                    .readdata
-		.in_port  (innerdoor_export)                         // external_connection.export
-	);
-
-	microprocessor_bathArriving innerdoorswitch (
-		.clk        (clk_clk),                                         //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),                 //               reset.reset_n
-		.address    (mm_interconnect_0_innerdoorswitch_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_innerdoorswitch_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_innerdoorswitch_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_innerdoorswitch_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_innerdoorswitch_s1_readdata),   //                    .readdata
-		.out_port   (innerdoorswitch_export)                           // external_connection.export
+	microprocessor_bathArriving innerdooropen (
+		.clk        (clk_clk),                                       //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),               //               reset.reset_n
+		.address    (mm_interconnect_0_innerdooropen_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_innerdooropen_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_innerdooropen_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_innerdooropen_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_innerdooropen_s1_readdata),   //                    .readdata
+		.out_port   (innerdooropen_export)                           // external_connection.export
 	);
 
 	microprocessor_jtag_uart jtag_uart (
@@ -292,72 +255,26 @@ module microprocessor (
 		.reset_req  (rst_controller_reset_out_reset_req)             //       .reset_req
 	);
 
-	microprocessor_draining outerdoor (
-		.clk      (clk_clk),                                 //                 clk.clk
-		.reset_n  (~rst_controller_reset_out_reset),         //               reset.reset_n
-		.address  (mm_interconnect_0_outerdoor_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_outerdoor_s1_readdata), //                    .readdata
-		.in_port  (outerdoor_export)                         // external_connection.export
-	);
-
-	microprocessor_bathArriving outerdoorswitch (
-		.clk        (clk_clk),                                         //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),                 //               reset.reset_n
-		.address    (mm_interconnect_0_outerdoorswitch_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_outerdoorswitch_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_outerdoorswitch_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_outerdoorswitch_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_outerdoorswitch_s1_readdata),   //                    .readdata
-		.out_port   (outerdoorswitch_export)                           // external_connection.export
-	);
-
-	microprocessor_bathArriving personcheck (
-		.clk        (clk_clk),                                     //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
-		.address    (mm_interconnect_0_personcheck_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_personcheck_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_personcheck_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_personcheck_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_personcheck_s1_readdata),   //                    .readdata
-		.out_port   (personcheck_export)                           // external_connection.export
-	);
-
-	microprocessor_bathArriving pressurecheck (
+	microprocessor_bathArriving outerdooropen (
 		.clk        (clk_clk),                                       //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),               //               reset.reset_n
-		.address    (mm_interconnect_0_pressurecheck_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_pressurecheck_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_pressurecheck_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_pressurecheck_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_pressurecheck_s1_readdata),   //                    .readdata
-		.out_port   (pressurecheck_export)                           // external_connection.export
+		.address    (mm_interconnect_0_outerdooropen_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_outerdooropen_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_outerdooropen_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_outerdooropen_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_outerdooropen_s1_readdata),   //                    .readdata
+		.out_port   (outerdooropen_export)                           // external_connection.export
 	);
 
-	microprocessor_resetLeds resetleds (
-		.clk      (clk_clk),                                 //                 clk.clk
-		.reset_n  (~rst_controller_reset_out_reset),         //               reset.reset_n
-		.address  (mm_interconnect_0_resetleds_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_resetleds_s1_readdata), //                    .readdata
-		.in_port  (resetleds_export)                         // external_connection.export
-	);
-
-	microprocessor_bathArriving waitfinished (
+	microprocessor_bathArriving personinside (
 		.clk        (clk_clk),                                      //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
-		.address    (mm_interconnect_0_waitfinished_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_waitfinished_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_waitfinished_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_waitfinished_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_waitfinished_s1_readdata),   //                    .readdata
-		.out_port   (waitfinished_export)                           // external_connection.export
-	);
-
-	microprocessor_draining waiting (
-		.clk      (clk_clk),                               //                 clk.clk
-		.reset_n  (~rst_controller_reset_out_reset),       //               reset.reset_n
-		.address  (mm_interconnect_0_waiting_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_waiting_s1_readdata), //                    .readdata
-		.in_port  (waiting_export)                         // external_connection.export
+		.address    (mm_interconnect_0_personinside_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_personinside_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_personinside_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_personinside_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_personinside_s1_readdata),   //                    .readdata
+		.out_port   (personinside_export)                           // external_connection.export
 	);
 
 	microprocessor_mm_interconnect_0 mm_interconnect_0 (
@@ -387,6 +304,11 @@ module microprocessor (
 		.bathLeaving_s1_readdata                        (mm_interconnect_0_bathleaving_s1_readdata),                  //                                         .readdata
 		.bathLeaving_s1_writedata                       (mm_interconnect_0_bathleaving_s1_writedata),                 //                                         .writedata
 		.bathLeaving_s1_chipselect                      (mm_interconnect_0_bathleaving_s1_chipselect),                //                                         .chipselect
+		.chamberFull_s1_address                         (mm_interconnect_0_chamberfull_s1_address),                   //                           chamberFull_s1.address
+		.chamberFull_s1_write                           (mm_interconnect_0_chamberfull_s1_write),                     //                                         .write
+		.chamberFull_s1_readdata                        (mm_interconnect_0_chamberfull_s1_readdata),                  //                                         .readdata
+		.chamberFull_s1_writedata                       (mm_interconnect_0_chamberfull_s1_writedata),                 //                                         .writedata
+		.chamberFull_s1_chipselect                      (mm_interconnect_0_chamberfull_s1_chipselect),                //                                         .chipselect
 		.drain_s1_address                               (mm_interconnect_0_drain_s1_address),                         //                                 drain_s1.address
 		.drain_s1_write                                 (mm_interconnect_0_drain_s1_write),                           //                                         .write
 		.drain_s1_readdata                              (mm_interconnect_0_drain_s1_readdata),                        //                                         .readdata
@@ -397,8 +319,6 @@ module microprocessor (
 		.drainFinished_s1_readdata                      (mm_interconnect_0_drainfinished_s1_readdata),                //                                         .readdata
 		.drainFinished_s1_writedata                     (mm_interconnect_0_drainfinished_s1_writedata),               //                                         .writedata
 		.drainFinished_s1_chipselect                    (mm_interconnect_0_drainfinished_s1_chipselect),              //                                         .chipselect
-		.draining_s1_address                            (mm_interconnect_0_draining_s1_address),                      //                              draining_s1.address
-		.draining_s1_readdata                           (mm_interconnect_0_draining_s1_readdata),                     //                                         .readdata
 		.fill_s1_address                                (mm_interconnect_0_fill_s1_address),                          //                                  fill_s1.address
 		.fill_s1_write                                  (mm_interconnect_0_fill_s1_write),                            //                                         .write
 		.fill_s1_readdata                               (mm_interconnect_0_fill_s1_readdata),                         //                                         .readdata
@@ -409,15 +329,11 @@ module microprocessor (
 		.fillFinished_s1_readdata                       (mm_interconnect_0_fillfinished_s1_readdata),                 //                                         .readdata
 		.fillFinished_s1_writedata                      (mm_interconnect_0_fillfinished_s1_writedata),                //                                         .writedata
 		.fillFinished_s1_chipselect                     (mm_interconnect_0_fillfinished_s1_chipselect),               //                                         .chipselect
-		.filling_s1_address                             (mm_interconnect_0_filling_s1_address),                       //                               filling_s1.address
-		.filling_s1_readdata                            (mm_interconnect_0_filling_s1_readdata),                      //                                         .readdata
-		.innerDoor_s1_address                           (mm_interconnect_0_innerdoor_s1_address),                     //                             innerDoor_s1.address
-		.innerDoor_s1_readdata                          (mm_interconnect_0_innerdoor_s1_readdata),                    //                                         .readdata
-		.innerDoorSwitch_s1_address                     (mm_interconnect_0_innerdoorswitch_s1_address),               //                       innerDoorSwitch_s1.address
-		.innerDoorSwitch_s1_write                       (mm_interconnect_0_innerdoorswitch_s1_write),                 //                                         .write
-		.innerDoorSwitch_s1_readdata                    (mm_interconnect_0_innerdoorswitch_s1_readdata),              //                                         .readdata
-		.innerDoorSwitch_s1_writedata                   (mm_interconnect_0_innerdoorswitch_s1_writedata),             //                                         .writedata
-		.innerDoorSwitch_s1_chipselect                  (mm_interconnect_0_innerdoorswitch_s1_chipselect),            //                                         .chipselect
+		.innerDoorOpen_s1_address                       (mm_interconnect_0_innerdooropen_s1_address),                 //                         innerDoorOpen_s1.address
+		.innerDoorOpen_s1_write                         (mm_interconnect_0_innerdooropen_s1_write),                   //                                         .write
+		.innerDoorOpen_s1_readdata                      (mm_interconnect_0_innerdooropen_s1_readdata),                //                                         .readdata
+		.innerDoorOpen_s1_writedata                     (mm_interconnect_0_innerdooropen_s1_writedata),               //                                         .writedata
+		.innerDoorOpen_s1_chipselect                    (mm_interconnect_0_innerdooropen_s1_chipselect),              //                                         .chipselect
 		.jtag_uart_avalon_jtag_slave_address            (mm_interconnect_0_jtag_uart_avalon_jtag_slave_address),      //              jtag_uart_avalon_jtag_slave.address
 		.jtag_uart_avalon_jtag_slave_write              (mm_interconnect_0_jtag_uart_avalon_jtag_slave_write),        //                                         .write
 		.jtag_uart_avalon_jtag_slave_read               (mm_interconnect_0_jtag_uart_avalon_jtag_slave_read),         //                                         .read
@@ -440,32 +356,16 @@ module microprocessor (
 		.onchip_memory_s1_byteenable                    (mm_interconnect_0_onchip_memory_s1_byteenable),              //                                         .byteenable
 		.onchip_memory_s1_chipselect                    (mm_interconnect_0_onchip_memory_s1_chipselect),              //                                         .chipselect
 		.onchip_memory_s1_clken                         (mm_interconnect_0_onchip_memory_s1_clken),                   //                                         .clken
-		.outerDoor_s1_address                           (mm_interconnect_0_outerdoor_s1_address),                     //                             outerDoor_s1.address
-		.outerDoor_s1_readdata                          (mm_interconnect_0_outerdoor_s1_readdata),                    //                                         .readdata
-		.outerDoorSwitch_s1_address                     (mm_interconnect_0_outerdoorswitch_s1_address),               //                       outerDoorSwitch_s1.address
-		.outerDoorSwitch_s1_write                       (mm_interconnect_0_outerdoorswitch_s1_write),                 //                                         .write
-		.outerDoorSwitch_s1_readdata                    (mm_interconnect_0_outerdoorswitch_s1_readdata),              //                                         .readdata
-		.outerDoorSwitch_s1_writedata                   (mm_interconnect_0_outerdoorswitch_s1_writedata),             //                                         .writedata
-		.outerDoorSwitch_s1_chipselect                  (mm_interconnect_0_outerdoorswitch_s1_chipselect),            //                                         .chipselect
-		.personCheck_s1_address                         (mm_interconnect_0_personcheck_s1_address),                   //                           personCheck_s1.address
-		.personCheck_s1_write                           (mm_interconnect_0_personcheck_s1_write),                     //                                         .write
-		.personCheck_s1_readdata                        (mm_interconnect_0_personcheck_s1_readdata),                  //                                         .readdata
-		.personCheck_s1_writedata                       (mm_interconnect_0_personcheck_s1_writedata),                 //                                         .writedata
-		.personCheck_s1_chipselect                      (mm_interconnect_0_personcheck_s1_chipselect),                //                                         .chipselect
-		.pressureCheck_s1_address                       (mm_interconnect_0_pressurecheck_s1_address),                 //                         pressureCheck_s1.address
-		.pressureCheck_s1_write                         (mm_interconnect_0_pressurecheck_s1_write),                   //                                         .write
-		.pressureCheck_s1_readdata                      (mm_interconnect_0_pressurecheck_s1_readdata),                //                                         .readdata
-		.pressureCheck_s1_writedata                     (mm_interconnect_0_pressurecheck_s1_writedata),               //                                         .writedata
-		.pressureCheck_s1_chipselect                    (mm_interconnect_0_pressurecheck_s1_chipselect),              //                                         .chipselect
-		.resetLeds_s1_address                           (mm_interconnect_0_resetleds_s1_address),                     //                             resetLeds_s1.address
-		.resetLeds_s1_readdata                          (mm_interconnect_0_resetleds_s1_readdata),                    //                                         .readdata
-		.waitFinished_s1_address                        (mm_interconnect_0_waitfinished_s1_address),                  //                          waitFinished_s1.address
-		.waitFinished_s1_write                          (mm_interconnect_0_waitfinished_s1_write),                    //                                         .write
-		.waitFinished_s1_readdata                       (mm_interconnect_0_waitfinished_s1_readdata),                 //                                         .readdata
-		.waitFinished_s1_writedata                      (mm_interconnect_0_waitfinished_s1_writedata),                //                                         .writedata
-		.waitFinished_s1_chipselect                     (mm_interconnect_0_waitfinished_s1_chipselect),               //                                         .chipselect
-		.waiting_s1_address                             (mm_interconnect_0_waiting_s1_address),                       //                               waiting_s1.address
-		.waiting_s1_readdata                            (mm_interconnect_0_waiting_s1_readdata)                       //                                         .readdata
+		.outerDoorOpen_s1_address                       (mm_interconnect_0_outerdooropen_s1_address),                 //                         outerDoorOpen_s1.address
+		.outerDoorOpen_s1_write                         (mm_interconnect_0_outerdooropen_s1_write),                   //                                         .write
+		.outerDoorOpen_s1_readdata                      (mm_interconnect_0_outerdooropen_s1_readdata),                //                                         .readdata
+		.outerDoorOpen_s1_writedata                     (mm_interconnect_0_outerdooropen_s1_writedata),               //                                         .writedata
+		.outerDoorOpen_s1_chipselect                    (mm_interconnect_0_outerdooropen_s1_chipselect),              //                                         .chipselect
+		.personInside_s1_address                        (mm_interconnect_0_personinside_s1_address),                  //                          personInside_s1.address
+		.personInside_s1_write                          (mm_interconnect_0_personinside_s1_write),                    //                                         .write
+		.personInside_s1_readdata                       (mm_interconnect_0_personinside_s1_readdata),                 //                                         .readdata
+		.personInside_s1_writedata                      (mm_interconnect_0_personinside_s1_writedata),                //                                         .writedata
+		.personInside_s1_chipselect                     (mm_interconnect_0_personinside_s1_chipselect)                //                                         .chipselect
 	);
 
 	microprocessor_irq_mapper irq_mapper (

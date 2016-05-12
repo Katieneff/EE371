@@ -48,7 +48,7 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 							.pressureCheck(SW[9]), 
 							.innerDoorSwitch(SW[3]), 
 							.outerDoorSwitch(SW[2]), 
-							.clk(tBase[24]), 
+							.clk(tBase[22]), 
 							.reset(KEY[0]), 
 							.drain(KEY[2]), 
 							.fill(KEY[1]),
@@ -76,7 +76,7 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 	timer pressurize(
 							.val(fillVal),
 							.finished(fillFinished), 
-							.clk(tBase[24]), 
+							.clk(tBase[22]), 
 							.startingVal(4'b0111), 
 							.change(!KEY[1]), 
 							.start(filling)
@@ -88,7 +88,7 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 	timer depressurize(
 								.val(drainVal), 
 								.finished(drainFinished), 
-								.clk(tBase[24]), 
+								.clk(tBase[22]), 
 								.startingVal(4'b1000), 
 								.change(!KEY[2]), 
 								.start(draining)
@@ -100,7 +100,7 @@ module main(CLOCK_50, LEDR, SW, HEX0, HEX1, KEY, HEX5, HEX4);
 	timer waiting5Sec(
 								.val(waitVal), 
 								.finished(waitFinished), 
-								.clk(tBase[24]), 
+								.clk(tBase[22]), 
 								.startingVal(4'b0101), 
 								.change(1'b1), 
 								.start(waiting)

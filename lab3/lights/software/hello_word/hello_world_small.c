@@ -1,6 +1,4 @@
 #include "sys/alt_stdio.h"
-#include <stdio.h>
-#include <stdlib.h>
 #define switches (volatile char *) 0x0003000
 #define leds (volatile char *) 0x0003010
 

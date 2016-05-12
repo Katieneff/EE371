@@ -1,24 +1,17 @@
 	component microprocessor is
 		port (
-			batharriving_export    : out std_logic;                                       -- export
-			bathleaving_export     : out std_logic;                                       -- export
-			clk_clk                : in  std_logic                    := 'X';             -- clk
-			drain_export           : out std_logic;                                       -- export
-			drainfinished_export   : out std_logic;                                       -- export
-			draining_export        : in  std_logic                    := 'X';             -- export
-			fill_export            : out std_logic;                                       -- export
-			fillfinished_export    : out std_logic;                                       -- export
-			filling_export         : in  std_logic                    := 'X';             -- export
-			innerdoor_export       : in  std_logic                    := 'X';             -- export
-			innerdoorswitch_export : out std_logic;                                       -- export
-			outerdoor_export       : in  std_logic                    := 'X';             -- export
-			outerdoorswitch_export : out std_logic;                                       -- export
-			personcheck_export     : out std_logic;                                       -- export
-			pressurecheck_export   : out std_logic;                                       -- export
-			reset_reset_n          : in  std_logic                    := 'X';             -- reset_n
-			resetleds_export       : in  std_logic_vector(3 downto 0) := (others => 'X'); -- export
-			waitfinished_export    : out std_logic;                                       -- export
-			waiting_export         : in  std_logic                    := 'X'              -- export
+			batharriving_export  : out std_logic;        -- export
+			bathleaving_export   : out std_logic;        -- export
+			chamberfull_export   : out std_logic;        -- export
+			clk_clk              : in  std_logic := 'X'; -- clk
+			drain_export         : out std_logic;        -- export
+			drainfinished_export : out std_logic;        -- export
+			fill_export          : out std_logic;        -- export
+			fillfinished_export  : out std_logic;        -- export
+			innerdooropen_export : out std_logic;        -- export
+			outerdooropen_export : out std_logic;        -- export
+			personinside_export  : out std_logic;        -- export
+			reset_reset_n        : in  std_logic := 'X'  -- reset_n
 		);
 	end component microprocessor;
 
