@@ -1,0 +1,640 @@
+/*
+ * system.h - SOPC Builder system and BSP software package information
+ *
+ * Machine generated for CPU 'nios2_processor' in SOPC Builder design 'microprocessor'
+ * SOPC Builder design path: ../../microprocessor.sopcinfo
+ *
+ * Generated: Thu May 12 07:06:37 PDT 2016
+ */
+
+/*
+ * DO NOT MODIFY THIS FILE
+ *
+ * Changing this file will have subtle consequences
+ * which will almost certainly lead to a nonfunctioning
+ * system. If you do modify this file, be aware that your
+ * changes will be overwritten and lost when this file
+ * is generated again.
+ *
+ * DO NOT MODIFY THIS FILE
+ */
+
+/*
+ * License Agreement
+ *
+ * Copyright (c) 2008
+ * Altera Corporation, San Jose, California, USA.
+ * All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ * This agreement shall be governed in all respects by the laws of the State
+ * of California and by the laws of the United States of America.
+ */
+
+#ifndef __SYSTEM_H_
+#define __SYSTEM_H_
+
+/* Include definitions from linker script generator */
+#include "linker.h"
+
+
+/*
+ * CPU configuration
+ *
+ */
+
+#define ALT_CPU_ARCHITECTURE "altera_nios2_gen2"
+#define ALT_CPU_BIG_ENDIAN 0
+#define ALT_CPU_BREAK_ADDR 0x00002820
+#define ALT_CPU_CPU_ARCH_NIOS2_R1
+#define ALT_CPU_CPU_FREQ 50000000u
+#define ALT_CPU_CPU_ID_SIZE 1
+#define ALT_CPU_CPU_ID_VALUE 0x00000000
+#define ALT_CPU_CPU_IMPLEMENTATION "tiny"
+#define ALT_CPU_DATA_ADDR_WIDTH 0xe
+#define ALT_CPU_DCACHE_LINE_SIZE 0
+#define ALT_CPU_DCACHE_LINE_SIZE_LOG2 0
+#define ALT_CPU_DCACHE_SIZE 0
+#define ALT_CPU_EXCEPTION_ADDR 0x00001020
+#define ALT_CPU_FLASH_ACCELERATOR_LINES 0
+#define ALT_CPU_FLASH_ACCELERATOR_LINE_SIZE 0
+#define ALT_CPU_FLUSHDA_SUPPORTED
+#define ALT_CPU_FREQ 50000000
+#define ALT_CPU_HARDWARE_DIVIDE_PRESENT 0
+#define ALT_CPU_HARDWARE_MULTIPLY_PRESENT 0
+#define ALT_CPU_HARDWARE_MULX_PRESENT 0
+#define ALT_CPU_HAS_DEBUG_CORE 1
+#define ALT_CPU_HAS_DEBUG_STUB
+#define ALT_CPU_HAS_ILLEGAL_INSTRUCTION_EXCEPTION
+#define ALT_CPU_HAS_JMPI_INSTRUCTION
+#define ALT_CPU_ICACHE_LINE_SIZE 0
+#define ALT_CPU_ICACHE_LINE_SIZE_LOG2 0
+#define ALT_CPU_ICACHE_SIZE 0
+#define ALT_CPU_INST_ADDR_WIDTH 0xe
+#define ALT_CPU_NAME "nios2_processor"
+#define ALT_CPU_OCI_VERSION 1
+#define ALT_CPU_RESET_ADDR 0x00001000
+
+
+/*
+ * CPU configuration (with legacy prefix - don't use these anymore)
+ *
+ */
+
+#define NIOS2_BIG_ENDIAN 0
+#define NIOS2_BREAK_ADDR 0x00002820
+#define NIOS2_CPU_ARCH_NIOS2_R1
+#define NIOS2_CPU_FREQ 50000000u
+#define NIOS2_CPU_ID_SIZE 1
+#define NIOS2_CPU_ID_VALUE 0x00000000
+#define NIOS2_CPU_IMPLEMENTATION "tiny"
+#define NIOS2_DATA_ADDR_WIDTH 0xe
+#define NIOS2_DCACHE_LINE_SIZE 0
+#define NIOS2_DCACHE_LINE_SIZE_LOG2 0
+#define NIOS2_DCACHE_SIZE 0
+#define NIOS2_EXCEPTION_ADDR 0x00001020
+#define NIOS2_FLASH_ACCELERATOR_LINES 0
+#define NIOS2_FLASH_ACCELERATOR_LINE_SIZE 0
+#define NIOS2_FLUSHDA_SUPPORTED
+#define NIOS2_HARDWARE_DIVIDE_PRESENT 0
+#define NIOS2_HARDWARE_MULTIPLY_PRESENT 0
+#define NIOS2_HARDWARE_MULX_PRESENT 0
+#define NIOS2_HAS_DEBUG_CORE 1
+#define NIOS2_HAS_DEBUG_STUB
+#define NIOS2_HAS_ILLEGAL_INSTRUCTION_EXCEPTION
+#define NIOS2_HAS_JMPI_INSTRUCTION
+#define NIOS2_ICACHE_LINE_SIZE 0
+#define NIOS2_ICACHE_LINE_SIZE_LOG2 0
+#define NIOS2_ICACHE_SIZE 0
+#define NIOS2_INST_ADDR_WIDTH 0xe
+#define NIOS2_OCI_VERSION 1
+#define NIOS2_RESET_ADDR 0x00001000
+
+
+/*
+ * Define for each module class mastered by the CPU
+ *
+ */
+
+#define __ALTERA_AVALON_JTAG_UART
+#define __ALTERA_AVALON_ONCHIP_MEMORY2
+#define __ALTERA_AVALON_PIO
+#define __ALTERA_NIOS2_GEN2
+
+
+/*
+ * Draining configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_Draining altera_avalon_pio
+#define DRAINING_BASE 0x30d0
+#define DRAINING_BIT_CLEARING_EDGE_REGISTER 0
+#define DRAINING_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define DRAINING_CAPTURE 0
+#define DRAINING_DATA_WIDTH 1
+#define DRAINING_DO_TEST_BENCH_WIRING 0
+#define DRAINING_DRIVEN_SIM_VALUE 0
+#define DRAINING_EDGE_TYPE "NONE"
+#define DRAINING_FREQ 50000000
+#define DRAINING_HAS_IN 1
+#define DRAINING_HAS_OUT 0
+#define DRAINING_HAS_TRI 0
+#define DRAINING_IRQ -1
+#define DRAINING_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define DRAINING_IRQ_TYPE "NONE"
+#define DRAINING_NAME "/dev/Draining"
+#define DRAINING_RESET_VALUE 0
+#define DRAINING_SPAN 16
+#define DRAINING_TYPE "altera_avalon_pio"
+
+
+/*
+ * Filling configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_Filling altera_avalon_pio
+#define FILLING_BASE 0x30e0
+#define FILLING_BIT_CLEARING_EDGE_REGISTER 0
+#define FILLING_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define FILLING_CAPTURE 0
+#define FILLING_DATA_WIDTH 1
+#define FILLING_DO_TEST_BENCH_WIRING 0
+#define FILLING_DRIVEN_SIM_VALUE 0
+#define FILLING_EDGE_TYPE "NONE"
+#define FILLING_FREQ 50000000
+#define FILLING_HAS_IN 1
+#define FILLING_HAS_OUT 0
+#define FILLING_HAS_TRI 0
+#define FILLING_IRQ -1
+#define FILLING_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define FILLING_IRQ_TYPE "NONE"
+#define FILLING_NAME "/dev/Filling"
+#define FILLING_RESET_VALUE 0
+#define FILLING_SPAN 16
+#define FILLING_TYPE "altera_avalon_pio"
+
+
+/*
+ * System configuration
+ *
+ */
+
+#define ALT_DEVICE_FAMILY "Cyclone V"
+#define ALT_ENHANCED_INTERRUPT_API_PRESENT
+#define ALT_IRQ_BASE NULL
+#define ALT_LOG_PORT "/dev/null"
+#define ALT_LOG_PORT_BASE 0x0
+#define ALT_LOG_PORT_DEV null
+#define ALT_LOG_PORT_TYPE ""
+#define ALT_NUM_EXTERNAL_INTERRUPT_CONTROLLERS 0
+#define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
+#define ALT_NUM_INTERRUPT_CONTROLLERS 1
+#define ALT_STDERR "/dev/jtag_uart"
+#define ALT_STDERR_BASE 0x30f0
+#define ALT_STDERR_DEV jtag_uart
+#define ALT_STDERR_IS_JTAG_UART
+#define ALT_STDERR_PRESENT
+#define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
+#define ALT_STDIN "/dev/jtag_uart"
+#define ALT_STDIN_BASE 0x30f0
+#define ALT_STDIN_DEV jtag_uart
+#define ALT_STDIN_IS_JTAG_UART
+#define ALT_STDIN_PRESENT
+#define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
+#define ALT_STDOUT "/dev/jtag_uart"
+#define ALT_STDOUT_BASE 0x30f0
+#define ALT_STDOUT_DEV jtag_uart
+#define ALT_STDOUT_IS_JTAG_UART
+#define ALT_STDOUT_PRESENT
+#define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
+#define ALT_SYSTEM_NAME "microprocessor"
+
+
+/*
+ * bathArriving configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_bathArriving altera_avalon_pio
+#define BATHARRIVING_BASE 0x3080
+#define BATHARRIVING_BIT_CLEARING_EDGE_REGISTER 0
+#define BATHARRIVING_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define BATHARRIVING_CAPTURE 0
+#define BATHARRIVING_DATA_WIDTH 1
+#define BATHARRIVING_DO_TEST_BENCH_WIRING 0
+#define BATHARRIVING_DRIVEN_SIM_VALUE 0
+#define BATHARRIVING_EDGE_TYPE "NONE"
+#define BATHARRIVING_FREQ 50000000
+#define BATHARRIVING_HAS_IN 0
+#define BATHARRIVING_HAS_OUT 1
+#define BATHARRIVING_HAS_TRI 0
+#define BATHARRIVING_IRQ -1
+#define BATHARRIVING_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define BATHARRIVING_IRQ_TYPE "NONE"
+#define BATHARRIVING_NAME "/dev/bathArriving"
+#define BATHARRIVING_RESET_VALUE 0
+#define BATHARRIVING_SPAN 16
+#define BATHARRIVING_TYPE "altera_avalon_pio"
+
+
+/*
+ * bathLeaving configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_bathLeaving altera_avalon_pio
+#define BATHLEAVING_BASE 0x3090
+#define BATHLEAVING_BIT_CLEARING_EDGE_REGISTER 0
+#define BATHLEAVING_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define BATHLEAVING_CAPTURE 0
+#define BATHLEAVING_DATA_WIDTH 1
+#define BATHLEAVING_DO_TEST_BENCH_WIRING 0
+#define BATHLEAVING_DRIVEN_SIM_VALUE 0
+#define BATHLEAVING_EDGE_TYPE "NONE"
+#define BATHLEAVING_FREQ 50000000
+#define BATHLEAVING_HAS_IN 0
+#define BATHLEAVING_HAS_OUT 1
+#define BATHLEAVING_HAS_TRI 0
+#define BATHLEAVING_IRQ -1
+#define BATHLEAVING_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define BATHLEAVING_IRQ_TYPE "NONE"
+#define BATHLEAVING_NAME "/dev/bathLeaving"
+#define BATHLEAVING_RESET_VALUE 0
+#define BATHLEAVING_SPAN 16
+#define BATHLEAVING_TYPE "altera_avalon_pio"
+
+
+/*
+ * drainFinished configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_drainFinished altera_avalon_pio
+#define DRAINFINISHED_BASE 0x3030
+#define DRAINFINISHED_BIT_CLEARING_EDGE_REGISTER 0
+#define DRAINFINISHED_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define DRAINFINISHED_CAPTURE 0
+#define DRAINFINISHED_DATA_WIDTH 1
+#define DRAINFINISHED_DO_TEST_BENCH_WIRING 0
+#define DRAINFINISHED_DRIVEN_SIM_VALUE 0
+#define DRAINFINISHED_EDGE_TYPE "NONE"
+#define DRAINFINISHED_FREQ 50000000
+#define DRAINFINISHED_HAS_IN 0
+#define DRAINFINISHED_HAS_OUT 1
+#define DRAINFINISHED_HAS_TRI 0
+#define DRAINFINISHED_IRQ -1
+#define DRAINFINISHED_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define DRAINFINISHED_IRQ_TYPE "NONE"
+#define DRAINFINISHED_NAME "/dev/drainFinished"
+#define DRAINFINISHED_RESET_VALUE 0
+#define DRAINFINISHED_SPAN 16
+#define DRAINFINISHED_TYPE "altera_avalon_pio"
+
+
+/*
+ * fillFinished configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_fillFinished altera_avalon_pio
+#define FILLFINISHED_BASE 0x3020
+#define FILLFINISHED_BIT_CLEARING_EDGE_REGISTER 0
+#define FILLFINISHED_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define FILLFINISHED_CAPTURE 0
+#define FILLFINISHED_DATA_WIDTH 1
+#define FILLFINISHED_DO_TEST_BENCH_WIRING 0
+#define FILLFINISHED_DRIVEN_SIM_VALUE 0
+#define FILLFINISHED_EDGE_TYPE "NONE"
+#define FILLFINISHED_FREQ 50000000
+#define FILLFINISHED_HAS_IN 0
+#define FILLFINISHED_HAS_OUT 1
+#define FILLFINISHED_HAS_TRI 0
+#define FILLFINISHED_IRQ -1
+#define FILLFINISHED_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define FILLFINISHED_IRQ_TYPE "NONE"
+#define FILLFINISHED_NAME "/dev/fillFinished"
+#define FILLFINISHED_RESET_VALUE 0
+#define FILLFINISHED_SPAN 16
+#define FILLFINISHED_TYPE "altera_avalon_pio"
+
+
+/*
+ * hal configuration
+ *
+ */
+
+#define ALT_INCLUDE_INSTRUCTION_RELATED_EXCEPTION_API
+#define ALT_MAX_FD 4
+#define ALT_SYS_CLK none
+#define ALT_TIMESTAMP_CLK none
+
+
+/*
+ * innerDoor configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_innerDoor altera_avalon_pio
+#define INNERDOOR_BASE 0x30c0
+#define INNERDOOR_BIT_CLEARING_EDGE_REGISTER 0
+#define INNERDOOR_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define INNERDOOR_CAPTURE 0
+#define INNERDOOR_DATA_WIDTH 1
+#define INNERDOOR_DO_TEST_BENCH_WIRING 0
+#define INNERDOOR_DRIVEN_SIM_VALUE 0
+#define INNERDOOR_EDGE_TYPE "NONE"
+#define INNERDOOR_FREQ 50000000
+#define INNERDOOR_HAS_IN 1
+#define INNERDOOR_HAS_OUT 0
+#define INNERDOOR_HAS_TRI 0
+#define INNERDOOR_IRQ -1
+#define INNERDOOR_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define INNERDOOR_IRQ_TYPE "NONE"
+#define INNERDOOR_NAME "/dev/innerDoor"
+#define INNERDOOR_RESET_VALUE 0
+#define INNERDOOR_SPAN 16
+#define INNERDOOR_TYPE "altera_avalon_pio"
+
+
+/*
+ * innerDoorSwitch configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_innerDoorSwitch altera_avalon_pio
+#define INNERDOORSWITCH_BASE 0x3050
+#define INNERDOORSWITCH_BIT_CLEARING_EDGE_REGISTER 0
+#define INNERDOORSWITCH_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define INNERDOORSWITCH_CAPTURE 0
+#define INNERDOORSWITCH_DATA_WIDTH 1
+#define INNERDOORSWITCH_DO_TEST_BENCH_WIRING 0
+#define INNERDOORSWITCH_DRIVEN_SIM_VALUE 0
+#define INNERDOORSWITCH_EDGE_TYPE "NONE"
+#define INNERDOORSWITCH_FREQ 50000000
+#define INNERDOORSWITCH_HAS_IN 0
+#define INNERDOORSWITCH_HAS_OUT 1
+#define INNERDOORSWITCH_HAS_TRI 0
+#define INNERDOORSWITCH_IRQ -1
+#define INNERDOORSWITCH_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define INNERDOORSWITCH_IRQ_TYPE "NONE"
+#define INNERDOORSWITCH_NAME "/dev/innerDoorSwitch"
+#define INNERDOORSWITCH_RESET_VALUE 0
+#define INNERDOORSWITCH_SPAN 16
+#define INNERDOORSWITCH_TYPE "altera_avalon_pio"
+
+
+/*
+ * jtag_uart configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_jtag_uart altera_avalon_jtag_uart
+#define JTAG_UART_BASE 0x30f0
+#define JTAG_UART_IRQ 5
+#define JTAG_UART_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define JTAG_UART_NAME "/dev/jtag_uart"
+#define JTAG_UART_READ_DEPTH 64
+#define JTAG_UART_READ_THRESHOLD 8
+#define JTAG_UART_SPAN 8
+#define JTAG_UART_TYPE "altera_avalon_jtag_uart"
+#define JTAG_UART_WRITE_DEPTH 64
+#define JTAG_UART_WRITE_THRESHOLD 8
+
+
+/*
+ * onchip_memory configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_onchip_memory altera_avalon_onchip_memory2
+#define ONCHIP_MEMORY_ALLOW_IN_SYSTEM_MEMORY_CONTENT_EDITOR 0
+#define ONCHIP_MEMORY_ALLOW_MRAM_SIM_CONTENTS_ONLY_FILE 0
+#define ONCHIP_MEMORY_BASE 0x1000
+#define ONCHIP_MEMORY_CONTENTS_INFO ""
+#define ONCHIP_MEMORY_DUAL_PORT 0
+#define ONCHIP_MEMORY_GUI_RAM_BLOCK_TYPE "AUTO"
+#define ONCHIP_MEMORY_INIT_CONTENTS_FILE "microprocessor_onchip_memory"
+#define ONCHIP_MEMORY_INIT_MEM_CONTENT 1
+#define ONCHIP_MEMORY_INSTANCE_ID "NONE"
+#define ONCHIP_MEMORY_IRQ -1
+#define ONCHIP_MEMORY_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ONCHIP_MEMORY_NAME "/dev/onchip_memory"
+#define ONCHIP_MEMORY_NON_DEFAULT_INIT_FILE_ENABLED 0
+#define ONCHIP_MEMORY_RAM_BLOCK_TYPE "AUTO"
+#define ONCHIP_MEMORY_READ_DURING_WRITE_MODE "DONT_CARE"
+#define ONCHIP_MEMORY_SINGLE_CLOCK_OP 0
+#define ONCHIP_MEMORY_SIZE_MULTIPLE 1
+#define ONCHIP_MEMORY_SIZE_VALUE 4096
+#define ONCHIP_MEMORY_SPAN 4096
+#define ONCHIP_MEMORY_TYPE "altera_avalon_onchip_memory2"
+#define ONCHIP_MEMORY_WRITABLE 1
+
+
+/*
+ * outerDoor configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_outerDoor altera_avalon_pio
+#define OUTERDOOR_BASE 0x30b0
+#define OUTERDOOR_BIT_CLEARING_EDGE_REGISTER 0
+#define OUTERDOOR_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define OUTERDOOR_CAPTURE 0
+#define OUTERDOOR_DATA_WIDTH 1
+#define OUTERDOOR_DO_TEST_BENCH_WIRING 0
+#define OUTERDOOR_DRIVEN_SIM_VALUE 0
+#define OUTERDOOR_EDGE_TYPE "NONE"
+#define OUTERDOOR_FREQ 50000000
+#define OUTERDOOR_HAS_IN 1
+#define OUTERDOOR_HAS_OUT 0
+#define OUTERDOOR_HAS_TRI 0
+#define OUTERDOOR_IRQ -1
+#define OUTERDOOR_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define OUTERDOOR_IRQ_TYPE "NONE"
+#define OUTERDOOR_NAME "/dev/outerDoor"
+#define OUTERDOOR_RESET_VALUE 0
+#define OUTERDOOR_SPAN 16
+#define OUTERDOOR_TYPE "altera_avalon_pio"
+
+
+/*
+ * outerDoorSwitch configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_outerDoorSwitch altera_avalon_pio
+#define OUTERDOORSWITCH_BASE 0x3040
+#define OUTERDOORSWITCH_BIT_CLEARING_EDGE_REGISTER 0
+#define OUTERDOORSWITCH_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define OUTERDOORSWITCH_CAPTURE 0
+#define OUTERDOORSWITCH_DATA_WIDTH 1
+#define OUTERDOORSWITCH_DO_TEST_BENCH_WIRING 0
+#define OUTERDOORSWITCH_DRIVEN_SIM_VALUE 0
+#define OUTERDOORSWITCH_EDGE_TYPE "NONE"
+#define OUTERDOORSWITCH_FREQ 50000000
+#define OUTERDOORSWITCH_HAS_IN 0
+#define OUTERDOORSWITCH_HAS_OUT 1
+#define OUTERDOORSWITCH_HAS_TRI 0
+#define OUTERDOORSWITCH_IRQ -1
+#define OUTERDOORSWITCH_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define OUTERDOORSWITCH_IRQ_TYPE "NONE"
+#define OUTERDOORSWITCH_NAME "/dev/outerDoorSwitch"
+#define OUTERDOORSWITCH_RESET_VALUE 0
+#define OUTERDOORSWITCH_SPAN 16
+#define OUTERDOORSWITCH_TYPE "altera_avalon_pio"
+
+
+/*
+ * personCheck configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_personCheck altera_avalon_pio
+#define PERSONCHECK_BASE 0x3070
+#define PERSONCHECK_BIT_CLEARING_EDGE_REGISTER 0
+#define PERSONCHECK_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define PERSONCHECK_CAPTURE 0
+#define PERSONCHECK_DATA_WIDTH 1
+#define PERSONCHECK_DO_TEST_BENCH_WIRING 0
+#define PERSONCHECK_DRIVEN_SIM_VALUE 0
+#define PERSONCHECK_EDGE_TYPE "NONE"
+#define PERSONCHECK_FREQ 50000000
+#define PERSONCHECK_HAS_IN 0
+#define PERSONCHECK_HAS_OUT 1
+#define PERSONCHECK_HAS_TRI 0
+#define PERSONCHECK_IRQ -1
+#define PERSONCHECK_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define PERSONCHECK_IRQ_TYPE "NONE"
+#define PERSONCHECK_NAME "/dev/personCheck"
+#define PERSONCHECK_RESET_VALUE 0
+#define PERSONCHECK_SPAN 16
+#define PERSONCHECK_TYPE "altera_avalon_pio"
+
+
+/*
+ * pressureCheck configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_pressureCheck altera_avalon_pio
+#define PRESSURECHECK_BASE 0x3060
+#define PRESSURECHECK_BIT_CLEARING_EDGE_REGISTER 0
+#define PRESSURECHECK_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define PRESSURECHECK_CAPTURE 0
+#define PRESSURECHECK_DATA_WIDTH 1
+#define PRESSURECHECK_DO_TEST_BENCH_WIRING 0
+#define PRESSURECHECK_DRIVEN_SIM_VALUE 0
+#define PRESSURECHECK_EDGE_TYPE "NONE"
+#define PRESSURECHECK_FREQ 50000000
+#define PRESSURECHECK_HAS_IN 0
+#define PRESSURECHECK_HAS_OUT 1
+#define PRESSURECHECK_HAS_TRI 0
+#define PRESSURECHECK_IRQ -1
+#define PRESSURECHECK_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define PRESSURECHECK_IRQ_TYPE "NONE"
+#define PRESSURECHECK_NAME "/dev/pressureCheck"
+#define PRESSURECHECK_RESET_VALUE 0
+#define PRESSURECHECK_SPAN 16
+#define PRESSURECHECK_TYPE "altera_avalon_pio"
+
+
+/*
+ * resetLeds configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_resetLeds altera_avalon_pio
+#define RESETLEDS_BASE 0x30a0
+#define RESETLEDS_BIT_CLEARING_EDGE_REGISTER 0
+#define RESETLEDS_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define RESETLEDS_CAPTURE 0
+#define RESETLEDS_DATA_WIDTH 4
+#define RESETLEDS_DO_TEST_BENCH_WIRING 0
+#define RESETLEDS_DRIVEN_SIM_VALUE 0
+#define RESETLEDS_EDGE_TYPE "NONE"
+#define RESETLEDS_FREQ 50000000
+#define RESETLEDS_HAS_IN 1
+#define RESETLEDS_HAS_OUT 0
+#define RESETLEDS_HAS_TRI 0
+#define RESETLEDS_IRQ -1
+#define RESETLEDS_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define RESETLEDS_IRQ_TYPE "NONE"
+#define RESETLEDS_NAME "/dev/resetLeds"
+#define RESETLEDS_RESET_VALUE 0
+#define RESETLEDS_SPAN 16
+#define RESETLEDS_TYPE "altera_avalon_pio"
+
+
+/*
+ * waitFinished configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_waitFinished altera_avalon_pio
+#define WAITFINISHED_BASE 0x3010
+#define WAITFINISHED_BIT_CLEARING_EDGE_REGISTER 0
+#define WAITFINISHED_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define WAITFINISHED_CAPTURE 0
+#define WAITFINISHED_DATA_WIDTH 1
+#define WAITFINISHED_DO_TEST_BENCH_WIRING 0
+#define WAITFINISHED_DRIVEN_SIM_VALUE 0
+#define WAITFINISHED_EDGE_TYPE "NONE"
+#define WAITFINISHED_FREQ 50000000
+#define WAITFINISHED_HAS_IN 0
+#define WAITFINISHED_HAS_OUT 1
+#define WAITFINISHED_HAS_TRI 0
+#define WAITFINISHED_IRQ -1
+#define WAITFINISHED_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define WAITFINISHED_IRQ_TYPE "NONE"
+#define WAITFINISHED_NAME "/dev/waitFinished"
+#define WAITFINISHED_RESET_VALUE 0
+#define WAITFINISHED_SPAN 16
+#define WAITFINISHED_TYPE "altera_avalon_pio"
+
+
+/*
+ * waiting configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_waiting altera_avalon_pio
+#define WAITING_BASE 0x3000
+#define WAITING_BIT_CLEARING_EDGE_REGISTER 0
+#define WAITING_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define WAITING_CAPTURE 0
+#define WAITING_DATA_WIDTH 1
+#define WAITING_DO_TEST_BENCH_WIRING 0
+#define WAITING_DRIVEN_SIM_VALUE 0
+#define WAITING_EDGE_TYPE "NONE"
+#define WAITING_FREQ 50000000
+#define WAITING_HAS_IN 1
+#define WAITING_HAS_OUT 0
+#define WAITING_HAS_TRI 0
+#define WAITING_IRQ -1
+#define WAITING_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define WAITING_IRQ_TYPE "NONE"
+#define WAITING_NAME "/dev/waiting"
+#define WAITING_RESET_VALUE 0
+#define WAITING_SPAN 16
+#define WAITING_TYPE "altera_avalon_pio"
+
+#endif /* __SYSTEM_H_ */

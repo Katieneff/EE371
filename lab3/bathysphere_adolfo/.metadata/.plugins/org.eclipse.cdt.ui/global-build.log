@@ -1,0 +1,25 @@
+08:18:05 **** Incremental Build of configuration Nios II for project interlock ****
+make all 
+Info: Building ../interlock_bsp/
+C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../interlock_bsp/
+[BSP build complete]
+Info: Compiling hello_world_small.c to obj/default/hello_world_small.o
+nios2-elf-gcc -xc -MP -MMD -c -I../interlock_bsp//HAL/inc -I../interlock_bsp/ -I../interlock_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/hello_world_small.o hello_world_small.c
+hello_world_small.c: In function 'main':
+hello_world_small.c:136:5: warning: implicit declaration of function 'usleep' [-Wimplicit-function-declaration]
+     usleep(1000000);
+     ^
+Info: Linking interlock.elf
+nios2-elf-g++  -T'../interlock_bsp//linker.x' -msys-crt0='../interlock_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../interlock_bsp/  -msmallc  -Wl,-Map=interlock.map   -Os -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o interlock.elf obj/default/hello_world_small.o -lm -msys-lib=m
+nios2-elf-insert interlock.elf --thread_model hal --cpu_name nios2_processor --qsys true --simulation_enabled false --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name microprocessor --quartus_project_dir "C:/Users/adolfp/Desktop/EE371/lab3/bathysphere" --jdi ../..//output_files/bathysphere.jdi --sopcinfo C:/Users/adolfp/Desktop/EE371/lab3/bathysphere/software/interlock_bsp/../../microprocessor.sopcinfo
+Info: (interlock.elf) 2276 Bytes program size (code + initialized data).
+Info:                 1708 Bytes free for stack + heap.
+Info: Creating interlock.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source interlock.elf >interlock.objdump
+[interlock build complete]
+08:18:13 **** Incremental Build of configuration Nios II for project interlock ****
+make all 
+Info: Building ../interlock_bsp/
+C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../interlock_bsp/
+[BSP build complete]
+[interlock build complete]
