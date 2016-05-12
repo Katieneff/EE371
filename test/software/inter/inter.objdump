@@ -277,9 +277,6 @@ int main()
   alt_putstr("Hello from Nios II!\n");
     1078:	00013440 	call	1344 <alt_putstr>
 
-  /* Event loop never exits. */
-
-
 	  *(arrivalSignals) = 0x0;
     107c:	008c0c04 	movi	r2,12336
     1080:	10000005 	stb	zero,0(r2)
@@ -293,7 +290,7 @@ int main()
 	  *(depressurize) = 0x1;
 	  usleep(100000);
     1098:	010000b4 	movhi	r4,2
-
+  alt_putstr("Hello from Nios II!\n");
 
 	  *(arrivalSignals) = 0x0;
 	  *(doors) = 0x0;
