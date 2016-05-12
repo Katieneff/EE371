@@ -42,7 +42,7 @@ module interlock(doorCommand, timer, arrivalSignals, doors, pressurize, depressu
 	parameter OP_CLOSE_DOORS = 3'b110;
 	
 	
-	reg [24:0] ticks;
+	reg [24:0] ticks; // Variable for clock division
 	
 	
 	always @(posedge clk) begin
@@ -50,6 +50,7 @@ module interlock(doorCommand, timer, arrivalSignals, doors, pressurize, depressu
 			state = OP_INIT;
 			timer = 4'b0000;
 			ticks = 25'b0;
+			doorCommand = DOOR_COMMAND_IDLE;
 		end else begin
 			case (arrivalSignals) 
 				OP_NOP: begin
@@ -64,12 +65,13 @@ module interlock(doorCommand, timer, arrivalSignals, doors, pressurize, depressu
 						OP_INIT : begin
 							timer = 5;
 							ticks = 25'b0;
+							doorCommand = DOOR_COMMAND_IDLE;
 							state = OP_WAITING;
 						end
 					
 						OP_WAITING : begin
 							if (timer) begin
-								ticks = ticks + 1;
+								ticks = ticks + 25'b1;
 								
 								if (ticks == 25'b0) begin
 									timer = timer - 4'b0001;
@@ -86,9 +88,9 @@ module interlock(doorCommand, timer, arrivalSignals, doors, pressurize, depressu
 							if (doors == INNER_DOOR_OPENED) begin
 								timer = 7;
 								doorCommand = CLOSE_INNER_DOOR;
-							end else if (!depressurize && (doors == DOORS_CLOSED)) begin
-								doorCommand = DEPRESSURIZE;
-								ticks = ticks + 1;
+							end else if (!pressurize && (doors == DOORS_CLOSED)) begin
+								doorCommand = PRESSURIZE;
+								ticks = ticks +  25'b1;
 								
 								if (ticks == 25'b0) begin
 									timer = timer - 4'b0001;
@@ -115,9 +117,9 @@ module interlock(doorCommand, timer, arrivalSignals, doors, pressurize, depressu
 								timer = 8;
 								doorCommand = CLOSE_OUTER_DOOR;
 							end 
-							else if (!pressurize && (doors == DOORS_CLOSED)) begin
-								doorCommand = PRESSURIZE;
-								ticks = ticks + 1;
+							else if (!depressurize && (doors == DOORS_CLOSED)) begin
+								doorCommand = DEPRESSURIZE;
+								ticks = ticks +  25'b1;
 								
 								if (ticks == 25'b0) begin
 									timer = timer - 4'b0001;
@@ -130,8 +132,9 @@ module interlock(doorCommand, timer, arrivalSignals, doors, pressurize, depressu
 						end
 						
 						OP_OPEN_INNER_DOOR : begin   // Done CHECK THIS
+							doorCommand = OPEN_INNER_DOOR;
 							if (doors == INNER_DOOR_OPENED) begin
-								state = OP_WAITING;
+								state = OP_INIT;
 							end
 						end
 						
@@ -147,32 +150,53 @@ module interlock(doorCommand, timer, arrivalSignals, doors, pressurize, depressu
 					
 						OP_INIT : begin
 							timer = 5;
+							ticks = 25'b0;
+							doorCommand = DOOR_COMMAND_IDLE;
 							state = OP_WAITING;
 						end
 
 						OP_WAITING : begin
 							if (timer) begin
-								timer = timer  - 4'b0001;
-							end else 
-							if (doors == INNER_DOOR_OPENED) begin
-								state = OP_CLOSE_DOORS;
+								ticks = ticks + 1;
+								
+								if (ticks == 25'b0) begin
+									timer = timer - 4'b0001;
+								end
+							end 
+							else if (doors == DOORS_CLOSED) begin
+								doorCommand = OPEN_INNER_DOOR;
+							end
+							else if (doors == INNER_DOOR_OPENED) begin
+								doorCommand = CLOSE_INNER_DOOR;
+								timer = 8;
+								ticks = 0;
+								state = OP_PRESSURIZE;
 							end
 						end
 						
 					
 						OP_PRESSURIZE : begin
-							timer = 8;
-							
-							while (timer && (doors == DOORS_CLOSED)) begin
-								timer = timer  - 4'b0001;
+							if (doors == INNER_DOOR_OPENED) begin
+								timer = 8;
+								ticks = 0;
+								doorCommand = CLOSE_INNER_DOOR;
+							end
+							else if (!pressurize && (doors == DOORS_CLOSED)) begin
+								doorCommand = PRESSURIZE;
+								ticks = ticks + 1;
+								
+								if (ticks == 25'b0) begin
+									timer = timer - 4'b0001;
+								end
 							end
 							
-							if (timer == 0) begin
+							if (!timer) begin
 								state = OPEN_OUTER_DOOR;
 							end
 						end
 						
 						OP_OPEN_OUTER_DOOR : begin
+							doorCommand = OPEN_OUTER_DOOR;
 							if (doors == OUTER_DOOR_OPENED) begin
 								state = OP_DEPRESSURIZE;
 							end
@@ -180,21 +204,29 @@ module interlock(doorCommand, timer, arrivalSignals, doors, pressurize, depressu
 						end
 					
 						OP_DEPRESSURIZE : begin
-							timer = 8;
-							
-							while (timer && (doors == DOORS_CLOSED)) begin
-								timer = timer  - 4'b0001;
+							if (doors == OUTER_DOOR_OPENED) begin
+								timer = 8;
+								doorCommand = CLOSE_OUTER_DOOR;
+							end 
+							else if (!depressurize && (doors == DOORS_CLOSED)) begin
+								doorCommand = DEPRESSURIZE;
+								ticks = ticks + 1;
+								
+								if (ticks == 25'b0) begin
+									timer = timer - 4'b0001;
+								end
 							end
 							
-							if (timer == 0) begin
+							if (!timer) begin
 								state = OP_OPEN_INNER_DOOR;
 							end
 						
 						end
 						
 						OP_OPEN_INNER_DOOR : begin
+							doorCommand = OPEN_INNER_DOOR;
 							if (doors == INNER_DOOR_OPENED) begin
-								state = OP_WAITING;
+								state = OP_INIT;
 							end
 						end
 					

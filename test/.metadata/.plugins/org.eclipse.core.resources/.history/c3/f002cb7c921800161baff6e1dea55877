@@ -91,6 +91,9 @@ int main()
 { 
   alt_putstr("Hello from Nios II!\n");
 
+  /* Event loop never exits. */
+
+
 	  *(arrivalSignals) = 0x0;
 	  *(doors) = 0x0;
 	  *(pressurize) = 0x1;
