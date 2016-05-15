@@ -89,50 +89,82 @@
 
 int main()
 { 
-  alt_putstr("Hello from Nios II!\n");
-
+	  // sets arrival signal to 0 since active high  
 	  *(arrivalSignals) = 0x0;
+	  // closes the doors 
 	  *(doors) = 0x0;
+	  // sets the pressurization adn depressurization state to 1 since active high 
 	  *(pressurize) = 0x1;
 	  *(depressurize) = 0x1;
 	  usleep(100000);
-
-
+	  
+	  // Prints all the commands the user can enter to interact with the interlock
+	  // program in verilog 
+	  alt_printf("hello there\n");
+	  alt_printf("Commands: \n");
+	  alt_printf("open inner door - 1\n");
+	  alt_printf("close inner door - 2\n");
+	  alt_printf("open outer door - 3\n");
+	  alt_printf("close inner door - 4\n");
+	  alt_printf("pressurize - p\n");
+	  alt_printf("depressurize - d\n");
+	  
+	  //Creates a variable "input" of type int 
 	  int input;
-
+		
+	  // Following while loops always runs 
 	  while (1) {
+		  //Following statement assigns users input to variable input 
 		  input = alt_getchar();
+		  
+		  // Creates a switch and checks what the user input is and what that user input 
+		  // is suppose to activate 
 		  switch (input) {
+			  //if the user enters 'a' it represents a arrival signal from the bathsphere 
 			  case 'a' :
 				  alt_putstr("Arrival Signal Triggered\n");
 				  *(arrivalSignals) = 0x1;
 				  break;
+			  
+			  //if the user enters 'b' it represents a departure signal from the bathsphere 
 			  case 'b' :
 				  alt_putstr("Departure Signal Triggered\n");
 				  *(arrivalSignals) = 0x2;
 				  break;
+			  
+			  //if the user enters '1' it gives a signal to open inner door 
 			  case '1' :
 				  alt_putstr("Open inner door\n");
 				  *(doors) = 0x1;
 				  break;
+				  
+			  //if the user enters '2' it gives a signal to close inner door 
 			  case '2' :
 				  alt_putstr("Close inner door\n");
 				  *(doors) = 0x0;
 				  break;
+			
+			  //if the user enters '3' it gives a signal to open outer door
 			  case '3' :
 				  alt_putstr("Open outer door\n");
 				  *(doors) = 0x2;
 				  break;
+				  
+			  //if the user enters '4' it gives a signal to close outer door
 			  case '4' :
 				  alt_putstr("Close outer door\n");
 				  *(doors) = 0x0;
 				  break;
+				  
+			  //if the user enters 'p' it gives a signal to pressurize
 			  case 'p' :
 				  alt_putstr("Pressurize\n");
 				  *(pressurize) = 0x0;
 				  usleep(5000000);
 				  *(pressurize) = 0x1;
 				  break;
+				  
+			  //if the user enters 'd' it gives a signal to depressurize 
 			  case 'd' :
 				  alt_putstr("Depressurize\n");
 				  *(depressurize) = 0x0;
