@@ -1,10 +1,24 @@
-module bic(out, en, sample);
+module bic(out, en, sample, clk);
 	output [3:0] out;
 	input [3:0] sample;
-	input en;
+	input en, clk;
 	
 	
-	assign out = (en) ? 4'b000 : ((sample =0 4'b0111) ? something : something else);
+	reg [3:0] bitCounter;
+	
+	initial begin
+		out = 0;
+		bitCounter = 0;
+	end
+	
+	always @(posedge clk) begin
+	
+		if (sample == 4'b1111) begin
+			bitCounter = bitCounter + 1;
+		
+		end
+	
+	end
 
 
 endmodule
