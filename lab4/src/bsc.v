@@ -1,20 +1,19 @@
-module bsc(out, en, clk);
+module bsc(out, en, clk, rst);
 	output reg [3:0] out;
-	input en, clk;
+	input en, clk, rst;
 	
 	reg [4:0] counter; 
 	reg [4:0] bitNum;
-	reg counteringFlag;
+	reg countingFlag;
 	
-	
-	initial begin
-		counter = 0;
-		bitNum = 0;
-		counteringFlag = 0;
-	end
 	
 	always @(posedge clk) begin
-		if (counteringFlag) begin
+		if (!rst) begin
+			counter = 0;
+			bitNum = 0;
+			countingFlag = 0;
+		end else 
+		if (countingFlag) begin
 			counter = counter + 1;
 			
 			if (counter == 16) begin
@@ -24,7 +23,7 @@ module bsc(out, en, clk);
 			
 			
 			if (bitNum == 10) begin
-				counteringFlag = 0;
+				countingFlag = 0;
 			end
 			
 			if (counter < 7) begin
@@ -36,7 +35,7 @@ module bsc(out, en, clk);
 			end
 		end else begin
 			if (en) begin
-				counteringFlag = 1;
+				countingFlag = 1;
 				bitNum = 0;
 				counter = 0;
 				out = 4'b0000;

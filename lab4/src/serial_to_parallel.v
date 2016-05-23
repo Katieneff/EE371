@@ -1,19 +1,16 @@
-module serial_to_parallel(out, sample, data, clk);
-	output [7:0] out;
+module serial_to_parallel(data_out, data_in, sample, clk, rst);
+	output reg [7:0] data_out;
 	input [3:0] sample;
-	input data;
-	
-	
-	reg [2:0] bitCounter;
+	input data_in, clk, rst; 
 	
 	always @(posedge clk) begin
-		if (sample == 4'b0111) begin
-			out[bitCounter] = data;
-			bitCounter = bitCounter + 1;
-		end
+		if (!rst) begin
+			data_out = 8'b0;
+		end else if (sample == 4'b0111) begin
+			data_out = data_out << 1;
+			data_out[0] = data_in;
+		end 
 	end
-	
-	
 endmodule
 	
 	
