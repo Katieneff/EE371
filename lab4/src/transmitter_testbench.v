@@ -31,7 +31,7 @@ module tester(data_out, character_sent, data_in, load, transmit_enable, clk, rst
 
 	parameter stimDelay = 20;
 
-	integer i;
+	integer i, j;
 
 	initial begin
 
@@ -53,8 +53,13 @@ module tester(data_out, character_sent, data_in, load, transmit_enable, clk, rst
 
 
 		for (i = 0; i < 300; i = i + 1) begin
-			#stimDelay; clk = 1; 
-			#stimDelay; clk = 0; 
+			load = 1; transmit_enable = 1;
+			#stimDelay; load = 0; transmit_enable = 0;
+			for (j = 0; j < 16; j = j + 1) begin
+				#stimDelay; clk = 1;
+				#stimDelay; clk = 0;
+
+			end	
 		end
 
 	end

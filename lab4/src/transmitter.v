@@ -10,8 +10,8 @@ module transmitter(data_out, character_sent, data_in, load, transmit_enable, clk
 	wire [3:0] bitNum;
 
 	parallel_to_serial pts(
-				.out(data_out),
-				.data(data_in),
+				.data_out(data_out),
+				.data_in(data_in),
 				.counter(counter),
 				.load(load),
 				.clk(clk),
