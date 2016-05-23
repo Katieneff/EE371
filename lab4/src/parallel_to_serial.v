@@ -1,5 +1,5 @@
 module parallel_to_serial(out, data, counter, load, clk, rst); 
-	output out ;
+	output reg out ;
 	input clk, rst, load; // What is the purpose of load?
 	input [7:0] data; 
 	input [3:0] counter;
@@ -9,6 +9,7 @@ module parallel_to_serial(out, data, counter, load, clk, rst);
 	always @(posedge clk) begin
 		if (!rst) begin 
 	  		temp = 0; 
+			out = 0;
 		end else if (load) begin
 			temp = data; 
     		end else if (counter == 7) begin
