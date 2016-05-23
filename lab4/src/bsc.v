@@ -1,45 +1,40 @@
-module bsc(out, en, clk, rst);
-	output reg [3:0] out;
+module bsc(out, bitNum, en, clk, rst);
+	output [3:0] out;
+	output reg [3:0] bitNum;
 	input en, clk, rst;
 	
-	reg [4:0] counter; 
-	reg [4:0] bitNum;
-	reg countingFlag;
+	reg [3:0] counter; 
+	reg state;
+
+	parameter OP_RESET = 1'b0;
+	parameter OP_COUNTING = 1'b1; 
 	
+
+	assign out = counter;
 	
 	always @(posedge clk) begin
 		if (!rst) begin
 			counter = 0;
 			bitNum = 0;
-			countingFlag = 0;
-		end else 
-		if (countingFlag) begin
-			counter = counter + 1;
-			
-			if (counter == 16) begin
-				bitNum = bitNum + 1;
-				counter = 0;
-			end	
-			
-			
-			if (bitNum == 10) begin
-				countingFlag = 0;
-			end
-			
-			if (counter < 7) begin
-				out = 4'b0000;
-			end else if (counter == 7) begin
-				out = 4'b0111;
-			end else if (counter > 7) begin
-				out = 4'b1111;
-			end
+			state = 0;
 		end else begin
-			if (en) begin
-				countingFlag = 1;
-				bitNum = 0;
-				counter = 0;
-				out = 4'b0000;
-			end
+			case (state) 
+				OP_RESET: begin
+					counter = 0;
+					bitNum = 0;
+					if (en)
+						state = OP_COUNTING; 
+				end 
+		
+				OP_COUNTING: begin
+					if (bitNum == 10)
+						state = OP_RESET;
+
+					counter = counter + 1;
+					if (counter == 15)
+						bitNum = bitNum + 1;
+				end
+			endcase
 		end
 	end
 endmodule

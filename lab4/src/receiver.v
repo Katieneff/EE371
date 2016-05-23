@@ -5,6 +5,7 @@ module receiver(data_out, character_received, data_in, clk, rst);
 	input clk, rst;
 	
 	wire [3:0] sample;
+	wire [3:0] bitNum;
 	wire start_bit_detected;
 	
 	
@@ -16,9 +17,9 @@ module receiver(data_out, character_received, data_in, clk, rst);
 							.rst(rst)
 						);
 	
-	transmit_enable t_en(.en(start_bit_detected), .data(data_in));
-	bsc bsc(.out(sample), .en(start_bit_detected), .clk(clk), .rst(rst));
-	bic bic(.out(character_received), .en(start_bit_detected), .sample(sample), .clk(clk), .rst(rst));
+	start_bit_detect sbd(.en(start_bit_detected), .data(data_in));
+	bsc bsc(.out(sample), .bitNum(bitNum), .en(start_bit_detected), .clk(clk), .rst(rst));
+	bic bic(.out(character_received), .en(start_bit_detected), .in(bitNum), .clk(clk), .rst(rst));
 	
 
 endmodule

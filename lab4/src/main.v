@@ -8,9 +8,29 @@ module main(LEDR, CLOCK_50, KEY);
 	
 	wire [31:0] clk
 	clockdiv clockdiv(clk, CLOCK_50);
+
+
+	wire character_received;
+	wire character_sent;
+	wire [7:0] received_data;
+	wire [7:0] transmitted_data
 	
+	wire transmit_enable;
 	
-	receiver receiver(.data_out, .character_received, .data_in, .clk(clk[minorClock]), .rst);
-	transmitter transmitter();	
+
+	microprocessor microprocessor(
+					.character_received_export(character_received),
+					.character_sent_export(character_sent),
+					.clk_clk(clk[majorClock]),
+					.data_bus_in_port(received_data),
+					.data_bus_out_port(transmitted_data),
+					.load_export(),
+					.reset_reset_n(KEY),
+					.transmit_enable_export()
+
+	);
+	
+	receiver receiver(.data_out(, .character_received, .data_in, .clk(clk[minorClock]), .rst(KEY));
+	//transmitter transmitter();	
 	
 endmodule

@@ -1,4 +1,4 @@
-module transmit_enable(en, data);
+module start_bit_detect(en, data);
 	output en;
 	input data;
 	

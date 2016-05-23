@@ -1,38 +1,33 @@
-module bic(out, en, sample, clk, rst);
+module bic(out, en, in, clk, rst);
 	output reg out;
-	input [3:0] sample;
+	input [3:0] in;
 	input en, clk, rst;
+
+
+	reg state;
 	
-	reg [3:0] bitCounter;
-	reg counterFlag;
+	parameter OP_NOP = 1'b0;
+	parameter OP_COUNTING = 1'b1;
 	
 	always @(posedge clk) begin
 		if (!rst) begin
 			out = 0;
-			bitCounter = 0;
-			counterFlag = 0;
+			state = 0;
 		end else begin
-			// if (en && !counterFlag) begin
-				// counterFlag = 1;
-			// end
-			
-			// if (counterFlag && (sample == 4'b0111)) begin
-				// bitCounter = bitCounter + 1;
-				 // if (bitCounter == 10) begin
-					// counterFlag = 0;
-					// bitCounter = 0;
-				// //	out = 1;
-				// end else begin
-				// //	out = 0;
-				// end
-			// end
-			
-			if (sample == 4'b0111) begin
-			
-			out <= 1;
-			end else begin
-				out <= 0;
-			end
+			case (state)
+				OP_NOP: begin
+					out = 0;
+					if (en)
+						state = OP_COUNTING;
+				end
+
+				OP_COUNTING: begin
+					if (in == 10) begin
+						state = OP_NOP;
+						out = 1;
+					end
+				end
+			endcase
 		end
 	end
 	

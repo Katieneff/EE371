@@ -4,12 +4,12 @@
 
 module testbench;
 	wire [3:0] out;
-	wire en, clk;
+	wire en, clk, rst;
 
 
-	bsc bsc(out, en, clk);
+	bsc bsc(out, en, clk, rst);
 	
-	tester tester(out, en, clk);
+	tester tester(out, en, clk, rst);
 	
 	initial begin 
 		$dumpfile("bsc.vcd"); 
@@ -20,8 +20,8 @@ endmodule
 
 
 
-module tester(out, en, clk);
-	output reg clk;
+module tester(out, en, clk, rst);
+	output reg clk, rst;
 	output reg en;
 	input [3:0] out;
 	
@@ -33,11 +33,11 @@ module tester(out, en, clk);
 	initial begin
 	
 		#stimDelay;
-		#stimDelay; clk = 0; en = 0;
+		#stimDelay; clk = 0; en = 0; rst = 0;
 		#stimDelay; clk = 1;
 		
 		#stimDelay; clk = 0; 
-		#stimDelay; clk = 1;
+		#stimDelay; clk = 1;	rst = 1;
 		
 		
 		#stimDelay; clk = 0; 
