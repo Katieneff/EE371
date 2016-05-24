@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>May 23, 2016 6:04:52 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1464051892313</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>May 23, 2016 6:26:06 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1464053166375</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\neffk2\EE371\test\software\microproc_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\microprocessor.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2</Cpu>
