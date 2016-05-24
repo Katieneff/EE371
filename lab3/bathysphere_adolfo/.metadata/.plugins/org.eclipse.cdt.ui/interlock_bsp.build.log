@@ -1,6 +1,6 @@
-07:20:51 **** Incremental Build of configuration Nios II for project interlock_bsp ****
-make all 
-[BSP build complete]
+11:12:39 **** Clean-only build of configuration Nios II for project interlock_bsp ****
+make clean 
+[BSP clean complete]
 
-07:20:51 Build Finished (took 375ms)
+11:12:39 Build Finished (took 180ms)
 

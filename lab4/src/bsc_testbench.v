@@ -1,15 +1,17 @@
 `include "bsc.v"
-`include "transmit_enable.v"
+`include "dflipflop.v"
+`include "up_counter.v"
 
 
 module testbench;
 	wire [3:0] out;
+	wire [3:0] bitNum;
 	wire en, clk, rst;
 
 
-	bsc bsc(out, en, clk, rst);
+	bsc bsc(out, bitNum, en, clk, rst);
 	
-	tester tester(out, en, clk, rst);
+	tester tester(out, bitNum, en, clk, rst);
 	
 	initial begin 
 		$dumpfile("bsc.vcd"); 
@@ -20,10 +22,10 @@ endmodule
 
 
 
-module tester(out, en, clk, rst);
+module tester(out, bitNum, en, clk, rst);
 	output reg clk, rst;
 	output reg en;
-	input [3:0] out;
+	input [3:0] out, bitNum;
 	
 	
 	parameter stimDelay = 20;

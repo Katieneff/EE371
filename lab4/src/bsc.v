@@ -1,40 +1,21 @@
-module bsc(out, bitNum, en, clk, rst);
+module bsc(out, bitNum, en, minorClk, majorClk, rst);
 	output [3:0] out;
-	output reg [3:0] bitNum;
-	input en, clk, rst;
+	output [3:0] bitNum;
+	input en, minorClk, majorClk, rst;
 	
-	reg [3:0] counter; 
-	reg state;
-
-	parameter OP_RESET = 1'b0;
-	parameter OP_COUNTING = 1'b1; 
+	wire [3:0] clockCounterOut; 
+	wire [3:0] bitCounterOut;
+	wire bitRst;
 	
-
-	assign out = counter;
+	up_counter clockCounter(clockCounterOut, minorClk, clockRst);
 	
-	always @(posedge clk) begin
-		if (!rst) begin
-			counter = 0;
-			bitNum = 0;
-			state = 0;
-		end else begin
-			case (state) 
-				OP_RESET: begin
-					counter = 0;
-					bitNum = 0;
-					if (en)
-						state = OP_COUNTING; 
-				end 
-		
-				OP_COUNTING: begin
-					if (bitNum == 10)
-						state = OP_RESET;
-
-					counter = counter + 1;
-					if (counter == 15)
-						bitNum = bitNum + 1;
-				end
-			endcase
-		end
-	end
+	up_counter bitCounter(bitCounterOut, majorClk, bitRst);
+	
+	assign out = clockCounterOut;
+	assign bitNum = bitCounterOut;
+	
+	assign bitRst = (bitCounterOut == 10 || !en) ? 1'b0 : rst;
+	assign clockRst = (en) ? rst : 1'b0;
+	
+	
 endmodule

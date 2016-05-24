@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;interlock&apos;" deleteContents="false" description="Delete resource &apos;interlock&apos;" element1="/interlock" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1463076566681"/>&#x0A;<refactoring comment="Delete resource &apos;interlock_bsp&apos;" deleteContents="false" description="Delete resource &apos;interlock_bsp&apos;" element1="/interlock_bsp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1463076568671"/>
+</session>

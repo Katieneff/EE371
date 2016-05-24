@@ -1,9 +1,9 @@
-08:18:13 **** Incremental Build of configuration Nios II for project interlock ****
+11:12:52 **** Incremental Build of configuration Nios II for project interlock ****
 make all 
 Info: Building ../interlock_bsp/
 C:/altera/15.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../interlock_bsp/
 [BSP build complete]
 [interlock build complete]
 
-08:18:13 Build Finished (took 474ms)
+11:12:53 Build Finished (took 590ms)
 

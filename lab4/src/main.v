@@ -1,4 +1,4 @@
-module main(LEDR, CLOCK_50, KEY);
+module main_receiving(LEDR, CLOCK_50, KEY);
 	output [7:0] LEDR;
 	input CLOCK_50;
 	input [0:0] KEY;
