@@ -24,8 +24,8 @@ module serial_to_parallel(data_out, data_in, sample, clk, rst);
 				end
 
 				OP_SAMPLING: begin
+				    data_out[0] = data_in;
 					data_out = data_out << 1;
-					data_out[0] = data_in;
 					state = OP_NOP;
 
 				end

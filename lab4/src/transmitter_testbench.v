@@ -51,10 +51,13 @@ module tester(data_out, character_sent, data_in, load, transmit_enable, clk, rst
 		#stimDelay; clk = 1; load = 0;
 		#stimDelay; clk = 0;
 
+		#stimDelay; clk = 1; rst = 0;
+		#stimDelay; clk = 0;
+		#stimDelay; clk = 1; 
+		#stimDelay; clk = 0; rst = 1;
 
 		for (i = 0; i < 300; i = i + 1) begin
-			load = 1; transmit_enable = 1;
-			#stimDelay; load = 0; transmit_enable = 0;
+			transmit_enable = 1; load = 1;
 			for (j = 0; j < 16; j = j + 1) begin
 				#stimDelay; clk = 1;
 				#stimDelay; clk = 0;
