@@ -7,7 +7,7 @@ module main_receiving(LEDR, CLOCK_50, KEY, GPIO_0);
 	parameter majorClock = 11;
 	parameter minorClock = 7;
 	
-	wire [31:0] clk
+	wire [31:0] clk;
 	clockdiv clockdiv(clk, CLOCK_50);
 
 	wire character_received;
@@ -25,6 +25,6 @@ module main_receiving(LEDR, CLOCK_50, KEY, GPIO_0);
 
 	);
 	
-	receiver receiver(.data_out(data_out), .character_received(character_received), .data_in(GPIO_0), .minorClock(clk[minorClock]), .majorClock(clk[majorClock]), .rst(KEY));
+	receiver receiver(.data_out(data_out), .character_received(character_received), .data_in(GPIO_0), .minorClk(clk[minorClock]), .majorClk(clk[majorClock]), .rst(KEY));
 	
 endmodule
