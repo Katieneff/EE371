@@ -1,4 +1,4 @@
 eclipse.preferences.version=1
-newSoftwareExampleWizardPage.defaultLocation=C\:\\Users\\neffk2\\EE371\\test\\software\\microproc
-newSoftwareExampleWizardPage.sopcinfoFile=C\:\\Users\\neffk2\\EE371\\test\\microprocessor.sopcinfo
-newSoftwareExampleWizardPage2.newBspLocation=C\:\\Users\\neffk2\\EE371\\test\\software\\microproc_bsp
+newSoftwareExampleWizardPage.defaultLocation=C\:\\Users\\neffk2\\EE371\\lab4\\software\\microproc
+newSoftwareExampleWizardPage.sopcinfoFile=C\:\\Users\\neffk2\\EE371\\lab4\\microprocessor.sopcinfo
+newSoftwareExampleWizardPage2.newBspLocation=C\:\\Users\\neffk2\\EE371\\lab4\\software\\microproc_bsp

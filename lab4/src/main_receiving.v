@@ -25,6 +25,23 @@ module main_receiving(LEDR, CLOCK_50, KEY, GPIO_0);
 
 	);
 	
-	receiver receiver(.data_out(data_out), .character_received(character_received), .data_in(GPIO_0), .minorClk(clk[minorClock]), .majorClk(clk[majorClock]), .rst(KEY));
+	receiver receiver(
+						.data_out(data_out), 
+						.character_received(character_received), 
+						.data_in(data_in), 
+						.minorClk(clk[minorClock]), 
+						.majorClk(clk[majorClock]), 
+						.rst(KEY)
+	);
+	
+	assign LEDR = data_out;
+	
+	reg [9:0] data = 10'b1001010110;
+	reg data_in;
+	
+	always @(posedge clk[majorClock]) begin
+		data_in = data[9];
+		data = data << 1;
+	end
 	
 endmodule
