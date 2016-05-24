@@ -1,4 +1,4 @@
-activeuserprofiles=EE-365PC10;Team
+activeuserprofiles=EE-365PC10;EE-365PC12;Team
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=adolfp
-useridperkey=EE-365PC10.Local\=adolfp;
+useridperkey=EE-365PC12.Local\=adolfp;EE-365PC10.Local\=adolfp;

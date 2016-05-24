@@ -4,7 +4,6 @@
 `include "bic.v"
 
 
-
 module testbench;
 
 	wire data_out;

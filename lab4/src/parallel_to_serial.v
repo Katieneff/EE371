@@ -12,31 +12,34 @@ module parallel_to_serial(data_out, data_in, counter, load, clk, rst);
 	parameter OP_COUNTING = 2'b10;
 	parameter OP_OUTPUT = 2'b11;
 	
+	wire [3:0] test;
+	
+
 	always @(posedge clk) begin
 		if (!rst) begin 
-	  		temp = 0; 
-			data_out = 0;
-			state = 0;
+	  		temp <= 0; 
+			data_out <= 0;
+			state <= 0;
 		end else begin
 			case (state) 
 				OP_NOP: begin
-					if (load) state = OP_LOAD;
+					if (load) state <= OP_LOAD;
 				end
 
 				OP_LOAD: begin
-					temp = data_in;
-					state = OP_COUNTING;
+					temp <= data_in;
+					state <= OP_COUNTING;
 				end
 					
 				OP_COUNTING: begin
-					if (counter == 4'b0000) state = OP_OUTPUT; // THIS ONLY WORKS IF COUNTER == 0 NOT COUNTER == 7 IDFK WHY
-					if (load) state = OP_LOAD;
+					if (counter == 7) state <= OP_OUTPUT; 
+					
 				end
 				
 				OP_OUTPUT: begin
-					data_out = temp[7];
-					temp = temp << 1;
-					state = OP_COUNTING;
+					data_out <= temp[7];
+					temp <= temp << 1;
+					state <= OP_COUNTING;
 				end
 			endcase
 		end

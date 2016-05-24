@@ -272,7 +272,8 @@ int main()
 	alt_printf("fill - f\n");
 
 
-	*innerDoorOpen = 0xFF;
+	*innerDoorOpen = 1;
+	usleep(10000000);
 	*outerDoorOpen = 0;
 	*drain = 1;
 	*fill = 1;
@@ -281,7 +282,7 @@ int main()
 
 
 
-	int input;
+	/*int input;
 
 	while (1) {
 		input = alt_getchar();
@@ -326,7 +327,7 @@ int main()
 		  default :
 			  alt_printf("Invalid input\n" );
 		}
-	}
+	}*/
 
   return 0;
 }

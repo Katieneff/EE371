@@ -2,19 +2,18 @@
 `include "bic.v"
 `include "bsc.v"
 `include "start_bit_detect.v"
+`include "dflipflop.v"
+`include "up_counter.v"
 `include "receiver.v"
 
 module testbench;
-
 	wire [7:0] data_out;
 	wire character_received;
 	wire data_in;
-	wire clk, rst;
+	wire minorClk, majorClk, rst;
 
-	
-	receiver receiver(data_out, character_received, data_in, clk, rst);
-	tester tester(data_out, character_received, data_in, clk, rst);
-	
+	receiver receiver(data_out, character_received, data_in, minorClk, majorClk, rst);
+	tester tester(data_out, character_received, data_in, minorClk, majorClk, rst);
 	
 	initial begin 
 		$dumpfile("receiver.vcd"); 
@@ -25,11 +24,11 @@ endmodule
 
 
 
-module tester(data_out, character_received, data_in, clk, rst);
+module tester(data_out, character_received, data_in, minorClk, majorClk, rst);
 	input [7:0] data_out;
 	input character_received;
 	output reg data_in;
-	output reg clk, rst;
+	output reg minorClk, majorClk, rst;
 	
 	parameter stimDelay = 20;
 	
@@ -39,34 +38,32 @@ module tester(data_out, character_received, data_in, clk, rst);
 	initial begin
 	
 		#stimDelay; 
-		
 		// Test reset (4 clock cycles)
-		#stimDelay; clk = 1; rst = 0;
-		#stimDelay; clk = 0; 
-		#stimDelay; clk = 1;
-		#stimDelay; clk = 0; 
-		#stimDelay; clk = 1; 
-		#stimDelay; clk = 0; 
-		#stimDelay; clk = 1;
-		#stimDelay; clk = 0; 
+		#stimDelay; minorClk = 1; rst = 0;
+		#stimDelay; minorClk = 0; 
+		#stimDelay; minorClk = 1;
+		#stimDelay; minorClk = 0; 
+		#stimDelay; minorClk = 1; 
+		#stimDelay; minorClk = 0; 
+		#stimDelay; minorClk = 1; 
+		#stimDelay; minorClk = 0; 
+		#(8 * stimDelay); majorClk = 1;
+		#(8 * stimDelay); majorClk = 0;
+		rst = 1;
 		
 		
-		#stimDelay; clk = 1; rst = 1;
-		#stimDelay; clk = 0;
-		
-		for (i = 0; i < 32; i = i + 1) begin
-			data_in = serialData[0];
-			
-			for (j = 0; j < 16; j = j + 1) begin
-				#stimDelay; clk = 1; 
-				#stimDelay; clk = 0; 
+		for (i = 0; i < 50; i = i + 1) begin
+			majorClk = 1; data_in = serialData[31];
+			for (j = 0; j < 8; j = j + 1) begin
+				minorClk = 1; 
+				#stimDelay; minorClk = 0; #stimDelay;
 			end
-			
-			serialData = serialData >> 1;
-
+			majorClk = 0;
+			for (j = 0; j < 8; j = j + 1) begin
+				minorClk = 1; 
+				#stimDelay; minorClk = 0; #stimDelay; 
+			end
+			serialData = serialData << 1; 
 		end
-		
-	
 	end
-
 endmodule
