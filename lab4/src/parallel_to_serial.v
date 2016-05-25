@@ -9,7 +9,6 @@ module parallel_to_serial(data_out, data_in, counter, load, clk, rst);
 
 	parameter OP_NOP = 2'b00;
 	parameter OP_LOAD = 2'b01;
-	parameter OP_COUNTING = 2'b10;
 	parameter OP_OUTPUT = 2'b11;
 
 	
@@ -21,19 +20,16 @@ module parallel_to_serial(data_out, data_in, counter, load, clk, rst);
 		end else begin
 			case (state) 
 				OP_NOP: begin
-					if (load) state <= OP_LOAD;
-				end
-
-				OP_LOAD: begin
-					temp[8:1] <= data_in;
-					state <= OP_OUTPUT;
+					if (load) begin 
+						temp[8:1] <= data_in;
+						state <= OP_OUTPUT;
+					end
 				end
 				
 				OP_OUTPUT: begin
 					if (load) state = OP_LOAD;
 					data_out <= temp[9];
 					temp <= temp << 1;
-					
 				end
 			endcase
 		end
