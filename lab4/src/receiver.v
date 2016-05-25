@@ -5,8 +5,9 @@ module receiver(data_out, character_received, data_in, minorClk, majorClk, rst);
 	input minorClk, majorClk, rst;
 	
 	wire [3:0] sample;
-	wire [3:0] bitNum;
+	wire character_received;
 	wire start_bit_detected;
+	
 	
 	
 	serial_to_parallel stp(
@@ -17,9 +18,26 @@ module receiver(data_out, character_received, data_in, minorClk, majorClk, rst);
 							.rst(rst)
 						);
 	
-	start_bit_detect sbd(.en(start_bit_detected), .data(data_in), .clk(majorClk), .rst(rst));
-	bsc bsc(.out(sample), .bitNum(bitNum), .en(start_bit_detected), .minorClk(minorClk), .majorClk(majorClk), .rst(rst));
-	bic bic(.out(character_received), .en(start_bit_detected), .in(bitNum), .clk(minorClk), .rst(rst));
+	start_bit_detect sbd(
+						.en(start_bit_detected), 
+						.data(data_in), 
+						.clk(majorClk), 
+						.rst(rst)
+	);
+	
+	bsc bsc(
+				.out(sample), 
+				.en(start_bit_detected), 
+				.minorClk(minorClk), 
+				.rst(rst)
+	);
+	
+	 bic bic(
+			.out(character_received), 
+			.en(start_bit_detected), 
+			.in(sample), 
+		   .rst(rst)
+	 );
 	
 
 endmodule

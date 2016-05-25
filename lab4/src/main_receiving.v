@@ -1,5 +1,5 @@
 module main_receiving(LEDR, CLOCK_50, KEY, GPIO_0);
-	output [7:0] LEDR;
+	output [9:0] LEDR;
 	input [35:0] GPIO_0;
 	input CLOCK_50;
 	input [0:0] KEY;
@@ -16,7 +16,7 @@ module main_receiving(LEDR, CLOCK_50, KEY, GPIO_0);
 	microprocessor microprocessor(
 					.character_received_export(character_received),
 					.character_sent_export(),
-					.clk_clk(clk[majorClock]),
+					.clk_clk(CLOCK_50),
 					.data_bus_in_port(data_out),
 					.data_bus_out_port(),
 					.load_export(),
@@ -34,14 +34,21 @@ module main_receiving(LEDR, CLOCK_50, KEY, GPIO_0);
 						.rst(KEY)
 	);
 	
-	assign LEDR = data_out;
+	assign LEDR[7:0] = data_out;
+
 	
-	reg [9:0] data = 10'b1001010110;
+	reg [39:0] data;
 	reg data_in;
-	
+	reg [7:0] i;
 	always @(posedge clk[majorClock]) begin
-		data_in = data[9];
-		data = data << 1;
+		if (!KEY[0]) begin
+			i = 0;
+			data = 40'b1011101000101100101010111001101011101000;
+		end else begin 
+			data_in = data[39 - i];
+			i = i + 1;
+			if (i == 40) i = 0;
+		end
 	end
 	
 endmodule

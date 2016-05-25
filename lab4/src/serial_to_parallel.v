@@ -7,7 +7,7 @@ module serial_to_parallel(data_out, data_in, sample, clk, rst);
 		if (!rst) begin
 			data_out <= 8'b0;
 		end else begin
-			if (sample == 7) begin
+			if (sample == 6) begin
 				data_out <= data_out << 1;
 				data_out[0] <= data_in;
 			end

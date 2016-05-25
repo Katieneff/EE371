@@ -81,14 +81,17 @@
 #include "sys/alt_stdio.h"
 
 
-#define parallel_data_bus (volatile char *) 0x3040
+
 #define character_received (volatile char *) 0x3010
+#define parallel_data_bus (volatile char *) 0x3040
 
 int main()
 { 
   alt_putstr("Hello from Nios II!\n");
 
-  while (1){
+
+
+  while (1) {
 	  if (*character_received) {
 		  alt_putchar(*parallel_data_bus);
 	  }

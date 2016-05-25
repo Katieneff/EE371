@@ -1,23 +1,21 @@
 module parallel_to_serial(data_out, data_in, counter, load, clk, rst); 
 	output reg data_out;
-	input clk, rst, load; // What is the purpose of load?
+	input clk, rst, load; 
 	input [7:0] data_in; 
 	input [3:0] counter;
 	
-	reg [7:0] temp;
+	reg [9:0] temp;
 	reg [1:0] state;
 
 	parameter OP_NOP = 2'b00;
 	parameter OP_LOAD = 2'b01;
 	parameter OP_COUNTING = 2'b10;
 	parameter OP_OUTPUT = 2'b11;
-	
-	wire [3:0] test;
-	
 
+	
 	always @(posedge clk) begin
 		if (!rst) begin 
-	  		temp <= 0; 
+	  		temp <= 10'b1000000000; 
 			data_out <= 0;
 			state <= 0;
 		end else begin
@@ -27,19 +25,15 @@ module parallel_to_serial(data_out, data_in, counter, load, clk, rst);
 				end
 
 				OP_LOAD: begin
-					temp <= data_in;
-					state <= OP_COUNTING;
-				end
-					
-				OP_COUNTING: begin
-					if (counter == 7) state <= OP_OUTPUT; 
-					
+					temp[8:1] <= data_in;
+					state <= OP_OUTPUT;
 				end
 				
 				OP_OUTPUT: begin
-					data_out <= temp[7];
+					if (load) state = OP_LOAD;
+					data_out <= temp[9];
 					temp <= temp << 1;
-					state <= OP_COUNTING;
+					
 				end
 			endcase
 		end

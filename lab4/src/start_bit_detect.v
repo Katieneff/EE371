@@ -5,6 +5,7 @@ module start_bit_detect(en, data, clk, rst);
 	input data;
 	input clk, rst;
 	
+	
 	reg [3:0] counter;
 	
 	reg state;
@@ -28,7 +29,7 @@ module start_bit_detect(en, data, clk, rst);
 				OP_COUNTING: begin
 					en = 1;
 					counter = counter + 1;
-					if (counter == 10) state = OP_NOP;
+					if (counter == 8) state = OP_NOP;
 				end
 			
 			

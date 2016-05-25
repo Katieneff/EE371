@@ -1,37 +1,34 @@
-module transmitter(data_out, character_sent, data_in, load, transmit_enable, clk, rst);
+module transmitter(data_out, character_sent, data_in, load, transmit_enable, minorClk, majorClk, rst);
 	output data_out;
 	output character_sent;
 	input [7:0] data_in;
 	input load;
 	input transmit_enable;
-	input clk, rst;
+	input minorClk, majorClk, rst;
 	
 	wire [3:0] counter;
-	wire [3:0] bitNum;
 
 	parallel_to_serial pts(
 				.data_out(data_out),
 				.data_in(data_in),
 				.counter(counter),
 				.load(load),
-				.clk(clk),
+				.clk(majorClk),
 				.rst(rst)
 	);
 	
 
 	bsc bsc(
 		.out(counter), 
-		.bitNum(bitNum), 
 		.en(transmit_enable), 
-		.clk(clk), 
+		.minorClk(minorClk), 
 		.rst(rst)
 	);
 
 	bic bic(
 		.out(character_sent), 
 		.en(transmit_enable), 
-		.in(bitNum), 
-		.clk(clk), 
+		.in(counter), 
 		.rst(rst)
 	);
 

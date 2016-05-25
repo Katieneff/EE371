@@ -32,7 +32,7 @@ module tester(data_out, character_received, data_in, minorClk, majorClk, rst);
 	
 	parameter stimDelay = 20;
 	
-	reg [31:0] serialData = 32'b01110100011001010111001101110100;
+	reg [39:0] serialData = 40'b000000010111010000000000101100101000000;
 	
 	integer i, j;
 	initial begin
@@ -52,8 +52,8 @@ module tester(data_out, character_received, data_in, minorClk, majorClk, rst);
 		rst = 1;
 		
 		
-		for (i = 0; i < 50; i = i + 1) begin
-			majorClk = 1; data_in = serialData[31];
+		for (i = 0; i < 40; i = i + 1) begin
+			majorClk = 1; data_in = serialData[39];
 			for (j = 0; j < 8; j = j + 1) begin
 				minorClk = 1; 
 				#stimDelay; minorClk = 0; #stimDelay;
