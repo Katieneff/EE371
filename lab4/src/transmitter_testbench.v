@@ -42,7 +42,7 @@ module tester(data_out, character_sent, data_in, load, transmit_enable, minorClk
 	initial begin
 
 		#stimDelay;
-
+		transmit_enable = 1;
 		for (i = 0; i < 2; i = i + 1) begin
 			majorClk = 1; rst = 0;
 			for (j = 0; j < 8; j = j + 1) begin

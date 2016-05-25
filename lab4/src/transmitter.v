@@ -25,10 +25,10 @@ module transmitter(data_out, character_sent, data_in, load, transmit_enable, min
 		.rst(rst)
 	);
 
-	bic bic(
+	bic_tr bic(
 		.out(character_sent), 
 		.en(transmit_enable), 
-		.in(counter), 
+		.clk(majorClk), 
 		.rst(rst)
 	);
 
