@@ -69,54 +69,54 @@ module main_transmitting(LEDR, CLOCK_50, KEY, GPIO_0);
 			case (state) 
 			
 				OP_LOAD0: begin
-					transmit_enable <= 0;
+					transmit_enable <= 1; // changed from 0 to 1 and did this for the rest
 					data_bus <= data0;
 					load <=1;
 					state <= OP_TRANSMIT0;
 				end
 				
 				OP_TRANSMIT0: begin
-					transmit_enable <= 1;
+					transmit_enable <= 0;
 					state <= OP_LOAD1;
 					load <= 0;
 				end
 				
 				
 				OP_LOAD1: begin
-					transmit_enable <= 0;
+					transmit_enable <= 1;
 					data_bus <= data1;
 					load <= 1;
 					state <= OP_TRANSMIT1;
 				end
 				
 				OP_TRANSMIT1: begin
-					transmit_enable <= 1;
+					transmit_enable <= 0;
 					state <= OP_LOAD2;
 					load <= 0;
 				end
 				
 				OP_LOAD2: begin
-					transmit_enable <= 0;
+					transmit_enable <= 1;
 					data_bus <= data2;
 					load <=1;
 					state <= OP_TRANSMIT2;
 				end
 				
 				OP_TRANSMIT2: begin
-					transmit_enable <= 1;
+					transmit_enable <= 0;
 					state <= OP_LOAD3;
 					load <= 0;
 				end
 				
 				OP_LOAD3: begin
-					transmit_enable <= 0;
-					data_bus <= data0;
+					transmit_enable <= 1;
+					data_bus <= data3;
 					load <=1;
 					state <= OP_TRANSMIT3;
 				end
 				
 				OP_TRANSMIT3: begin
-					transmit_enable <= 1;
+					transmit_enable <= 0;
 					state <= OP_LOAD0;
 					load <= 0;
 				end

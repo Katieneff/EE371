@@ -1,4 +1,11 @@
-module parallel_to_serial(data_out, data_in, counter, load, clk, rst); 
+module parallel_to_serial(
+									data_out,
+									data_in,
+									counter,
+									load,
+									clk,
+									rst
+								); 
 	output reg data_out;
 	input clk, rst, load; 
 	input [7:0] data_in; 
@@ -6,15 +13,15 @@ module parallel_to_serial(data_out, data_in, counter, load, clk, rst);
 	
 	reg [9:0] temp;
 	
-	 parameter OP_NOP = 1'b0;
-	parameter OP_COUNTING = 1'b1;
+	//parameter OP_NOP = 1'b0;
+	//parameter OP_COUNTING = 1'b1;
 	
-	reg state;
+	reg [1:0] state;
 	wire [9:0] temp_wire;
 	
 	
 	assign temp_wire = temp;
-	always @(*) begin
+	/*always @(*) begin
 		if (!rst) begin
 			data_out <= 0;
 			state <= 0;
@@ -43,42 +50,45 @@ module parallel_to_serial(data_out, data_in, counter, load, clk, rst);
 				
 			endcase
 		end
-	end
+	end*/
 	
 	
-	// reg [3:0] count;
-	
-	// parameter OP_NOP = 2'b00;
-	// parameter OP_COUNTING = 2'b01;
+	 // DECIDED TO USE POSEDGE INSTEAD OF * // 
+	 reg [3:0] count;
+	 //reg start; // Added this
+	 
+	 parameter OP_NOP = 2'b00;
+	 parameter OP_COUNTING = 2'b01;
 
 	
-	// always @(posedge clk) begin
-		// if (!rst) begin 
-	  		// temp <= 10'b1000000000; 
-			// data_out <= 0;
-			// state <= 0;
-			// count <= 0;
-		// end else begin
-			// case (state)
+	 always @(posedge clk) begin
+		 if (!rst) begin 
+	  		 temp <= 10'b1000000000; 
+			 data_out <= 0;
+			 state <= 0;
+			 count <= 0;
+			 //start <= 1; // Added this
+		 end else begin
+			 case (state)
 			
-				// OP_NOP : begin
-					// if (load) begin 
-						// temp[8:1] <= data_in;
-						// state <= OP_COUNTING;
-					// end
-				// end
+				 OP_NOP : begin
+					 if (load) begin 
+						 temp[8:1] <= data_in;
+						 state <= OP_COUNTING;
+					 end
+				 end
 				
-				// OP_COUNTING: begin
-					// data_out <= temp[9];
-					// temp <= temp << 1;
-					// count <= count + 1;
-					// if (count == 9) begin
-						// state <= OP_NOP;
-						// count <= 0;
-					
-					// end 
-				// end
-			// endcase
-		// end
-	// end		
+				 OP_COUNTING: begin
+					 data_out <= temp[9];
+					 temp <= temp << 1;
+					 count <= count + 1;
+					 if (count == 9) begin
+						 //start <= 0; // Added this
+						 state <= OP_NOP;
+						 count <= 0;
+					end 
+				end
+			endcase
+		end
+	end		
 endmodule 

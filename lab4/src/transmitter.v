@@ -1,4 +1,14 @@
-module transmitter(data_out, character_sent, data_in, load, transmit_enable, minorClk, majorClk, rst);
+module transmitter(
+							data_out,
+							character_sent,
+							data_in,
+							load,
+							transmit_enable,
+							minorClk,
+							majorClk,
+							rst
+						);
+						
 	output data_out;
 	output character_sent;
 	input [7:0] data_in;
