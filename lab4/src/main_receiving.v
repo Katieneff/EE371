@@ -17,13 +17,15 @@ module main_receiving(LEDR, CLOCK_50, KEY, GPIO_0);
 					.character_received_export(character_received),
 					.character_sent_export(),
 					.clk_clk(CLOCK_50),
-					.data_bus_in_port(data_out),
-					.data_bus_out_port(),
+					.data_bus_in_export(data_out),
+					.parallel_data_bus_out_export(),
 					.load_export(),
 					.reset_reset_n(KEY),
 					.transmit_enable_export()
 
 	);
+	
+
 	
 	receiver receiver(
 						.data_out(data_out), 

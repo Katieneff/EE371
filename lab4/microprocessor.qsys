@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element character_received
@@ -121,7 +121,7 @@
          type = "String";
       }
    }
-   element parallel_data_bus
+   element parallel_data_bus_in
    {
       datum _sortIndex
       {
@@ -129,12 +129,20 @@
          type = "int";
       }
    }
-   element parallel_data_bus.s1
+   element parallel_data_bus_in.s1
    {
       datum baseAddress
       {
          value = "12352";
          type = "String";
+      }
+   }
+   element parallel_data_bus_out
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
       }
    }
    element transmit_enable
@@ -167,7 +175,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName">communication_network.qpf</parameter>
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -186,13 +194,18 @@
    dir="end" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
-   name="data_bus"
-   internal="parallel_data_bus.external_connection"
+   name="data_bus_in"
+   internal="parallel_data_bus_in.external_connection"
    type="conduit"
    dir="end" />
  <interface
    name="load"
    internal="load.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="parallel_data_bus_out"
+   internal="parallel_data_bus_out.external_connection"
    type="conduit"
    dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
@@ -296,7 +309,7 @@
   <parameter name="dataAddrWidth" value="14" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory.s1' start='0x1000' end='0x2000' type='altera_avalon_onchip_memory2.s1' /><slave name='nios2.debug_mem_slave' start='0x2800' end='0x3000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='load.s1' start='0x3000' end='0x3010' type='altera_avalon_pio.s1' /><slave name='character_received.s1' start='0x3010' end='0x3020' type='altera_avalon_pio.s1' /><slave name='character_sent.s1' start='0x3020' end='0x3030' type='altera_avalon_pio.s1' /><slave name='transmit_enable.s1' start='0x3030' end='0x3040' type='altera_avalon_pio.s1' /><slave name='parallel_data_bus.s1' start='0x3040' end='0x3050' type='altera_avalon_pio.s1' /><slave name='jtag_uart.avalon_jtag_slave' start='0x3050' end='0x3058' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='parallel_data_bus_out.s1' start='0x0' end='0x10' type='altera_avalon_pio.s1' /><slave name='onchip_memory.s1' start='0x1000' end='0x2000' type='altera_avalon_onchip_memory2.s1' /><slave name='nios2.debug_mem_slave' start='0x2800' end='0x3000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='load.s1' start='0x3000' end='0x3010' type='altera_avalon_pio.s1' /><slave name='character_received.s1' start='0x3010' end='0x3020' type='altera_avalon_pio.s1' /><slave name='character_sent.s1' start='0x3020' end='0x3030' type='altera_avalon_pio.s1' /><slave name='transmit_enable.s1' start='0x3030' end='0x3040' type='altera_avalon_pio.s1' /><slave name='parallel_data_bus_in.s1' start='0x3040' end='0x3050' type='altera_avalon_pio.s1' /><slave name='jtag_uart.avalon_jtag_slave' start='0x3050' end='0x3058' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -482,7 +495,7 @@
   <parameter name="writable" value="true" />
  </module>
  <module
-   name="parallel_data_bus"
+   name="parallel_data_bus_in"
    kind="altera_avalon_pio"
    version="15.1"
    enabled="1">
@@ -490,7 +503,25 @@
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
   <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="InOut" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="parallel_data_bus_out"
+   kind="altera_avalon_pio"
+   version="15.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
   <parameter name="edgeType" value="RISING" />
   <parameter name="generateIRQ" value="false" />
   <parameter name="irqType" value="LEVEL" />
@@ -548,7 +579,7 @@
    kind="avalon"
    version="15.1"
    start="nios2.data_master"
-   end="parallel_data_bus.s1">
+   end="parallel_data_bus_in.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x3040" />
   <parameter name="defaultConnection" value="false" />
@@ -588,6 +619,15 @@
  <connection
    kind="avalon"
    version="15.1"
+   start="nios2.data_master"
+   end="parallel_data_bus_out.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="15.1"
    start="nios2.instruction_master"
    end="nios2.debug_mem_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -608,7 +648,7 @@
    kind="clock"
    version="15.1"
    start="clk_0.clk"
-   end="parallel_data_bus.clk" />
+   end="parallel_data_bus_in.clk" />
  <connection
    kind="clock"
    version="15.1"
@@ -630,6 +670,11 @@
    kind="clock"
    version="15.1"
    start="clk_0.clk"
+   end="parallel_data_bus_out.clk" />
+ <connection
+   kind="clock"
+   version="15.1"
+   start="clk_0.clk"
    end="onchip_memory.clk1" />
  <connection kind="interrupt" version="15.1" start="nios2.irq" end="jtag_uart.irq">
   <parameter name="irqNumber" value="5" />
@@ -639,7 +684,7 @@
    kind="reset"
    version="15.1"
    start="clk_0.clk_reset"
-   end="parallel_data_bus.reset" />
+   end="parallel_data_bus_in.reset" />
  <connection
    kind="reset"
    version="15.1"
@@ -665,6 +710,11 @@
    kind="reset"
    version="15.1"
    start="clk_0.clk_reset"
+   end="parallel_data_bus_out.reset" />
+ <connection
+   kind="reset"
+   version="15.1"
+   start="clk_0.clk_reset"
    end="onchip_memory.reset1" />
  <connection
    kind="reset"
@@ -675,7 +725,7 @@
    kind="reset"
    version="15.1"
    start="nios2.debug_reset_request"
-   end="parallel_data_bus.reset" />
+   end="parallel_data_bus_in.reset" />
  <connection
    kind="reset"
    version="15.1"
@@ -701,6 +751,11 @@
    version="15.1"
    start="nios2.debug_reset_request"
    end="jtag_uart.reset" />
+ <connection
+   kind="reset"
+   version="15.1"
+   start="nios2.debug_reset_request"
+   end="parallel_data_bus_out.reset" />
  <connection
    kind="reset"
    version="15.1"

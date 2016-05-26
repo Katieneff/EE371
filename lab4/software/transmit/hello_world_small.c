@@ -79,18 +79,42 @@
  */
 
 #include "sys/alt_stdio.h"
+#include <time.h>
 
+#define data_bus (volatile char *) 0x000
 #define character_sent (volatile char *) 0x3020
-#define parallel_data_bus (volatile char *) 0x3040
-#define transmit_enable (volatile char *) 0x3030
 #define load (volatile char *) 0x3000
-
-
+#define transmit_enable (volatile char *) 0x3030
 int main()
 { 
   alt_putstr("Hello from Nios II!\n");
+  *data_bus = 1;
+  int character;
 
-  while (1) {
+  character = alt_getchar();
+
+
+  *data_bus = character;
+
+
+
+
+  *load = 1;
+  usleep(100000);
+  *load = 0;
+  *transmit_enable = 1;
+  while (1){
+	 if (*character_sent){
+		 *transmit_enable = 0;
+		 character = alt_getchar();
+		 *data_bus = character;
+		 *load = 1;
+		  usleep(100000);
+
+		 *load = 0;
+		 *transmit_enable = 1;
+	 }
+
 
   }
 

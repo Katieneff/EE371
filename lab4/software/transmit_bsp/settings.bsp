@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>May 25, 2016 6:23:08 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1464225788421</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>May 26, 2016 12:47:44 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1464292064543</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\neffk2\EE371\lab4\software\transmit_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\microprocessor.sopcinfo</SopcDesignFile>
@@ -386,7 +386,7 @@
                 <SettingName>hal.make.bsp_cflags_optimization</SettingName>
                 <Identifier>BSP_CFLAGS_OPTIMIZATION</Identifier>
                 <Type>UnquotedString</Type>
-                <Value>'-Os'</Value>
+                <Value>-O0</Value>
                 <DefaultValue>-O0</DefaultValue>
                 <DestinationFile>makefile_variable</DestinationFile>
                 <Description>C/C++ compiler optimization level. "-O0" = no optimization,"-O2" = "normal" optimization, etc. "-O0" is recommended for code that you want to debug since compiler optimization can remove variables and produce non-sequential execution of code while debugging. This setting defines the value of BSP_CFLAGS_OPTIMIZATION in Makefile.</Description>
@@ -887,6 +887,12 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <MemoryMap>
+                <slaveDescriptor>parallel_data_bus_out</slaveDescriptor>
+                <addressRange>0x00000000 - 0x0000000F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>onchip_memory</slaveDescriptor>
                 <addressRange>0x00001000 - 0x00001FFF</addressRange>
                 <addressSpan>4096</addressSpan>
@@ -917,7 +923,7 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>parallel_data_bus</slaveDescriptor>
+                <slaveDescriptor>parallel_data_bus_in</slaveDescriptor>
                 <addressRange>0x00003040 - 0x0000304F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>

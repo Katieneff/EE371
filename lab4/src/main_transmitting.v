@@ -1,6 +1,6 @@
 module main_transmitting(LEDR, CLOCK_50, KEY, GPIO_0);
 	output [9:0] LEDR;
-	input [35:0] GPIO_0;
+	inout [35:0] GPIO_0;
 	input CLOCK_50;
 	input [0:0] KEY;
 	
@@ -11,25 +11,27 @@ module main_transmitting(LEDR, CLOCK_50, KEY, GPIO_0);
 	clockdiv clockdiv(clk, CLOCK_50);
 
 	wire character_sent;
-	reg transmit_enable;
-	reg load;
-	reg [7:0] data_bus;
+	wire transmit_enable;
+	wire load;
+	wire [7:0] data_bus;
 	wire serial_data;
-/*
+	assign LEDR = data_bus;
+
 	microprocessor microprocessor(
 					.character_received_export(),
 					.character_sent_export(character_sent),
 					.clk_clk(CLOCK_50),
-					.data_bus_in_port(),
-					.data_bus_out_port(data_bus),
+					.data_bus_in_export(),
+					.parallel_data_bus_out_export(data_bus),
 					.load_export(load),
 					.reset_reset_n(KEY),
 					.transmit_enable_export(transmit_enable)
 
-	);*/
+	);
 	
 	transmitter transmitter(
-						.data_out(serial_data), 
+						//.data_out(serial_data),
+						.data_out(GPIO_0[35]),
 						.character_sent(character_sent), 
 						.data_in(data_bus), 
 						.load(load), 
@@ -39,7 +41,7 @@ module main_transmitting(LEDR, CLOCK_50, KEY, GPIO_0);
 						.rst(KEY)
 	);
 
-	
+	/*
 	reg [7:0] data0;
 	reg [7:0] data1;
 	reg [7:0] data2;
@@ -126,6 +128,6 @@ module main_transmitting(LEDR, CLOCK_50, KEY, GPIO_0);
 			endcase
 			
 		end
-	end
+	end*/
 	
 endmodule

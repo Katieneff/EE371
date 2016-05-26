@@ -63,7 +63,7 @@ module parallel_to_serial(
 	
 	 always @(posedge clk) begin
 		 if (!rst) begin 
-	  		 temp <= 10'b1000000000; 
+	  		 temp <= 10'b0000000000; 
 			 data_out <= 0;
 			 state <= 0;
 			 count <= 0;
@@ -72,21 +72,24 @@ module parallel_to_serial(
 			 case (state)
 			
 				 OP_NOP : begin
+					data_out <= 0;
 					 if (load) begin 
-						 temp[8:1] <= data_in;
+						 temp <= {1'b1, data_in, 1'b0};
 						 state <= OP_COUNTING;
 					 end
 				 end
 				
 				 OP_COUNTING: begin
-					 data_out <= temp[9];
-					 temp <= temp << 1;
-					 count <= count + 1;
-					 if (count == 9) begin
-						 //start <= 0; // Added this
-						 state <= OP_NOP;
-						 count <= 0;
-					end 
+						data_out <= temp[9];
+						temp <= temp << 1;
+						count <= count + 1;
+						if (count == 9) begin
+							//start <= 0; // Added this
+							state <= OP_NOP;
+							count <= 0;
+						end 
+					
+					
 				end
 			endcase
 		end

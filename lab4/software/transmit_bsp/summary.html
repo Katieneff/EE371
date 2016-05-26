@@ -22,10 +22,10 @@
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>May 25, 2016 6:23:08 PM</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>May 26, 2016 12:47:44 PM</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1464225788421</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1464292064543</td>
 </tr>
 <tr mode="wrap">
 <td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>C:\Users\neffk2\EE371\lab4\software\transmit_bsp</td>
@@ -41,7 +41,7 @@
 <td>jtag_uart</td><td>0x00003050 - 0x00003057</td><td>8</td><td class="listing">printable</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>parallel_data_bus</td><td>0x00003040 - 0x0000304F</td><td>16</td><td class="listing">&nbsp;</td>
+<td>parallel_data_bus_in</td><td>0x00003040 - 0x0000304F</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>transmit_enable</td><td>0x00003030 - 0x0000303F</td><td>16</td><td class="listing">&nbsp;</td>
@@ -57,6 +57,9 @@
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>onchip_memory</td><td>0x00001000 - 0x00001FFF</td><td>4096</td><td class="listing">memory</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>parallel_data_bus_out</td><td>0x00000000 - 0x0000000F</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 </table>
 <br>
@@ -1131,7 +1134,7 @@
 <td width="20%">Default Value:</td><td>-O0</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>'-Os'</td>
+<td width="20%">Value:</td><td>-O0</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>UnquotedString</td>
