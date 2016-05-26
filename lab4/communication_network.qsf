@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY main_receiving
+set_global_assignment -name TOP_LEVEL_ENTITY main_transmitting
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:58:37  MAY 22, 2016"
 set_global_assignment -name LAST_QUARTUS_VERSION 15.1.1
@@ -51,22 +51,6 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VERILOG_FILE microprocessor/synthesis/microprocessor.v
-set_global_assignment -name QIP_FILE microprocessor/synthesis/microprocessor.qip
-set_global_assignment -name VERILOG_FILE src/up_counter.v
-set_global_assignment -name VERILOG_FILE src/transmitter.v
-set_global_assignment -name VERILOG_FILE src/start_bit_detect.v
-set_global_assignment -name VERILOG_FILE src/serial_to_parallel.v
-set_global_assignment -name VERILOG_FILE src/receiver.v
-set_global_assignment -name VERILOG_FILE src/parallel_to_serial.v
-set_global_assignment -name VERILOG_FILE src/main_receiving.v
-set_global_assignment -name VERILOG_FILE src/dflipflop.v
-set_global_assignment -name VERILOG_FILE src/clockdiv.v
-set_global_assignment -name VERILOG_FILE src/bsc.v
-set_global_assignment -name VERILOG_FILE src/bic.v
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 
 
 #============================================================
@@ -76,10 +60,6 @@ set_location_assignment PIN_AJ4 -to ADC_CS_N
 set_location_assignment PIN_AK4 -to ADC_DIN
 set_location_assignment PIN_AK3 -to ADC_DOUT
 set_location_assignment PIN_AK2 -to ADC_SCLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_CS_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_DIN
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_DOUT
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_SCLK
 
 #============================================================
 # AUD
@@ -90,36 +70,26 @@ set_location_assignment PIN_H7 -to AUD_BCLK
 set_location_assignment PIN_J7 -to AUD_DACDAT
 set_location_assignment PIN_H8 -to AUD_DACLRCK
 set_location_assignment PIN_G7 -to AUD_XCK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCDAT
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCLRCK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_BCLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACDAT
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACLRCK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_XCK
 
 #============================================================
 # CLOCK
 #============================================================
 set_location_assignment PIN_AF14 -to CLOCK_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
 
 #============================================================
 # CLOCK2
 #============================================================
 set_location_assignment PIN_AA16 -to CLOCK2_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK2_50
 
 #============================================================
 # CLOCK3
 #============================================================
 set_location_assignment PIN_Y26 -to CLOCK3_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK3_50
 
 #============================================================
 # CLOCK4
 #============================================================
 set_location_assignment PIN_K14 -to CLOCK4_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK4_50
 
 #============================================================
 # DRAM
@@ -163,59 +133,17 @@ set_location_assignment PIN_AB13 -to DRAM_LDQM
 set_location_assignment PIN_AE13 -to DRAM_RAS_N
 set_location_assignment PIN_AK12 -to DRAM_UDQM
 set_location_assignment PIN_AA13 -to DRAM_WE_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CAS_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[9]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[10]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[11]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[12]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[13]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[14]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[15]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_LDQM
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_UDQM
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_WE_N
 
 #============================================================
 # FAN
 #============================================================
 set_location_assignment PIN_AA12 -to FAN_CTRL
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FAN_CTRL
 
 #============================================================
 # FPGA
 #============================================================
 set_location_assignment PIN_J12 -to FPGA_I2C_SCLK
 set_location_assignment PIN_K12 -to FPGA_I2C_SDAT
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SCLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SDAT
 
 #============================================================
 # GPIO
@@ -256,42 +184,6 @@ set_location_assignment PIN_AK19 -to GPIO_0[6]
 set_location_assignment PIN_AJ19 -to GPIO_0[7]
 set_location_assignment PIN_AJ17 -to GPIO_0[8]
 set_location_assignment PIN_AJ16 -to GPIO_0[9]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[10]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[11]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[12]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[13]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[14]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[15]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[16]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[17]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[18]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[19]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[20]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[21]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[22]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[23]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[24]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[25]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[26]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[27]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[28]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[29]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[30]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[31]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[32]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[33]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[34]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[35]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[9]
 
 set_location_assignment PIN_AB17 -to GPIO_1[0]
 set_location_assignment PIN_AG26 -to GPIO_1[10]
@@ -329,6 +221,350 @@ set_location_assignment PIN_AE24 -to GPIO_1[6]
 set_location_assignment PIN_AF25 -to GPIO_1[7]
 set_location_assignment PIN_AF26 -to GPIO_1[8]
 set_location_assignment PIN_AG25 -to GPIO_1[9]
+
+#============================================================
+# HEX0
+#============================================================
+set_location_assignment PIN_AE26 -to HEX0[0]
+set_location_assignment PIN_AE27 -to HEX0[1]
+set_location_assignment PIN_AE28 -to HEX0[2]
+set_location_assignment PIN_AG27 -to HEX0[3]
+set_location_assignment PIN_AF28 -to HEX0[4]
+set_location_assignment PIN_AG28 -to HEX0[5]
+set_location_assignment PIN_AH28 -to HEX0[6]
+
+#============================================================
+# HEX1
+#============================================================
+set_location_assignment PIN_AJ29 -to HEX1[0]
+set_location_assignment PIN_AH29 -to HEX1[1]
+set_location_assignment PIN_AH30 -to HEX1[2]
+set_location_assignment PIN_AG30 -to HEX1[3]
+set_location_assignment PIN_AF29 -to HEX1[4]
+set_location_assignment PIN_AF30 -to HEX1[5]
+set_location_assignment PIN_AD27 -to HEX1[6]
+
+#============================================================
+# HEX2
+#============================================================
+set_location_assignment PIN_AB23 -to HEX2[0]
+set_location_assignment PIN_AE29 -to HEX2[1]
+set_location_assignment PIN_AD29 -to HEX2[2]
+set_location_assignment PIN_AC28 -to HEX2[3]
+set_location_assignment PIN_AD30 -to HEX2[4]
+set_location_assignment PIN_AC29 -to HEX2[5]
+set_location_assignment PIN_AC30 -to HEX2[6]
+
+#============================================================
+# HEX3
+#============================================================
+set_location_assignment PIN_AD26 -to HEX3[0]
+set_location_assignment PIN_AC27 -to HEX3[1]
+set_location_assignment PIN_AD25 -to HEX3[2]
+set_location_assignment PIN_AC25 -to HEX3[3]
+set_location_assignment PIN_AB28 -to HEX3[4]
+set_location_assignment PIN_AB25 -to HEX3[5]
+set_location_assignment PIN_AB22 -to HEX3[6]
+
+#============================================================
+# HEX4
+#============================================================
+set_location_assignment PIN_AA24 -to HEX4[0]
+set_location_assignment PIN_Y23 -to HEX4[1]
+set_location_assignment PIN_Y24 -to HEX4[2]
+set_location_assignment PIN_W22 -to HEX4[3]
+set_location_assignment PIN_W24 -to HEX4[4]
+set_location_assignment PIN_V23 -to HEX4[5]
+set_location_assignment PIN_W25 -to HEX4[6]
+
+#============================================================
+# HEX5
+#============================================================
+set_location_assignment PIN_V25 -to HEX5[0]
+set_location_assignment PIN_AA28 -to HEX5[1]
+set_location_assignment PIN_Y27 -to HEX5[2]
+set_location_assignment PIN_AB27 -to HEX5[3]
+set_location_assignment PIN_AB26 -to HEX5[4]
+set_location_assignment PIN_AA26 -to HEX5[5]
+set_location_assignment PIN_AA25 -to HEX5[6]
+
+#============================================================
+# IRDA
+#============================================================
+set_location_assignment PIN_AA30 -to IRDA_RXD
+set_location_assignment PIN_AB30 -to IRDA_TXD
+
+#============================================================
+# KEY
+#============================================================
+set_location_assignment PIN_AA14 -to KEY[0]
+set_location_assignment PIN_AA15 -to KEY[1]
+set_location_assignment PIN_W15 -to KEY[2]
+set_location_assignment PIN_Y16 -to KEY[3]
+
+#============================================================
+# LEDR
+#============================================================
+set_location_assignment PIN_V16 -to LEDR[0]
+set_location_assignment PIN_W16 -to LEDR[1]
+set_location_assignment PIN_V17 -to LEDR[2]
+set_location_assignment PIN_V18 -to LEDR[3]
+set_location_assignment PIN_W17 -to LEDR[4]
+set_location_assignment PIN_W19 -to LEDR[5]
+set_location_assignment PIN_Y19 -to LEDR[6]
+set_location_assignment PIN_W20 -to LEDR[7]
+set_location_assignment PIN_W21 -to LEDR[8]
+set_location_assignment PIN_Y21 -to LEDR[9]
+
+#============================================================
+# PS2
+#============================================================
+set_location_assignment PIN_AD7 -to PS2_CLK
+set_location_assignment PIN_AE7 -to PS2_DAT
+
+set_location_assignment PIN_AD9 -to PS2_CLK2
+set_location_assignment PIN_AE9 -to PS2_DAT2
+
+#============================================================
+# SW
+#============================================================
+set_location_assignment PIN_AB12 -to SW[0]
+set_location_assignment PIN_AC12 -to SW[1]
+set_location_assignment PIN_AF9 -to SW[2]
+set_location_assignment PIN_AF10 -to SW[3]
+set_location_assignment PIN_AD11 -to SW[4]
+set_location_assignment PIN_AD12 -to SW[5]
+set_location_assignment PIN_AE11 -to SW[6]
+set_location_assignment PIN_AC9 -to SW[7]
+set_location_assignment PIN_AD10 -to SW[8]
+set_location_assignment PIN_AE12 -to SW[9]
+
+#============================================================
+# TD
+#============================================================
+set_location_assignment PIN_H15 -to TD_CLK27
+set_location_assignment PIN_D2 -to TD_DATA[0]
+set_location_assignment PIN_B1 -to TD_DATA[1]
+set_location_assignment PIN_E2 -to TD_DATA[2]
+set_location_assignment PIN_B2 -to TD_DATA[3]
+set_location_assignment PIN_D1 -to TD_DATA[4]
+set_location_assignment PIN_E1 -to TD_DATA[5]
+set_location_assignment PIN_C2 -to TD_DATA[6]
+set_location_assignment PIN_B3 -to TD_DATA[7]
+set_location_assignment PIN_A5 -to TD_HS
+set_location_assignment PIN_F6 -to TD_RESET_N
+set_location_assignment PIN_A3 -to TD_VS
+
+#============================================================
+# USB
+#============================================================
+set_location_assignment PIN_AF4 -to USB_B2_CLK
+set_location_assignment PIN_AH4 -to USB_B2_DATA[0]
+set_location_assignment PIN_AH3 -to USB_B2_DATA[1]
+set_location_assignment PIN_AJ2 -to USB_B2_DATA[2]
+set_location_assignment PIN_AJ1 -to USB_B2_DATA[3]
+set_location_assignment PIN_AH2 -to USB_B2_DATA[4]
+set_location_assignment PIN_AG3 -to USB_B2_DATA[5]
+set_location_assignment PIN_AG2 -to USB_B2_DATA[6]
+set_location_assignment PIN_AG1 -to USB_B2_DATA[7]
+set_location_assignment PIN_AF5 -to USB_EMPTY
+set_location_assignment PIN_AG5 -to USB_FULL
+set_location_assignment PIN_AF6 -to USB_OE_N
+set_location_assignment PIN_AG6 -to USB_RD_N
+set_location_assignment PIN_AG7 -to USB_RESET_N
+set_location_assignment PIN_AG8 -to USB_SCL
+set_location_assignment PIN_AF8 -to USB_SDA
+set_location_assignment PIN_AH5 -to USB_WR_N
+
+#============================================================
+# VGA
+#============================================================
+set_location_assignment PIN_B13 -to VGA_B[0]
+set_location_assignment PIN_G13 -to VGA_B[1]
+set_location_assignment PIN_H13 -to VGA_B[2]
+set_location_assignment PIN_F14 -to VGA_B[3]
+set_location_assignment PIN_H14 -to VGA_B[4]
+set_location_assignment PIN_F15 -to VGA_B[5]
+set_location_assignment PIN_G15 -to VGA_B[6]
+set_location_assignment PIN_J14 -to VGA_B[7]
+set_location_assignment PIN_F10 -to VGA_BLANK_N
+set_location_assignment PIN_A11 -to VGA_CLK
+set_location_assignment PIN_J9 -to VGA_G[0]
+set_location_assignment PIN_J10 -to VGA_G[1]
+set_location_assignment PIN_H12 -to VGA_G[2]
+set_location_assignment PIN_G10 -to VGA_G[3]
+set_location_assignment PIN_G11 -to VGA_G[4]
+set_location_assignment PIN_G12 -to VGA_G[5]
+set_location_assignment PIN_F11 -to VGA_G[6]
+set_location_assignment PIN_E11 -to VGA_G[7]
+set_location_assignment PIN_B11 -to VGA_HS
+set_location_assignment PIN_A13 -to VGA_R[0]
+set_location_assignment PIN_C13 -to VGA_R[1]
+set_location_assignment PIN_E13 -to VGA_R[2]
+set_location_assignment PIN_B12 -to VGA_R[3]
+set_location_assignment PIN_C12 -to VGA_R[4]
+set_location_assignment PIN_D12 -to VGA_R[5]
+set_location_assignment PIN_E12 -to VGA_R[6]
+set_location_assignment PIN_F13 -to VGA_R[7]
+set_location_assignment PIN_C10 -to VGA_SYNC_N
+set_location_assignment PIN_D11 -to VGA_VS
+
+#============================================================
+# HPS
+#============================================================
+
+
+
+
+
+
+#============================================================
+# End of pin and io_standard assignments
+#============================================================
+
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE transmitter.stp
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "clockdiv:clockdiv|divided_clocks[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE microprocessor/synthesis/microprocessor.v -library microprocessor
+set_global_assignment -name QIP_FILE microprocessor/synthesis/microprocessor.qip
+set_global_assignment -name VERILOG_FILE src/up_counter.v
+set_global_assignment -name VERILOG_FILE src/transmitter.v
+set_global_assignment -name VERILOG_FILE src/start_bit_detect.v
+set_global_assignment -name VERILOG_FILE src/serial_to_parallel.v
+set_global_assignment -name VERILOG_FILE src/receiver.v
+set_global_assignment -name VERILOG_FILE src/parallel_to_serial.v
+set_global_assignment -name VERILOG_FILE src/main_receiving.v
+set_global_assignment -name VERILOG_FILE src/dflipflop.v
+set_global_assignment -name VERILOG_FILE src/clockdiv.v
+set_global_assignment -name VERILOG_FILE src/bsc.v
+set_global_assignment -name VERILOG_FILE src/bic.v
+set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
+set_global_assignment -name VERILOG_FILE src/main_transmitting.v
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_CS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_DIN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_DOUT
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_SCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCDAT
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCLRCK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_BCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACDAT
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACLRCK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_XCK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK2_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK3_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK4_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CAS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_LDQM
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_UDQM
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_WE_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FAN_CTRL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SDAT
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[16]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[17]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[18]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[19]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[20]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[21]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[22]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[23]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[24]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[25]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[26]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[27]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[28]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[29]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[30]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[31]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[32]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[33]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[34]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[35]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[9]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[10]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[11]
@@ -365,17 +601,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[8]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[9]
-
-#============================================================
-# HEX0
-#============================================================
-set_location_assignment PIN_AE26 -to HEX0[0]
-set_location_assignment PIN_AE27 -to HEX0[1]
-set_location_assignment PIN_AE28 -to HEX0[2]
-set_location_assignment PIN_AG27 -to HEX0[3]
-set_location_assignment PIN_AF28 -to HEX0[4]
-set_location_assignment PIN_AG28 -to HEX0[5]
-set_location_assignment PIN_AH28 -to HEX0[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[2]
@@ -383,17 +608,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[6]
-
-#============================================================
-# HEX1
-#============================================================
-set_location_assignment PIN_AJ29 -to HEX1[0]
-set_location_assignment PIN_AH29 -to HEX1[1]
-set_location_assignment PIN_AH30 -to HEX1[2]
-set_location_assignment PIN_AG30 -to HEX1[3]
-set_location_assignment PIN_AF29 -to HEX1[4]
-set_location_assignment PIN_AF30 -to HEX1[5]
-set_location_assignment PIN_AD27 -to HEX1[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[2]
@@ -401,17 +615,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[6]
-
-#============================================================
-# HEX2
-#============================================================
-set_location_assignment PIN_AB23 -to HEX2[0]
-set_location_assignment PIN_AE29 -to HEX2[1]
-set_location_assignment PIN_AD29 -to HEX2[2]
-set_location_assignment PIN_AC28 -to HEX2[3]
-set_location_assignment PIN_AD30 -to HEX2[4]
-set_location_assignment PIN_AC29 -to HEX2[5]
-set_location_assignment PIN_AC30 -to HEX2[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[2]
@@ -419,17 +622,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[6]
-
-#============================================================
-# HEX3
-#============================================================
-set_location_assignment PIN_AD26 -to HEX3[0]
-set_location_assignment PIN_AC27 -to HEX3[1]
-set_location_assignment PIN_AD25 -to HEX3[2]
-set_location_assignment PIN_AC25 -to HEX3[3]
-set_location_assignment PIN_AB28 -to HEX3[4]
-set_location_assignment PIN_AB25 -to HEX3[5]
-set_location_assignment PIN_AB22 -to HEX3[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[2]
@@ -437,17 +629,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[6]
-
-#============================================================
-# HEX4
-#============================================================
-set_location_assignment PIN_AA24 -to HEX4[0]
-set_location_assignment PIN_Y23 -to HEX4[1]
-set_location_assignment PIN_Y24 -to HEX4[2]
-set_location_assignment PIN_W22 -to HEX4[3]
-set_location_assignment PIN_W24 -to HEX4[4]
-set_location_assignment PIN_V23 -to HEX4[5]
-set_location_assignment PIN_W25 -to HEX4[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[2]
@@ -455,17 +636,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[6]
-
-#============================================================
-# HEX5
-#============================================================
-set_location_assignment PIN_V25 -to HEX5[0]
-set_location_assignment PIN_AA28 -to HEX5[1]
-set_location_assignment PIN_Y27 -to HEX5[2]
-set_location_assignment PIN_AB27 -to HEX5[3]
-set_location_assignment PIN_AB26 -to HEX5[4]
-set_location_assignment PIN_AA26 -to HEX5[5]
-set_location_assignment PIN_AA25 -to HEX5[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[2]
@@ -473,40 +643,12 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[6]
-
-#============================================================
-# IRDA
-#============================================================
-set_location_assignment PIN_AA30 -to IRDA_RXD
-set_location_assignment PIN_AB30 -to IRDA_TXD
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to IRDA_RXD
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to IRDA_TXD
-
-#============================================================
-# KEY
-#============================================================
-set_location_assignment PIN_AA14 -to KEY[0]
-set_location_assignment PIN_AA15 -to KEY[1]
-set_location_assignment PIN_W15 -to KEY[2]
-set_location_assignment PIN_Y16 -to KEY[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[3]
-
-#============================================================
-# LEDR
-#============================================================
-set_location_assignment PIN_V16 -to LEDR[0]
-set_location_assignment PIN_W16 -to LEDR[1]
-set_location_assignment PIN_V17 -to LEDR[2]
-set_location_assignment PIN_V18 -to LEDR[3]
-set_location_assignment PIN_W17 -to LEDR[4]
-set_location_assignment PIN_W19 -to LEDR[5]
-set_location_assignment PIN_Y19 -to LEDR[6]
-set_location_assignment PIN_W20 -to LEDR[7]
-set_location_assignment PIN_W21 -to LEDR[8]
-set_location_assignment PIN_Y21 -to LEDR[9]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[2]
@@ -517,33 +659,10 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[8]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[9]
-
-#============================================================
-# PS2
-#============================================================
-set_location_assignment PIN_AD7 -to PS2_CLK
-set_location_assignment PIN_AE7 -to PS2_DAT
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_CLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT
-
-set_location_assignment PIN_AD9 -to PS2_CLK2
-set_location_assignment PIN_AE9 -to PS2_DAT2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_CLK2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT2
-
-#============================================================
-# SW
-#============================================================
-set_location_assignment PIN_AB12 -to SW[0]
-set_location_assignment PIN_AC12 -to SW[1]
-set_location_assignment PIN_AF9 -to SW[2]
-set_location_assignment PIN_AF10 -to SW[3]
-set_location_assignment PIN_AD11 -to SW[4]
-set_location_assignment PIN_AD12 -to SW[5]
-set_location_assignment PIN_AE11 -to SW[6]
-set_location_assignment PIN_AC9 -to SW[7]
-set_location_assignment PIN_AD10 -to SW[8]
-set_location_assignment PIN_AE12 -to SW[9]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2]
@@ -554,22 +673,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[8]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[9]
-
-#============================================================
-# TD
-#============================================================
-set_location_assignment PIN_H15 -to TD_CLK27
-set_location_assignment PIN_D2 -to TD_DATA[0]
-set_location_assignment PIN_B1 -to TD_DATA[1]
-set_location_assignment PIN_E2 -to TD_DATA[2]
-set_location_assignment PIN_B2 -to TD_DATA[3]
-set_location_assignment PIN_D1 -to TD_DATA[4]
-set_location_assignment PIN_E1 -to TD_DATA[5]
-set_location_assignment PIN_C2 -to TD_DATA[6]
-set_location_assignment PIN_B3 -to TD_DATA[7]
-set_location_assignment PIN_A5 -to TD_HS
-set_location_assignment PIN_F6 -to TD_RESET_N
-set_location_assignment PIN_A3 -to TD_VS
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_CLK27
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[1]
@@ -582,27 +685,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_HS
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_RESET_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_VS
-
-#============================================================
-# USB
-#============================================================
-set_location_assignment PIN_AF4 -to USB_B2_CLK
-set_location_assignment PIN_AH4 -to USB_B2_DATA[0]
-set_location_assignment PIN_AH3 -to USB_B2_DATA[1]
-set_location_assignment PIN_AJ2 -to USB_B2_DATA[2]
-set_location_assignment PIN_AJ1 -to USB_B2_DATA[3]
-set_location_assignment PIN_AH2 -to USB_B2_DATA[4]
-set_location_assignment PIN_AG3 -to USB_B2_DATA[5]
-set_location_assignment PIN_AG2 -to USB_B2_DATA[6]
-set_location_assignment PIN_AG1 -to USB_B2_DATA[7]
-set_location_assignment PIN_AF5 -to USB_EMPTY
-set_location_assignment PIN_AG5 -to USB_FULL
-set_location_assignment PIN_AF6 -to USB_OE_N
-set_location_assignment PIN_AG6 -to USB_RD_N
-set_location_assignment PIN_AG7 -to USB_RESET_N
-set_location_assignment PIN_AG8 -to USB_SCL
-set_location_assignment PIN_AF8 -to USB_SDA
-set_location_assignment PIN_AH5 -to USB_WR_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_CLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[1]
@@ -620,39 +702,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_RESET_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_SCL
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_SDA
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_WR_N
-
-#============================================================
-# VGA
-#============================================================
-set_location_assignment PIN_B13 -to VGA_B[0]
-set_location_assignment PIN_G13 -to VGA_B[1]
-set_location_assignment PIN_H13 -to VGA_B[2]
-set_location_assignment PIN_F14 -to VGA_B[3]
-set_location_assignment PIN_H14 -to VGA_B[4]
-set_location_assignment PIN_F15 -to VGA_B[5]
-set_location_assignment PIN_G15 -to VGA_B[6]
-set_location_assignment PIN_J14 -to VGA_B[7]
-set_location_assignment PIN_F10 -to VGA_BLANK_N
-set_location_assignment PIN_A11 -to VGA_CLK
-set_location_assignment PIN_J9 -to VGA_G[0]
-set_location_assignment PIN_J10 -to VGA_G[1]
-set_location_assignment PIN_H12 -to VGA_G[2]
-set_location_assignment PIN_G10 -to VGA_G[3]
-set_location_assignment PIN_G11 -to VGA_G[4]
-set_location_assignment PIN_G12 -to VGA_G[5]
-set_location_assignment PIN_F11 -to VGA_G[6]
-set_location_assignment PIN_E11 -to VGA_G[7]
-set_location_assignment PIN_B11 -to VGA_HS
-set_location_assignment PIN_A13 -to VGA_R[0]
-set_location_assignment PIN_C13 -to VGA_R[1]
-set_location_assignment PIN_E13 -to VGA_R[2]
-set_location_assignment PIN_B12 -to VGA_R[3]
-set_location_assignment PIN_C12 -to VGA_R[4]
-set_location_assignment PIN_D12 -to VGA_R[5]
-set_location_assignment PIN_E12 -to VGA_R[6]
-set_location_assignment PIN_F13 -to VGA_R[7]
-set_location_assignment PIN_C10 -to VGA_SYNC_N
-set_location_assignment PIN_D11 -to VGA_VS
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[2]
@@ -682,10 +731,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_SYNC_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_VS
-
-#============================================================
-# HPS
-#============================================================
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_CONV_USB_N
 set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[0]
 set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[1]
@@ -815,7 +860,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_NXT
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_STP
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_GPIO[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_GPIO[1]
-
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to HPS_DDR3_ADDR[0]
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to HPS_DDR3_ADDR[10]
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to HPS_DDR3_ADDR[11]
@@ -841,10 +885,8 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to HPS_DDR
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to HPS_DDR3_RAS_N
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to HPS_DDR3_WE_N
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to HPS_DDR3_RESET_N
-
 set_instance_assignment -name D5_DELAY 2 -to HPS_DDR3_CK_P
 set_instance_assignment -name D5_DELAY 2 -to HPS_DDR3_CK_N
-
 set_instance_assignment -name INPUT_TERMINATION "PARALLEL 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQ[0]
 set_instance_assignment -name INPUT_TERMINATION "PARALLEL 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQ[1]
 set_instance_assignment -name INPUT_TERMINATION "PARALLEL 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQ[2]
@@ -885,7 +927,6 @@ set_instance_assignment -name INPUT_TERMINATION "PARALLEL 50 OHM WITH CALIBRATIO
 set_instance_assignment -name INPUT_TERMINATION "PARALLEL 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQS_N[1]
 set_instance_assignment -name INPUT_TERMINATION "PARALLEL 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQS_N[2]
 set_instance_assignment -name INPUT_TERMINATION "PARALLEL 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQS_N[3]
-
 set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQ[0]
 set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQ[1]
 set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQ[2]
@@ -932,7 +973,6 @@ set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION
 set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to HPS_DDR3_DM[1]
 set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to HPS_DDR3_DM[2]
 set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to HPS_DDR3_DM[3]
-
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_DQ[0]
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_DQ[1]
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_DQ[2]
@@ -1004,204 +1044,108 @@ set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_WE_N
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_RESET_N
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_CK_P
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_CK_N
-
-#============================================================
-# End of pin and io_standard assignments
-#============================================================
-
-set_global_assignment -name ENABLE_SIGNALTAP ON
-set_global_assignment -name USE_SIGNALTAP_FILE output_files/stp1.stp
-set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
-set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to data[0] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to data[0] -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to data[10] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to data[11] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to data[12] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to data[13] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to data[14] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to data[15] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to data[16] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to data[17] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to data[18] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to data[19] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to data[1] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to data[20] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to data[21] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to data[22] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to data[23] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to data[24] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to data[25] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to data[26] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to data[27] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to data[28] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to data[29] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to data[2] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to data[30] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to data[31] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to data[32] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to data[33] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to data[34] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to data[35] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to data[36] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to data[37] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to data[38] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to data[39] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to data[3] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to data[4] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to data[5] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to data[6] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to data[7] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to data[8] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to data[9] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to i[0] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to i[1] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to i[2] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to i[3] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to i[4] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to i[5] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to i[6] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to i[7] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to data[10] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to data[11] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to data[12] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to data[13] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to data[14] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to data[15] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to data[16] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to data[17] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to data[18] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to data[19] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to data[1] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to data[20] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to data[21] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to data[22] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to data[23] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to data[24] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to data[25] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to data[26] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to data[27] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to data[28] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to data[29] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to data[2] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to data[30] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to data[31] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to data[32] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to data[33] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to data[34] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to data[35] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to data[36] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to data[37] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to data[38] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to data[39] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to data[3] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to data[4] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to data[5] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to data[6] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to data[7] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to data[8] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to data[9] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to i[0] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to i[1] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to i[2] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to i[3] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to i[4] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to i[5] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to i[6] -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to i[7] -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=1024" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=1024" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "clockdiv:clockdiv|divided_clocks[7]" -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "receiver:receiver|bic:bic|up_counter:bitCounter|out[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "receiver:receiver|bic:bic|up_counter:bitCounter|out[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "receiver:receiver|bic:bic|up_counter:bitCounter|out[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to "receiver:receiver|bic:bic|up_counter:bitCounter|out[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to "receiver:receiver|bsc:bsc|up_counter:clockCounter|out[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[53] -to "receiver:receiver|bsc:bsc|up_counter:clockCounter|out[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[54] -to "receiver:receiver|bsc:bsc|up_counter:clockCounter|out[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[55] -to "receiver:receiver|bsc:bsc|up_counter:clockCounter|out[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[56] -to "receiver:receiver|character_received" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[57] -to "receiver:receiver|data_in" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[58] -to "receiver:receiver|data_out[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[59] -to "receiver:receiver|data_out[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[60] -to "receiver:receiver|data_out[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[61] -to "receiver:receiver|data_out[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[62] -to "receiver:receiver|data_out[4]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[63] -to "receiver:receiver|data_out[5]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[64] -to "receiver:receiver|data_out[6]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[65] -to "receiver:receiver|data_out[7]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[66] -to "receiver:receiver|start_bit_detect:sbd|en" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "receiver:receiver|bic:bic|up_counter:bitCounter|out[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "receiver:receiver|bic:bic|up_counter:bitCounter|out[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "receiver:receiver|bic:bic|up_counter:bitCounter|out[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "receiver:receiver|bic:bic|up_counter:bitCounter|out[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "receiver:receiver|bsc:bsc|up_counter:clockCounter|out[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "receiver:receiver|bsc:bsc|up_counter:clockCounter|out[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to "receiver:receiver|bsc:bsc|up_counter:clockCounter|out[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to "receiver:receiver|bsc:bsc|up_counter:clockCounter|out[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "receiver:receiver|character_received" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "receiver:receiver|data_in" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "receiver:receiver|data_out[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to "receiver:receiver|data_out[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[60] -to "receiver:receiver|data_out[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[61] -to "receiver:receiver|data_out[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[62] -to "receiver:receiver|data_out[4]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[63] -to "receiver:receiver|data_out[5]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[64] -to "receiver:receiver|data_out[6]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to "receiver:receiver|data_out[7]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to "receiver:receiver|start_bit_detect:sbd|en" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=67" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=67" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=67" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=225" -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name SIGNALTAP_FILE transmitter.stp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=4096" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=4096" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "clockdiv:clockdiv|divided_clocks[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "clockdiv:clockdiv|divided_clocks[11]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "clockdiv:clockdiv|divided_clocks[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "clockdiv:clockdiv|divided_clocks[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "transmitter:transmitter|character_sent" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "transmitter:transmitter|data_in[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "transmitter:transmitter|data_in[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "transmitter:transmitter|data_in[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "transmitter:transmitter|data_in[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "transmitter:transmitter|data_in[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "transmitter:transmitter|data_in[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "transmitter:transmitter|data_in[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "transmitter:transmitter|data_in[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "transmitter:transmitter|parallel_to_serial:pts|clk" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "transmitter:transmitter|parallel_to_serial:pts|counter[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "transmitter:transmitter|parallel_to_serial:pts|counter[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "transmitter:transmitter|parallel_to_serial:pts|counter[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "transmitter:transmitter|parallel_to_serial:pts|counter[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "transmitter:transmitter|parallel_to_serial:pts|data_out" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "transmitter:transmitter|parallel_to_serial:pts|load" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "transmitter:transmitter|character_sent" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "transmitter:transmitter|data_in[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "transmitter:transmitter|data_in[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "transmitter:transmitter|data_in[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "transmitter:transmitter|data_in[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "transmitter:transmitter|data_in[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "transmitter:transmitter|data_in[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "transmitter:transmitter|data_in[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "transmitter:transmitter|data_in[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "transmitter:transmitter|parallel_to_serial:pts|clk" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "transmitter:transmitter|parallel_to_serial:pts|counter[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "transmitter:transmitter|parallel_to_serial:pts|counter[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "transmitter:transmitter|parallel_to_serial:pts|counter[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "transmitter:transmitter|parallel_to_serial:pts|counter[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "transmitter:transmitter|parallel_to_serial:pts|data_in[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "transmitter:transmitter|parallel_to_serial:pts|data_out" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "transmitter:transmitter|parallel_to_serial:pts|load" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=38" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=38" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=38" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=140" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to load -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to transmit_enable -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to load -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to transmit_enable -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "transmitter:transmitter|parallel_to_serial:pts|temp_wire[9]" -section_id auto_signaltap_0
+set_global_assignment -name SLD_FILE db/transmitter_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
