@@ -80,6 +80,7 @@ module parallel_to_serial(
 				 end
 				
 				 OP_COUNTING: begin
+
 						data_out <= temp[9];
 						temp <= temp << 1;
 						count <= count + 1;
