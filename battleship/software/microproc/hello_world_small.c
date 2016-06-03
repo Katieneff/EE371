@@ -91,6 +91,10 @@
 
 int send (int* str);
 
+int getPlayerNum();
+int receive();
+int playerOnePlay();
+
 
 int main()
 { 
@@ -98,39 +102,45 @@ int main()
   alt_putstr("Welcome to Battleship!\n");
   /* Event loop never exits. */
 
-
-   int character;
-
-   character = alt_getchar();
-
-
-   *data_bus_out = character;
+  int character;
+  int data;
 
 
 
-
-   *load = 1;
-   usleep(100);
-   *load = 0;
-   *transmit_enable = 0;
-   while (1){
- 	 if (*character_sent){
- 		 usleep(100);
-
- 		 character = alt_getchar();
- 		 while (character == '\n') {
- 			 character = alt_getchar();
- 		 }
- 		 *data_bus_out = character;
- 		 *load = 1;
- 		  usleep(10000);
-
- 		 *load = 0;
-
- 	 }
+  int playerNum = getPlayerNum();
 
 
-   }
+  switch (playerNum) {
+  	  case '1':
+  		alt_putstr("Player 1 rules\n");
+  		playerOnePlay();
+  		break;
+  	  case '2':
+  		alt_putstr("Player 2!\n");
+  		break;
+  }
+
+  while (1) {
+	  if (*transmit_enable) {
+
+			if (*character_received) {
+			  usleep(100);
+			  data = *data_bus_in;
+
+
+			  if (data & 128) {
+				  data = (data / 2) & 127;
+				  alt_putstr("fix\n");
+			  }
+			  alt_putchar(data);
+			}
+
+	  } else {
+		  character = alt_getchar();
+		  send(character);
+	  }
+
+  }
 
   return 0;
 }
@@ -140,12 +150,72 @@ int send(int * str) {
 	*data_bus_out = str;
 	*transmit_enable = 0;
 	*load = 1;
-	usleep(10);
+	usleep(100);
 	*load = 0;
-	while (!*character_sent) {
-		usleep(1);
+	while (1) {
+		if (*character_sent) {
+			usleep(1000);
+			return 0;
+		}
 	}
-	*transmit_enable = 1;
+
 	return 0;
 
+}
+
+int receive() {
+	int data;
+	if (*character_received) {
+	  usleep(100);
+	  data = *data_bus_in;
+
+
+	  if (data & 128) {
+		  data = (data / 2) & 127;
+		  alt_putstr("fix\n");
+	  }
+	  if (data == 'w') {
+		  alt_putstr("You missed loser\n");
+	  } else if (data == 'x') {
+		  alt_putstr("Hit!\n");
+	  } else if (data == 'y') {
+		  alt_putstr("You win!\n");
+	  } else if (data == 'z') {
+		  alt_putstr("You loze!\n");
+	  } else {
+		  alt_putchar(data);
+		  alt_putstr("\n");
+	  }
+
+	}
+}
+
+
+int getPlayerNum() {
+	alt_putstr("Are you player 1 or player 2? \n");
+	int num = alt_getchar();
+	return num;
+
+
+}
+
+
+int playerOnePlay(){
+	*transmit_enable = 0;
+	int character = alt_getchar();
+	send(character);
+	*transmit_enable = 1;
+	receive();
+	return 0;
+
+}
+
+
+int playerTwoPlay(){
+	*transmit_enable = 0;
+	int character = alt_getchar();
+	send(character);
+	*transmit_enable = 1;
+	receive();
+	return 0;
 }
