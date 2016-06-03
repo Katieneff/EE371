@@ -212,10 +212,12 @@ int playerOnePlay(){
 
 
 int playerTwoPlay(){
+	*transmit_enable = 1;
+	receive();
+
 	*transmit_enable = 0;
 	int character = alt_getchar();
 	send(character);
-	*transmit_enable = 1;
-	receive();
+
 	return 0;
 }
