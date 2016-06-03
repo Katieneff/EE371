@@ -106,7 +106,7 @@ int main()
   int data;
 
 
-
+  *transmit_enable = 1;
   int playerNum = getPlayerNum();
 
 
@@ -119,7 +119,7 @@ int main()
   		alt_putstr("Player 2!\n");
   		break;
   }
-
+/*
   while (1) {
 	  if (*transmit_enable) {
 
@@ -140,13 +140,14 @@ int main()
 		  send(character);
 	  }
 
-  }
+  }*/
 
   return 0;
 }
 
 
 int send(int * str) {
+	alt_putstr("send!\n");
 	*data_bus_out = str;
 	*transmit_enable = 0;
 	*load = 1;
@@ -164,6 +165,7 @@ int send(int * str) {
 }
 
 int receive() {
+	alt_putstr("Receive!\n");
 	int data;
 	if (*character_received) {
 	  usleep(100);
@@ -201,23 +203,26 @@ int getPlayerNum() {
 
 
 int playerOnePlay(){
-	*transmit_enable = 0;
-	int character = alt_getchar();
-	send(character);
-	*transmit_enable = 1;
-	receive();
+	while(1)	{
+		*transmit_enable = 0;
+		int character = alt_getchar();
+		send(character);
+		*transmit_enable = 1;
+		receive();
+	}
 	return 0;
 
 }
 
 
 int playerTwoPlay(){
-	*transmit_enable = 1;
-	receive();
+	while (1) {
+		*transmit_enable = 1;
+		receive();
 
-	*transmit_enable = 0;
-	int character = alt_getchar();
-	send(character);
-
+		*transmit_enable = 0;
+		int character = alt_getchar();
+		send(character);
+	}
 	return 0;
 }
