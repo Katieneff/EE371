@@ -89,7 +89,7 @@
 #define character_sent (volatile char *) 0x3020
 
 
-int send (int* str);
+int send(unsigned int str);
 
 int getPlayerNum();
 int receive();
@@ -146,7 +146,7 @@ int main()
 }
 
 
-int send(int * str) {
+int send(unsigned int str) {
 	alt_putstr("send!\n");
 	*data_bus_out = str;
 	*transmit_enable = 0;
@@ -190,6 +190,7 @@ int receive() {
 	  }
 
 	}
+	return 0;
 }
 
 
@@ -205,7 +206,11 @@ int getPlayerNum() {
 int playerOnePlay(){
 	while(1)	{
 		*transmit_enable = 0;
-		int character = alt_getchar();
+		alt_putstr("Send a character: ");
+		unsigned int character = alt_getchar();
+		if (character == '\n') {
+			character = alt_getchar();
+		}
 		send(character);
 		*transmit_enable = 1;
 		receive();
