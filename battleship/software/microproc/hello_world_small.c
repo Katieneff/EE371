@@ -79,15 +79,17 @@
  */
 
 #include "sys/alt_stdio.h"
+#include <time.h>
+
+#define data_bus_in (volatile char *) 0x3040
+#define data_bus_out (volatile char *) 0x0000
+#define load (volatile char *) 0x3000
+#define transmit_enable (volatile char *) 0x3030
+#define character_received (volatile char *) 0x3010
+#define character_sent (volatile char *) 0x3020
 
 
-#define data_bus_in (volatile char *) 0x3040;
-#define data_bus_out (volatile char *) 0x0000;
-#define load (volatile char *) 0x3000;
-#define transmit_enable (volatile char *) 0x3030;
-#define character_received (volatile char *) 0x3010;
-#define character_sent (volatile char *) 0x3020;
-
+int send (int* str);
 
 
 int main()
@@ -96,12 +98,54 @@ int main()
   alt_putstr("Welcome to Battleship!\n");
   /* Event loop never exits. */
 
-  *transmit_enable = 1;
-  while (1){
+
+   int character;
+
+   character = alt_getchar();
+
+
+   *data_bus_out = character;
 
 
 
-  }
+
+   *load = 1;
+   usleep(100);
+   *load = 0;
+   *transmit_enable = 0;
+   while (1){
+ 	 if (*character_sent){
+ 		 usleep(100);
+
+ 		 character = alt_getchar();
+ 		 while (character == '\n') {
+ 			 character = alt_getchar();
+ 		 }
+ 		 *data_bus_out = character;
+ 		 *load = 1;
+ 		  usleep(10000);
+
+ 		 *load = 0;
+
+ 	 }
+
+
+   }
 
   return 0;
+}
+
+
+int send(int * str) {
+	*data_bus_out = str;
+	*transmit_enable = 0;
+	*load = 1;
+	usleep(10);
+	*load = 0;
+	while (!*character_sent) {
+		usleep(1);
+	}
+	*transmit_enable = 1;
+	return 0;
+
 }

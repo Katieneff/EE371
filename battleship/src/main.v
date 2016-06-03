@@ -19,11 +19,9 @@ module main(LEDR, CLOCK_50, KEY, GPIO_0);
 	wire [31:0] clk;
 	clockdiv clockdiv(clk, CLOCK_50);
 	
+	assign GPIO_0[0] = (transmit_enable) ? 1'bz : serial_data_transmitted;
 	
-	
-	assign GPIO_0[0] = (transmit_enable) ? serial_data_transmitted : 1'bz;
-	
-	assign serial_data_received = (transmit_enable) ? 1'bz : GPIO_0[0];
+	assign serial_data_received = GPIO_0[0];
 
 	
 	microprocessor microprocessor(

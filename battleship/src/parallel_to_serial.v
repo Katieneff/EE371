@@ -1,13 +1,16 @@
 module parallel_to_serial(
 									data_out,
+									character_sent,
 									data_in,
 									counter,
 									load,
+									en,
 									clk,
 									rst
 								); 
 	output reg data_out;
-	input clk, rst, load; 
+	output reg character_sent;
+	input clk, rst, load, en; 
 	input [7:0] data_in; 
 	input [3:0] counter;
 	
@@ -62,9 +65,10 @@ module parallel_to_serial(
 
 	
 	 always @(posedge clk) begin
-		 if (!rst) begin 
+		 if (!rst || en) begin 
 	  		 temp <= 10'b0000000000; 
 			 data_out <= 0;
+			 character_sent <= 0;
 			 state <= 0;
 			 count <= 0;
 			 //start <= 1; // Added this
@@ -73,6 +77,7 @@ module parallel_to_serial(
 			
 				 OP_NOP : begin
 					data_out <= 0;
+					character_sent <= 0;
 					 if (load) begin 
 						 temp <= {1'b1, data_in, 1'b0};
 						 state <= OP_COUNTING;
@@ -84,10 +89,11 @@ module parallel_to_serial(
 						data_out <= temp[9];
 						temp <= temp << 1;
 						count <= count + 1;
-						if (count == 9) begin
+						if (count == 10) begin
 							//start <= 0; // Added this
 							state <= OP_NOP;
 							count <= 0;
+							character_sent <= 1;
 						end 
 					
 					

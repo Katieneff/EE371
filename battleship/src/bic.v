@@ -29,8 +29,8 @@ module bic_tr(out, en, clk, rst);
 	wire state;
 	assign state = en;
 	
-	parameter OP_NOP = 0;
-	parameter OP_COUNTING = 1;
+	parameter OP_NOP = 1;
+	parameter OP_COUNTING = 0;
 	
 	// wire [3:0] bitCounterOut;
 	// wire bitRst;

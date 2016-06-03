@@ -20,15 +20,17 @@ module transmitter(
 
 	parallel_to_serial pts(
 				.data_out(data_out),
+				.character_sent(character_sent),
 				.data_in(data_in),
 				.counter(counter),
 				.load(load),
+				.en(transmit_enable),
 				.clk(majorClk),
 				.rst(rst)
 	);
 	
 
-	bsc bsc(
+	/*bsc bsc(
 		.out(counter), 
 		.en(transmit_enable), 
 		.minorClk(minorClk), 
@@ -40,7 +42,7 @@ module transmitter(
 		.en(transmit_enable), 
 		.clk(majorClk), 
 		.rst(rst)
-	);
+	);*/
 
 
 endmodule

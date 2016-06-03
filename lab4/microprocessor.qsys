@@ -49,6 +49,22 @@
          type = "int";
       }
    }
+   element data_bus
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element data_bus.s1
+   {
+      datum baseAddress
+      {
+         value = "12352";
+         type = "String";
+      }
+   }
    element jtag_uart
    {
       datum _sortIndex
@@ -121,22 +137,6 @@
          type = "String";
       }
    }
-   element parallel_data_bus_in
-   {
-      datum _sortIndex
-      {
-         value = "3";
-         type = "int";
-      }
-   }
-   element parallel_data_bus_in.s1
-   {
-      datum baseAddress
-      {
-         value = "12352";
-         type = "String";
-      }
-   }
    element parallel_data_bus_out
    {
       datum _sortIndex
@@ -159,6 +159,14 @@
       {
          value = "12336";
          type = "String";
+      }
+   }
+   element transmit_enable_1
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
       }
    }
 }
@@ -194,8 +202,8 @@
    dir="end" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
-   name="data_bus_in"
-   internal="parallel_data_bus_in.external_connection"
+   name="data_bus"
+   internal="data_bus.external_connection"
    type="conduit"
    dir="end" />
  <interface
@@ -205,15 +213,16 @@
    dir="end" />
  <interface
    name="parallel_data_bus_out"
-   internal="parallel_data_bus_out.external_connection"
-   type="conduit"
-   dir="end" />
+   internal="parallel_data_bus_out.external_connection" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface
    name="transmit_enable"
    internal="transmit_enable.external_connection"
    type="conduit"
    dir="end" />
+ <interface
+   name="transmit_enable_0_external_connection"
+   internal="transmit_enable_1.external_connection" />
  <module
    name="character_received"
    kind="altera_avalon_pio"
@@ -255,6 +264,20 @@
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module name="data_bus" kind="altera_avalon_pio" version="15.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="InOut" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
  </module>
  <module
    name="jtag_uart"
@@ -309,7 +332,7 @@
   <parameter name="dataAddrWidth" value="14" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='parallel_data_bus_out.s1' start='0x0' end='0x10' type='altera_avalon_pio.s1' /><slave name='onchip_memory.s1' start='0x1000' end='0x2000' type='altera_avalon_onchip_memory2.s1' /><slave name='nios2.debug_mem_slave' start='0x2800' end='0x3000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='load.s1' start='0x3000' end='0x3010' type='altera_avalon_pio.s1' /><slave name='character_received.s1' start='0x3010' end='0x3020' type='altera_avalon_pio.s1' /><slave name='character_sent.s1' start='0x3020' end='0x3030' type='altera_avalon_pio.s1' /><slave name='transmit_enable.s1' start='0x3030' end='0x3040' type='altera_avalon_pio.s1' /><slave name='parallel_data_bus_in.s1' start='0x3040' end='0x3050' type='altera_avalon_pio.s1' /><slave name='jtag_uart.avalon_jtag_slave' start='0x3050' end='0x3058' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory.s1' start='0x1000' end='0x2000' type='altera_avalon_onchip_memory2.s1' /><slave name='nios2.debug_mem_slave' start='0x2800' end='0x3000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='load.s1' start='0x3000' end='0x3010' type='altera_avalon_pio.s1' /><slave name='character_received.s1' start='0x3010' end='0x3020' type='altera_avalon_pio.s1' /><slave name='character_sent.s1' start='0x3020' end='0x3030' type='altera_avalon_pio.s1' /><slave name='transmit_enable.s1' start='0x3030' end='0x3040' type='altera_avalon_pio.s1' /><slave name='data_bus.s1' start='0x3040' end='0x3050' type='altera_avalon_pio.s1' /><slave name='jtag_uart.avalon_jtag_slave' start='0x3050' end='0x3058' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -495,28 +518,10 @@
   <parameter name="writable" value="true" />
  </module>
  <module
-   name="parallel_data_bus_in"
-   kind="altera_avalon_pio"
-   version="15.1"
-   enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
- </module>
- <module
    name="parallel_data_bus_out"
    kind="altera_avalon_pio"
    version="15.1"
-   enabled="1">
+   enabled="0">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -535,6 +540,24 @@
    kind="altera_avalon_pio"
    version="15.1"
    enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module
+   name="transmit_enable_1"
+   kind="altera_avalon_pio"
+   version="15.1"
+   enabled="0">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -579,7 +602,7 @@
    kind="avalon"
    version="15.1"
    start="nios2.data_master"
-   end="parallel_data_bus_in.s1">
+   end="data_bus.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x3040" />
   <parameter name="defaultConnection" value="false" />
@@ -628,6 +651,15 @@
  <connection
    kind="avalon"
    version="15.1"
+   start="nios2.data_master"
+   end="transmit_enable_1.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="15.1"
    start="nios2.instruction_master"
    end="nios2.debug_mem_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -644,11 +676,7 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="15.1" start="clk_0.clk" end="nios2.clk" />
- <connection
-   kind="clock"
-   version="15.1"
-   start="clk_0.clk"
-   end="parallel_data_bus_in.clk" />
+ <connection kind="clock" version="15.1" start="clk_0.clk" end="data_bus.clk" />
  <connection
    kind="clock"
    version="15.1"
@@ -675,6 +703,11 @@
    kind="clock"
    version="15.1"
    start="clk_0.clk"
+   end="transmit_enable_1.clk" />
+ <connection
+   kind="clock"
+   version="15.1"
+   start="clk_0.clk"
    end="onchip_memory.clk1" />
  <connection kind="interrupt" version="15.1" start="nios2.irq" end="jtag_uart.irq">
   <parameter name="irqNumber" value="5" />
@@ -684,7 +717,7 @@
    kind="reset"
    version="15.1"
    start="clk_0.clk_reset"
-   end="parallel_data_bus_in.reset" />
+   end="data_bus.reset" />
  <connection
    kind="reset"
    version="15.1"
@@ -715,6 +748,11 @@
    kind="reset"
    version="15.1"
    start="clk_0.clk_reset"
+   end="transmit_enable_1.reset" />
+ <connection
+   kind="reset"
+   version="15.1"
+   start="clk_0.clk_reset"
    end="onchip_memory.reset1" />
  <connection
    kind="reset"
@@ -725,7 +763,7 @@
    kind="reset"
    version="15.1"
    start="nios2.debug_reset_request"
-   end="parallel_data_bus_in.reset" />
+   end="data_bus.reset" />
  <connection
    kind="reset"
    version="15.1"
@@ -756,6 +794,11 @@
    version="15.1"
    start="nios2.debug_reset_request"
    end="parallel_data_bus_out.reset" />
+ <connection
+   kind="reset"
+   version="15.1"
+   start="nios2.debug_reset_request"
+   end="transmit_enable_1.reset" />
  <connection
    kind="reset"
    version="15.1"
