@@ -117,7 +117,15 @@ int receive();
 int playerOnePlay();
 int checkShot(char gameBoard[10][10], int i, int j);
 void getCoordinates();
+void getAttacked();
+void gameInit();
+void printBoard();
+void attack();
+int receive();
 
+
+int playerOnePlay();
+int playerTwoPlay();
 /*
  int main()
  {
@@ -170,7 +178,7 @@ int main() {
 		keepScore++; // how many turns did the player take to win
 
 	} while (counter < 17);
-
+	return 0;
 }
 
 int send(unsigned int str) {
@@ -220,7 +228,7 @@ int getPlayerNum() {
 
 int playerOnePlay() {
 	attack();
-	alt_putstr("Player 2's Turn...")
+	alt_putstr("Player 2's Turn...");
 	getAttacked();
 	return 0;
 }
@@ -285,7 +293,7 @@ int checkShot(char gameBoard[10][10], int i, int j) {
 	return HIT;
 }
 
-void printBoard(char gameBoard[][]) {
+void printBoard() {
 	/* prints the board in the beginning of the game */
 	int i, j;
 	alt_printf("  0 1 2 3 4 5 6 7 8 9\n"); // prints the top row of number
@@ -362,7 +370,7 @@ void attack() {
 
 void getAttacked() {
 	// Wait for other players attack
-	unsigned int h = recieve();
+	unsigned int h = receive();
 	unsigned int k = receive();
 
 	/*******************************************************
@@ -461,6 +469,6 @@ void gameInit() {
 		gameBoard[9][8 + j] = DESTROYER_CHAR;
 	}
 	/**************************************/
-	printBoard(gameBoard);
+	printBoard();
 
 }
