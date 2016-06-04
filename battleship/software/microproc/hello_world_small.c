@@ -265,15 +265,12 @@ unsigned int receive() {
 	alt_putstr("Receive!\n");
 	unsigned int data;
 	while (1) {
+		data = *data_bus_in;
 		if (*character_received) {
-			usleep(100);
-			data = *data_bus_in;
-
+			alt_putstr("Receive!\n");
 			if (data & 128) {
 				data = (data / 2) & 127;
 			}
-			//break;
-
 		}
 	}
 	return data;
