@@ -89,13 +89,23 @@
 #define character_sent (volatile char *) 0x3020
 
 
+#define MISS_CHAR (char) x
+#define HIT_CHAR (char) y
+#define DOWNED_CARRIER_CHAR (char) a
+#define DOWNED_BATTLESHIP_CHAR (char) b
+#define DOWNED_CRUISER_CHAR (char) c
+#define DOWNED_SUBMARINE_CHAR (char) d
+#define DOWNED_DESTROYER_CHAR (char) e
+#define NO_OP_CHAR (char) f
+
+
 int send(unsigned int str);
 
 int getPlayerNum();
 int receive();
 int playerOnePlay();
 int checkShot(char gameBoard[10][10], int i, int j);
-void getCoordinates(unsigned int * k, unsigned int * h);
+void getCoordinates();
 
 /*
 int main()
@@ -135,201 +145,202 @@ int main () {
 	char gameBoard [ 10 ][ 10 ];
 
 
-		// initialize all the variables.
-		/******************************/
-		char water      =   '~';
-		char hit        =   'x';
-		char miss       =   'm';
-		char carrier    =   'c'; // length 5
-		char battleship =   'b'; // length 4
-		char cruiser    =   'r'; // length 3
-		char submarine  =   's'; // length 3
-		char destroyer  =   'd'; // length 2
-		/********************************/
+	// initialize all the variables.
+	/******************************/
+	char water      =   '~';
+	char hit        =   'x';
+	char miss       =   'm';
+	char carrier    =   'c'; // length 5
+	char battleship =   'b'; // length 4
+	char cruiser    =   'r'; // length 3
+	char submarine  =   's'; // length 3
+	char destroyer  =   'd'; // length 2
+	/********************************/
 
-		//Variable being used in the main program
-		/**********************************/
-		unsigned int h = 0;
-		unsigned int k = 0;
-		unsigned int response;
-		int shot = 0;
-		int counter = 0;
-		int keepScore = 0;
-		/************************************/
+	//Variable being used in the main program
+	/**********************************/
+	unsigned int h = 0;
+	unsigned int k = 0;
+	unsigned int response;
+	int shot = 0;
+	int counter = 0;
+	int keepScore = 0;
+	/************************************/
 
-		//makes counter for the number of hits on a certain ship
-		/************************************/
-		int carrierCounter = 0;
-		int battleshipCounter = 0;
-		int cruiserCounter = 0;
-		int submarineCounter = 0;
-		int destroyerCounter = 0;
-		/**********************/
+	//makes counter for the number of hits on a certain ship
+	/************************************/
+	int carrierCounter = 0;
+	int battleshipCounter = 0;
+	int cruiserCounter = 0;
+	int submarineCounter = 0;
+	int destroyerCounter = 0;
+	/**********************/
 
-		int i, j;
-		/***************************
-		puts in water in the 2d array*/
-		for (i = 0; i<10; i++ ){
-			for (j = 0; j <10; j++){
-				gameBoard[i][j] = water;
-			}
+	int i, j;
+	/***************************
+	puts in water in the 2d array*/
+	for (i = 0; i<10; i++ ){
+		for (j = 0; j <10; j++) {
+			gameBoard[i][j] = water;
 		}
-		/*****************************/
+	}
+	/*****************************/
 
 
-		/*******************************
-		 assigns all the different characters
-		 to different positions in the 2d array */
-		for (j = 0; j<5 ; j++){
-			gameBoard [1][j] = carrier;
-		 }
+	/*******************************
+	 assigns all the different characters
+	 to different positions in the 2d array */
+	for (j = 0; j<5 ; j++) {
+		gameBoard [1][j] = carrier;
+	 }
 
-		for (i = 0; i< 4; i++){
-			gameBoard [i+3][7] = battleship;
-		 }
+	for (i = 0; i< 4; i++) {
+		gameBoard [i+3][7] = battleship;
+	 }
 
-		for (i = 0; i< 3; i++){
-			gameBoard [i+4][9] = cruiser;
-		 }
+	for (i = 0; i< 3; i++) {
+		gameBoard [i+4][9] = cruiser;
+	 }
 
-		for (j = 0; j< 3; j++){
-			gameBoard [7][1+j] = submarine;
-		 }
+	for (j = 0; j< 3; j++) {
+		gameBoard [7][1+j] = submarine;
+	 }
 
-		for (j = 0; j< 2; j++){
-			gameBoard [9][8+j] = destroyer;
-		 }
-		/**************************************/
-
-		/***************************************/
-		/*prints the board in the beginning of the game*/
-		alt_printf("  0 1 2 3 4 5 6 7 8 9\n"); // prints the top row of number
-		for (i = 0; i<10; i++ ){
-			alt_printf("%x ",i);//prints the verticle row of number
-				for (j = 0; j <10; j++){
-					alt_printf ("%c ", gameBoard[i][j]);
-			}
-			alt_putstr("\n");
-		 }
+	for (j = 0; j< 2; j++) {
+		gameBoard [9][8+j] = destroyer;
+	 }
+	/**************************************/
 
 
-		/******************************************/
-
-		do {
-
-			getCoordinates();
-
-
-			// Wait for response to hit
-			response = receive();
-
-
-			/***********************************
-			gets the data from the checkShot and checks
-			if the coordinates entered by the user was a hit
-			or a miss or if the user has already used those
-			coordinates */
-			switch (shot){
-			case 0: alt_putstr("Sorry you missed \n");
-					gameBoard[h][k] = miss;
-					break;
-			case 1: alt_putstr("It was a hit! \n");
-					gameBoard[h][k] = hit;
-					counter++;
-					break;
-			case 2: alt_putstr("Please pick another value you have already chosen that\n");
-					break;
-			}
-			/*************************************/
-
-
-			// Wait for other players attack
-			h = recieve();
-			k = receive();
-
-
-
-	/*The following checks if you have hit some
-		ship and keeps track of how many times
-		the player has hit the ship */
-
-	if (gameBoard[h][k] == carrier){
-		carrierCounter ++;
+	/* prints the board in the beginning of the game */
+	alt_printf("  0 1 2 3 4 5 6 7 8 9\n"); // prints the top row of number
+	for (i = 0; i<10; i++ ){
+		alt_printf("%x ",i); //prints the verticle row of number
+			for (j = 0; j <10; j++) {
+				alt_printf ("%c ", gameBoard[i][j]);
 		}
-	else if (gameBoard[h][k] == battleship){
-		battleshipCounter++;
-		}
-	else if (gameBoard[h][k] == cruiser){
-		cruiserCounter++;
-		}
-	else if (gameBoard[h][k] == submarine){
-		submarineCounter++;
-		}
-	else if (gameBoard[h][k] == destroyer){
-		destroyerCounter++;
-		}
-		/***************************************/
+		alt_putstr("\n");
+	 }
 
+
+	/******************************************/
+
+	do {
+
+		getCoordinates();
+
+
+		// Wait for response to hit
+		response = receive();
+
+
+		switch (response) {
+			case MISS_CHAR: 
+				alt_putstr("Miss!\n");
+				break;
+			case HIT_CHAR: 
+				alt_putstr("It was a hit! \n");
+				counter++;
+				break;
+		}
+
+		// Wait for other players attack
+		h = recieve();
+		k = receive();
 
 		/*******************************************************
 		sends the data to checkShot to see if
 		the player hit, miss, or has he already used tht input*/
 
-		shot = checkShot (gameBoard,h,k );
+		shot = checkShot(gameBoard, h, j);
 		/******************************************************/
 
 
 
+			
+		/***********************************
+		gets the data from the checkShot and checks
+		if the coordinates entered by the user was a hit
+		or a miss or if the user has already used those
+		coordinates */
+		switch (shot){
+			case 0: alt_putstr("Miss!\n");
+				gameBoard[h][k] = miss;
+				send(MISS_CHAR);
+				break;
+			case 1: alt_putstr("It was a hit! \n");
+				gameBoard[h][k] = hit;
+				//counter++;
+				send(HIT_CHAR);
+				break;
+			case 2: alt_putstr("Please pick another value you have already chosen that\n");
+				break;
+		}
+		/*************************************/
+
+
+
+		/*The following checks if you have hit some
+			ship and keeps track of how many times
+			the player has hit the ship */
+
+		if (gameBoard[h][k] == carrier){
+			carrierCounter ++;
+		} else if (gameBoard[h][k] == battleship) {
+			battleshipCounter++;
+		} else if (gameBoard[h][k] == cruiser) {
+			cruiserCounter++;
+		} else if (gameBoard[h][k] == submarine) {
+			submarineCounter++;
+		} else if (gameBoard[h][k] == destroyer) {
+			destroyerCounter++;
+		}
 
 
 		/****************************************
 		The follwing checks if a certain ship is hit certain
 		number of times and output the message to the user
 		saying that the have drowned that particular ship*/
-	if (carrierCounter == 5){
-		alt_putstr("You just drowned the carrier\n");
-		carrierCounter = 0;
+		if (carrierCounter == 5){
+			alt_putstr("You just drowned the carrier\n");
+			carrierCounter = 0;
+		} else if (battleshipCounter==4){
+			alt_putstr("You just drowned the battleship\n");
+			battleshipCounter = 0;
+		} else if (cruiserCounter==3){
+			alt_putstr("You just drowned the cruiser\n");
+			cruiserCounter = 0;
+		} else if(submarineCounter==3){
+			alt_putstr("You just drowned the submarine\n");
+			submarineCounter = 0;
+		} else if(destroyerCounter == 2){
+			alt_putstr("You just drowned the destroyer\n");
+			destroyerCounter = 0;
 		}
-	else if (battleshipCounter==4){
-		alt_putstr("You just drowned the battleship\n");
-		battleshipCounter = 0;
-		}
-	else if (cruiserCounter==3){
-		alt_putstr("You just drowned the cruiser\n");
-		cruiserCounter = 0;
-		}
-	else if(submarineCounter==3){
-		alt_putstr("You just drowned the submarine\n");
-		submarineCounter = 0;
-		}
-	else if(destroyerCounter == 2){
-		alt_putstr("You just drowned the destroyer\n");
-		destroyerCounter = 0;
-		}
-		/***********************************************/
+		
 
 
 
 
 		/*************************************
-		just prints the board after adding the hit or miss*/
+		just prints the board after adding the hit or miss*/ // Make method?
+	
 		alt_putstr("  0 1 2 3 4 5 6 7 8 9\n");
 
-	for (i = 0; i<10; i++ ){
-		alt_printf("%x ",i);
-	for (j = 0; j <10; j++){
-		alt_printf("%c ", gameBoard[i][j]);
+		for (i = 0; i<10; i++ ) {
+			alt_printf("%x ",i);
+			for (j = 0; j <10; j++) {
+				alt_printf("%c ", gameBoard[i][j]);
+			}
+			alt_putstr("\n");
 		}
-	alt_putstr("\n");
-	 }
+	
 		/**************************************/
 
+		keepScore++; // how many turns did the player take to win
 
-		keepScore ++; // how many turns did the player take to win
+	} while (counter < 17);
 
-
-		} while (counter < 17);
-		/***************************************/
 }
 
 
@@ -413,26 +424,28 @@ int playerTwoPlay(){
 
 
 
-void getCoordinates(unsigned int * k, unsigned int * h) {
+void getCoordinates() {
+	unsigned int h, k;
 	/**************************************
 	the following alt_putstr asks and stores
 	players input*/
 
 	alt_putstr ("> Enter Target:\n");
 	alt_putstr ("> Enter longitude: ");
-	*h = alt_getchar();
-		if (*h == '\n') {
-			*h = alt_getchar();
-		}
-	*h = *h - 49;
+	h = alt_getchar();
+	if (h == '\n') {
+		h = alt_getchar();
+	}
+	h = h - 48;
 
 	alt_putstr ("> Enter latitude: ");
-	*k = alt_getchar();
-				if (*k == '\n') {
-					*k = alt_getchar();
-				}
-	*k = *k - 49;
-	/***************************************/
+	k = alt_getchar();
+	if (k == '\n') {
+		k = alt_getchar();
+	}
+	k = k - 48;
+	send(h);
+	send(k);
 }
 
 // The following function checks the coordinate
