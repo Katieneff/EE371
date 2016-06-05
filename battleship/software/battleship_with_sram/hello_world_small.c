@@ -105,9 +105,9 @@ void gameInit();
 void playerOnePlay();
 void playerTwoPlay();
 void send();
-char receiveNum();
+unsigned int receiveNum();
 int getPlayerNum();
-char receiveChar();
+unsigned int receiveChar();
 
 int main() {
 	*transmit_enable = 0;
@@ -251,9 +251,9 @@ void send(unsigned int str) {
 	return;
 }
 
-char receiveNum() {
+unsigned int receiveNum() {
 	alt_putstr("Receiving number...\n");
-	char data;
+	unsigned int data;
 	*transmit_enable = 1;
 	while (1) {
 		if (*character_received) {
@@ -277,9 +277,9 @@ char receiveNum() {
 }
 
 
-char receiveChar() {
+unsigned int receiveChar() {
 	alt_putstr("Receiving character...\n");
-	char data;
+	unsigned int data;
 		*transmit_enable = 1;
 		while (1) {
 			if (*character_received) {
