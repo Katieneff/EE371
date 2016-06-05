@@ -330,8 +330,8 @@ void sendMissle() {
 }
 
 void receiveMissle() {
-	unsigned int h = receiveNum();
-	unsigned int k = receiveNum();
+	unsigned int h = receiveNum() - 48;
+	unsigned int k = receiveNum() - 48;
 	//sramWrite(h, lon);
 	//sramWrite(k, lat);
 
