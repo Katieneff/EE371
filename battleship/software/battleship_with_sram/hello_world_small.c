@@ -96,10 +96,8 @@
 #define counter (volatile int *) 0xc9
 #define battleshipCounter (volatile int *) 0xc8
 #define destroyerCounter (volatile int *) 0xc9
-#define h (volatile int *) 0xca
-#define k (volatile int *) 0xcb
-
-
+//#define h (volatile int *) 0xca
+//#define k (volatile int *) 0xcb
 
 void sramWrite(int address, int data);
 int sramRead(int address);
@@ -205,20 +203,20 @@ int getPlayerNum() {
 
 void playerOnePlay() {
 	/*
-	alt_putstr("Type a number\n");
-	unsigned int h = alt_getchar();
-	if (h == '\n') {
-		h = alt_getchar();
-	}
-	send(h);
-	alt_putstr("Type a character\n");
-	unsigned int k = alt_getchar();
-	if (k == '\n') {
-		k = alt_getchar();
-	}
-	send(k);
-	receiveNum();
-	receiveChar();*/
+	 alt_putstr("Type a number\n");
+	 unsigned int h = alt_getchar();
+	 if (h == '\n') {
+	 h = alt_getchar();
+	 }
+	 send(h);
+	 alt_putstr("Type a character\n");
+	 unsigned int k = alt_getchar();
+	 if (k == '\n') {
+	 k = alt_getchar();
+	 }
+	 send(k);
+	 receiveNum();
+	 receiveChar();*/
 	sendMissle();
 	receiveMissle();
 
@@ -226,21 +224,21 @@ void playerOnePlay() {
 
 void playerTwoPlay() {
 	/*receiveNum();
-	receiveChar();
+	 receiveChar();
 
-	alt_putstr("Type a number\n");
-	unsigned int h = alt_getchar();
-	if (h == '\n') {
-		h = alt_getchar();
-	}
-	send(h);
+	 alt_putstr("Type a number\n");
+	 unsigned int h = alt_getchar();
+	 if (h == '\n') {
+	 h = alt_getchar();
+	 }
+	 send(h);
 
-	alt_putstr("Type a character\n");
-	unsigned int k = alt_getchar();
-	if (k == '\n') {
-		k = alt_getchar();
-	}
-	send(k);*/
+	 alt_putstr("Type a character\n");
+	 unsigned int k = alt_getchar();
+	 if (k == '\n') {
+	 k = alt_getchar();
+	 }
+	 send(k);*/
 	receiveMissle();
 	sendMissle();
 }
@@ -286,33 +284,31 @@ unsigned int receiveNum() {
 	}
 }
 
-
 unsigned int receiveChar() {
 	alt_putstr("Receiving character...\n");
 	unsigned int data;
-		*transmit_enable = 1;
-		while (1) {
-			if (*character_received) {
-				usleep(100);
-				*transmit_enable = 0;
-				data = *data_bus_in;
-				alt_putstr("Character received\n");
+	*transmit_enable = 1;
+	while (1) {
+		if (*character_received) {
+			usleep(100);
+			*transmit_enable = 0;
+			data = *data_bus_in;
+			alt_putstr("Character received\n");
 
-				if (data > 122) {
-					data = (data >> 1) & 127;
-					alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
-							data);
-				}
-
-				alt_printf("Data as a char: %c\n", data);
-				alt_printf("Data as an int: %x\n", data);
-
-				return data;
+			if (data > 122) {
+				data = (data >> 1) & 127;
+				alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
+						data);
 			}
+
+			alt_printf("Data as a char: %c\n", data);
+			alt_printf("Data as an int: %x\n", data);
+
+			return data;
 		}
+	}
 
 }
-
 
 void sendMissle() {
 
@@ -333,10 +329,35 @@ void sendMissle() {
 	send(lat);
 }
 
-
 void receiveMissle() {
-	unsigned int lon = receiveNum();
-	unsigned int lat = receiveNum();
-	sramWrite(h, lon);
-	sramWrite(k, lon);
+	unsigned int h = receiveNum();
+	unsigned int k = receiveNum();
+	//sramWrite(h, lon);
+	//sramWrite(k, lat);
+
+
+	switch (readSram(h * 10 + k)) {
+	// when its a miss
+	case 'w':
+		alt_putstr("Miss!\n");
+		break;
+	case 'd':
+	case 'b':
+	case 'r':
+	case 's':
+	case 'c':
+		alt_putstr("You were hit! \n");
+		sramWrite(h * 10 + k, 'x');
+		break;
+	case 'x':
+	case 'm':
+		alt_putstr("Miss!\n");
+		break;
+	default:
+		alt_putstr("Error\n");
+		break;
+	}
+
+	printBoard();
+
 }
