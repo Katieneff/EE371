@@ -109,10 +109,11 @@ void playerOnePlay();
 void playerTwoPlay();
 void send();
 char receiveNum();
+int getPlayerNum();
 
 
 int main() {
-
+	*transmit_enable = 0;
 	*sram_we = 1;
 	*sram_oe = 1;
 	gameInit();
@@ -202,7 +203,13 @@ int getPlayerNum() {
 }
 
 void playerOnePlay() {
-	send('1');
+
+	unsigned int h = alt_getchar();
+		if (h == '\n') {
+			h = alt_getchar();
+		}
+	send(h);
+
 	receiveNum();
 
 }
@@ -210,7 +217,12 @@ void playerOnePlay() {
 
 void playerTwoPlay() {
 	receiveNum();
-	send('2');
+	unsigned int h = alt_getchar();
+			if (h == '\n') {
+				h = alt_getchar();
+			}
+		send(h);
+	send(h);
 }
 
 
@@ -224,10 +236,10 @@ void send(unsigned int str) {
 		if (*character_sent) {
 			alt_printf("%c sent!\n", str); // Debugging
 			usleep(100);
-			return 0;
+			return;
 		}
 	}
-	return 0;
+	return;
 }
 
 char receiveNum() {
