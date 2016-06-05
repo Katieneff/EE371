@@ -1,0 +1,620 @@
+Archive member included to satisfy reference by file (symbol)
+
+c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+                              obj/default/hello_world_small.o (__mulsi3)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+                              obj/default/hello_world_small.o (alt_getchar)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+                              ../battleship_with_sram_bsp//obj/HAL/src/crt0.o (alt_load)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+                              ../battleship_with_sram_bsp//obj/HAL/src/crt0.o (alt_main)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+                              obj/default/hello_world_small.o (alt_printf)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o) (alt_putchar)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+                              obj/default/hello_world_small.o (alt_putstr)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+                              obj/default/hello_world_small.o (usleep)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o) (alt_irq_init)
+../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o) (altera_avalon_jtag_uart_read)
+../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o) (altera_avalon_jtag_uart_write)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o) (alt_busy_sleep)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o) (alt_dcache_flush_all)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o) (alt_fd_list)
+../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o) (alt_icache_flush_all)
+../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o) (altera_nios2_gen2_irq_init)
+c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o) (strlen)
+c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+                              ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o) (__udivsi3)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+reset            0x0000000000001000 0x0000000000000020
+onchip_memory    0x0000000000001020 0x0000000000000fe0
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+LOAD obj/default/hello_world_small.o
+LOAD c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libstdc++.a
+LOAD c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libm.a
+LOAD c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a
+START GROUP
+LOAD c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a
+LOAD c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a
+LOAD ../battleship_with_sram_bsp/\libhal_bsp.a
+LOAD c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libm.a
+END GROUP
+LOAD c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a
+                0x0000000000001000                __alt_mem_onchip_memory = 0x1000
+
+.entry          0x0000000000001000       0x20
+ *(.entry)
+ .entry         0x0000000000001000       0x20 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+                0x0000000000001000                __reset
+                0x000000000000100c                _exit
+
+.exceptions     0x0000000000001020        0x0
+                0x0000000000001020                PROVIDE (__ram_exceptions_start, ABSOLUTE (.))
+                0x0000000000001020                . = ALIGN (0x20)
+ *(.irq)
+ *(.exceptions.entry.label)
+ *(.exceptions.entry.user)
+ *(.exceptions.entry.ecc_fatal)
+ *(.exceptions.entry)
+ *(.exceptions.irqtest.user)
+ *(.exceptions.irqtest)
+ *(.exceptions.irqhandler.user)
+ *(.exceptions.irqhandler)
+ *(.exceptions.irqreturn.user)
+ *(.exceptions.irqreturn)
+ *(.exceptions.notirq.label)
+ *(.exceptions.notirq.user)
+ *(.exceptions.notirq)
+ *(.exceptions.soft.user)
+ *(.exceptions.soft)
+ *(.exceptions.unknown.user)
+ *(.exceptions.unknown)
+ *(.exceptions.exit.label)
+ *(.exceptions.exit.user)
+ *(.exceptions.exit)
+ *(.exceptions)
+                0x0000000000001020                PROVIDE (__ram_exceptions_end, ABSOLUTE (.))
+                0x0000000000001020                PROVIDE (__flash_exceptions_start, LOADADDR (.exceptions))
+
+.text           0x0000000000001020      0xabc
+                [!provide]                        PROVIDE (stext, ABSOLUTE (.))
+ *(.interp)
+ *(.hash)
+ *(.dynsym)
+ *(.dynstr)
+ *(.gnu.version)
+ *(.gnu.version_d)
+ *(.gnu.version_r)
+ *(.rel.init)
+ *(.rela.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rela.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rela.ctors)
+ *(.rel.dtors)
+ *(.rela.dtors)
+ *(.rel.got)
+ *(.rela.got)
+ *(.rel.sdata .rel.sdata.* .rel.gnu.linkonce.s.*)
+ *(.rela.sdata .rela.sdata.* .rela.gnu.linkonce.s.*)
+ *(.rel.sbss .rel.sbss.* .rel.gnu.linkonce.sb.*)
+ *(.rela.sbss .rela.sbss.* .rela.gnu.linkonce.sb.*)
+ *(.rel.sdata2 .rel.sdata2.* .rel.gnu.linkonce.s2.*)
+ *(.rela.sdata2 .rela.sdata2.* .rela.gnu.linkonce.s2.*)
+ *(.rel.sbss2 .rel.sbss2.* .rel.gnu.linkonce.sb2.*)
+ *(.rela.sbss2 .rela.sbss2.* .rela.gnu.linkonce.sb2.*)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+ *(.rel.plt)
+ *(.rela.plt)
+ *(.rel.dyn)
+ *(.init)
+ *(.plt)
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x0000000000001020       0x3c ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+                0x0000000000001020                _start
+ .text          0x000000000000105c      0x3a0 obj/default/hello_world_small.o
+                0x000000000000105c                sramWrite
+                0x0000000000001088                sramRead
+                0x00000000000010bc                makeBoard
+                0x0000000000001150                printBoard
+                0x00000000000011f0                gameInit
+                0x0000000000001258                getPlayerNum
+                0x0000000000001290                playerOnePlay
+                0x0000000000001294                playerTwoPlay
+                0x0000000000001298                send
+                0x000000000000131c                receiveNum
+ .text.startup  0x00000000000013fc       0x50 obj/default/hello_world_small.o
+                0x00000000000013fc                main
+ .text          0x000000000000144c       0x28 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+                0x000000000000144c                __mulsi3
+ .text          0x0000000000001474       0x44 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+                0x0000000000001474                alt_getchar
+ .text          0x00000000000014b8       0xe0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+                0x00000000000014b8                alt_load
+ .text          0x0000000000001598       0x2c ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+                0x0000000000001598                alt_main
+ .text          0x00000000000015c4      0x170 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+                0x00000000000015c4                alt_printf
+ .text          0x0000000000001734       0x48 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+                0x0000000000001734                alt_putchar
+ .text          0x000000000000177c       0x38 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+                0x000000000000177c                alt_putstr
+ .text          0x00000000000017b4        0x4 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+                0x00000000000017b4                usleep
+ .text          0x00000000000017b8       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x00000000000017b8                alt_irq_init
+                0x00000000000017d8                alt_sys_init
+ .text          0x00000000000017dc       0x5c ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+                0x00000000000017dc                altera_avalon_jtag_uart_read
+ .text          0x0000000000001838       0x34 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                0x0000000000001838                altera_avalon_jtag_uart_write
+ .text          0x000000000000186c       0x88 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+                0x000000000000186c                alt_busy_sleep
+ .text          0x00000000000018f4        0x4 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                0x00000000000018f4                alt_dcache_flush_all
+ .text          0x00000000000018f8        0x8 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+ .text          0x0000000000001900        0x4 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                0x0000000000001900                alt_icache_flush_all
+ .text          0x0000000000001904        0x8 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                0x0000000000001904                altera_nios2_gen2_irq_init
+ .text          0x000000000000190c        0x0 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .text.strlen   0x000000000000190c       0x1c c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+                0x000000000000190c                strlen
+ .text          0x0000000000001928      0x1b4 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+                0x0000000000001928                __divsi3
+                0x00000000000019ac                __modsi3
+                0x0000000000001a20                __udivsi3
+                0x0000000000001a84                __umodsi3
+ *(.gnu.warning.*)
+ *(.fini)
+                [!provide]                        PROVIDE (__etext, ABSOLUTE (.))
+                [!provide]                        PROVIDE (_etext, ABSOLUTE (.))
+                [!provide]                        PROVIDE (etext, ABSOLUTE (.))
+ *(.eh_frame_hdr)
+                0x0000000000001adc                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__preinit_array_start, ABSOLUTE (.))
+ *(.preinit_array)
+                [!provide]                        PROVIDE (__preinit_array_end, ABSOLUTE (.))
+                [!provide]                        PROVIDE (__init_array_start, ABSOLUTE (.))
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end, ABSOLUTE (.))
+                [!provide]                        PROVIDE (__fini_array_start, ABSOLUTE (.))
+ *(.fini_array)
+                [!provide]                        PROVIDE (__fini_array_end, ABSOLUTE (.))
+ *(.eh_frame)
+ *(.gcc_except_table .gcc_except_table.*)
+ *(.dynamic)
+                [!provide]                        PROVIDE (__CTOR_LIST__, ABSOLUTE (.))
+ *(.ctors)
+ *(SORT(.ctors.*))
+                [!provide]                        PROVIDE (__CTOR_END__, ABSOLUTE (.))
+                [!provide]                        PROVIDE (__DTOR_LIST__, ABSOLUTE (.))
+ *(.dtors)
+ *(SORT(.dtors.*))
+                [!provide]                        PROVIDE (__DTOR_END__, ABSOLUTE (.))
+ *(.jcr)
+                0x0000000000001adc                . = ALIGN (0x4)
+
+.rodata         0x0000000000001adc       0xe8
+                0x0000000000001adc                PROVIDE (__ram_rodata_start, ABSOLUTE (.))
+                0x0000000000001adc                . = ALIGN (0x4)
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.4
+                0x0000000000001adc       0xdc obj/default/hello_world_small.o
+                                         0xe0 (size before relaxing)
+ .rodata.str1.4
+                0x0000000000001bb8        0xc ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+                                          0xa (size before relaxing)
+ *(.rodata1)
+                0x0000000000001bc4                . = ALIGN (0x4)
+                0x0000000000001bc4                PROVIDE (__ram_rodata_end, ABSOLUTE (.))
+                0x0000000000001adc                PROVIDE (__flash_rodata_start, LOADADDR (.rodata))
+
+.rwdata         0x0000000000001bc4       0x70 load address 0x0000000000001c34
+                0x0000000000001bc4                PROVIDE (__ram_rwdata_start, ABSOLUTE (.))
+                0x0000000000001bc4                . = ALIGN (0x4)
+ *(.got.plt)
+ *(.got)
+ *(.data1)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+ .data          0x0000000000001bc4        0x0 obj/default/hello_world_small.o
+ .data          0x0000000000001bc4        0x0 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .data          0x0000000000001bc4        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .data          0x0000000000001bc4       0x58 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+                0x0000000000001bc4                alt_fd_list
+                0x0000000000001bf4                alt_dev_null
+ .data          0x0000000000001c1c        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .data          0x0000000000001c1c        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .data          0x0000000000001c1c        0x0 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .data          0x0000000000001c1c        0x0 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+                0x0000000000009c1c                _gp = ABSOLUTE ((. + 0x8000))
+                [!provide]                        PROVIDE (gp, _gp)
+ *(.rwdata .rwdata.*)
+ *(.sdata .sdata.* .gnu.linkonce.s.*)
+ .sdata         0x0000000000001c1c        0x4 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x0000000000001c1c                jtag_uart
+ .sdata         0x0000000000001c20       0x14 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+                0x0000000000001c20                alt_max_fd
+                0x0000000000001c24                alt_dev_list
+                0x0000000000001c2c                alt_fs_list
+ *(.sdata2 .sdata2.* .gnu.linkonce.s2.*)
+                0x0000000000001c34                . = ALIGN (0x4)
+                0x0000000000001c34                _edata = ABSOLUTE (.)
+                [!provide]                        PROVIDE (edata, ABSOLUTE (.))
+                0x0000000000001c34                PROVIDE (__ram_rwdata_end, ABSOLUTE (.))
+                0x0000000000001c34                PROVIDE (__flash_rwdata_start, LOADADDR (.rwdata))
+
+.bss            0x0000000000001ca4        0xc
+                0x0000000000001ca4                __bss_start = ABSOLUTE (.)
+                [!provide]                        PROVIDE (__sbss_start, ABSOLUTE (.))
+                [!provide]                        PROVIDE (___sbss_start, ABSOLUTE (.))
+ *(.dynsbss)
+ *(.sbss .sbss.* .gnu.linkonce.sb.*)
+ .sbss          0x0000000000001ca4        0xc ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+                0x0000000000001ca4                alt_envp
+                0x0000000000001ca8                alt_argv
+                0x0000000000001cac                alt_argc
+ *(.sbss2 .sbss2.* .gnu.linkonce.sb2.*)
+ *(.scommon)
+                [!provide]                        PROVIDE (__sbss_end, ABSOLUTE (.))
+                [!provide]                        PROVIDE (___sbss_end, ABSOLUTE (.))
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+ .bss           0x0000000000001cb0        0x0 obj/default/hello_world_small.o
+ .bss           0x0000000000001cb0        0x0 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .bss           0x0000000000001cb0        0x0 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .bss           0x0000000000001cb0        0x0 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .bss           0x0000000000001cb0        0x0 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ *(COMMON)
+                0x0000000000001cb0                . = ALIGN (0x4)
+                0x0000000000001cb0                __bss_end = ABSOLUTE (.)
+
+.onchip_memory  0x0000000000001cb0        0x0
+                [!provide]                        PROVIDE (_alt_partition_onchip_memory_start, ABSOLUTE (.))
+ *(.onchip_memory .onchip_memory. onchip_memory.*)
+                0x0000000000001cb0                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (_alt_partition_onchip_memory_end, ABSOLUTE (.))
+                0x0000000000001cb0                _end = ABSOLUTE (.)
+                0x0000000000001cb0                end = ABSOLUTE (.)
+                0x0000000000001cb0                __alt_stack_base = ABSOLUTE (.)
+                [!provide]                        PROVIDE (_alt_partition_onchip_memory_load_addr, LOADADDR (.onchip_memory))
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x23
+ *(.comment)
+ .comment       0x0000000000000000       0x23 obj/default/hello_world_small.o
+                                         0x24 (size before relaxing)
+ .comment       0x0000000000000023       0x24 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .comment       0x0000000000000023       0x24 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .comment       0x0000000000000023       0x24 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .comment       0x0000000000000023       0x24 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x0000000000000000      0x290
+ *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000       0x28 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+ .debug_aranges
+                0x0000000000000028       0x28 obj/default/hello_world_small.o
+ .debug_aranges
+                0x0000000000000050       0x20 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_aranges
+                0x0000000000000070       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_aranges
+                0x0000000000000090       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_aranges
+                0x00000000000000b0       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_aranges
+                0x00000000000000d0       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_aranges
+                0x00000000000000f0       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_aranges
+                0x0000000000000110       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_aranges
+                0x0000000000000130       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_aranges
+                0x0000000000000150       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_aranges
+                0x0000000000000170       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_aranges
+                0x0000000000000190       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_aranges
+                0x00000000000001b0       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_aranges
+                0x00000000000001d0       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_aranges
+                0x00000000000001f0       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_aranges
+                0x0000000000000210       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_aranges
+                0x0000000000000230       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_aranges
+                0x0000000000000250       0x20 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_aranges
+                0x0000000000000270       0x20 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x0000000000000000     0x20c9
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x0000000000000000       0x77 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+ .debug_info    0x0000000000000077      0x53a obj/default/hello_world_small.o
+ .debug_info    0x00000000000005b1       0xb4 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_info    0x0000000000000665      0x32d ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_info    0x0000000000000992      0x1c9 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_info    0x0000000000000b5b      0x169 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_info    0x0000000000000cc4      0x14d ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_info    0x0000000000000e11      0x12a ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_info    0x0000000000000f3b      0x13a ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_info    0x0000000000001075       0xd1 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_info    0x0000000000001146      0x185 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_info    0x00000000000012cb      0x1b4 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_info    0x000000000000147f      0x197 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_info    0x0000000000001616       0xd8 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_info    0x00000000000016ee       0x92 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_info    0x0000000000001780      0x499 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_info    0x0000000000001c19       0x92 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_info    0x0000000000001cab       0x92 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_info    0x0000000000001d3d       0xc9 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_info    0x0000000000001e06      0x2c3 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+
+.debug_abbrev   0x0000000000000000      0xea2
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000       0x12 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+ .debug_abbrev  0x0000000000000012      0x1a0 obj/default/hello_world_small.o
+ .debug_abbrev  0x00000000000001b2       0x6f c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_abbrev  0x0000000000000221      0x11d ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_abbrev  0x000000000000033e       0xd8 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_abbrev  0x0000000000000416       0xee ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_abbrev  0x0000000000000504       0xd5 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_abbrev  0x00000000000005d9       0xd2 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_abbrev  0x00000000000006ab       0xd3 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_abbrev  0x000000000000077e       0x8d ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_abbrev  0x000000000000080b      0x107 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_abbrev  0x0000000000000912      0x102 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_abbrev  0x0000000000000a14       0xd5 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_abbrev  0x0000000000000ae9       0x8d ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_abbrev  0x0000000000000b76       0x42 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_abbrev  0x0000000000000bb8       0xd9 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_abbrev  0x0000000000000c91       0x42 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_abbrev  0x0000000000000cd3       0x42 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_abbrev  0x0000000000000d15       0x7f c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_abbrev  0x0000000000000d94      0x10e c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+
+.debug_line     0x0000000000000000      0xec0
+ *(.debug_line)
+ .debug_line    0x0000000000000000       0x66 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+ .debug_line    0x0000000000000066      0x127 obj/default/hello_world_small.o
+ .debug_line    0x000000000000018d       0x80 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_line    0x000000000000020d       0xb7 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_line    0x00000000000002c4       0xa5 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_line    0x0000000000000369       0xbd ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_line    0x0000000000000426      0x10a ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_line    0x0000000000000530       0x55 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_line    0x0000000000000585       0x98 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_line    0x000000000000061d       0xc7 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_line    0x00000000000006e4      0x101 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_line    0x00000000000007e5       0xfb ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_line    0x00000000000008e0       0xf0 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_line    0x00000000000009d0       0xb5 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_line    0x0000000000000a85       0x4e ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_line    0x0000000000000ad3       0xee ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_line    0x0000000000000bc1       0x4e ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_line    0x0000000000000c0f       0x50 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_line    0x0000000000000c5f      0x15c c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_line    0x0000000000000dbb      0x105 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+
+.debug_frame    0x0000000000000000      0x46c
+ *(.debug_frame)
+ .debug_frame   0x0000000000000000      0x154 obj/default/hello_world_small.o
+ .debug_frame   0x0000000000000154       0x20 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_frame   0x0000000000000174       0x2c ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+ .debug_frame   0x00000000000001a0       0x30 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_frame   0x00000000000001d0       0x2c ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_frame   0x00000000000001fc       0x54 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_frame   0x0000000000000250       0x30 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_frame   0x0000000000000280       0x30 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_frame   0x00000000000002b0       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_frame   0x00000000000002d0       0x3c ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_frame   0x000000000000030c       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_frame   0x000000000000032c       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_frame   0x000000000000034c       0x30 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_frame   0x000000000000037c       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_frame   0x000000000000039c       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_frame   0x00000000000003bc       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_frame   0x00000000000003dc       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_frame   0x00000000000003fc       0x20 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_frame   0x000000000000041c       0x50 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+
+.debug_str      0x0000000000000000      0xb0d
+ *(.debug_str)
+ .debug_str     0x0000000000000000      0x19c obj/default/hello_world_small.o
+                                        0x1da (size before relaxing)
+ .debug_str     0x000000000000019c      0x148 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+                                        0x193 (size before relaxing)
+ .debug_str     0x00000000000002e4      0x17e ../battleship_with_sram_bsp/\libhal_bsp.a(alt_getchar.o)
+                                        0x23e (size before relaxing)
+ .debug_str     0x0000000000000462      0x11b ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+                                        0x244 (size before relaxing)
+ .debug_str     0x000000000000057d       0x5e ../battleship_with_sram_bsp/\libhal_bsp.a(alt_main.o)
+                                        0x1bd (size before relaxing)
+ .debug_str     0x00000000000005db       0x59 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+                                        0x10e (size before relaxing)
+ .debug_str     0x0000000000000634       0x34 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+                                        0x193 (size before relaxing)
+ .debug_str     0x0000000000000668       0x1c ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+                                        0x198 (size before relaxing)
+ .debug_str     0x0000000000000684       0x2f ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+                                        0x15f (size before relaxing)
+ .debug_str     0x00000000000006b3       0x86 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+                                        0x22c (size before relaxing)
+ .debug_str     0x0000000000000739       0x38 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+                                        0x227 (size before relaxing)
+ .debug_str     0x0000000000000771       0x32 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                                        0x21d (size before relaxing)
+ .debug_str     0x00000000000007a3       0x33 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+                                        0x173 (size before relaxing)
+ .debug_str     0x00000000000007d6       0x1f ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                                        0x15d (size before relaxing)
+ .debug_str     0x00000000000007f5      0x120 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_dev.o)
+                                        0x30d (size before relaxing)
+ .debug_str     0x0000000000000915       0x1f ../battleship_with_sram_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                                        0x15d (size before relaxing)
+ .debug_str     0x0000000000000934       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                                        0x164 (size before relaxing)
+ .debug_str     0x0000000000000954      0x13a c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+                                        0x1e5 (size before relaxing)
+ .debug_str     0x0000000000000a8e       0x7f c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+                                        0x1d2 (size before relaxing)
+
+.debug_loc      0x0000000000000000      0xb62
+ *(.debug_loc)
+ .debug_loc     0x0000000000000000      0x1c1 obj/default/hello_world_small.o
+ .debug_loc     0x00000000000001c1       0x93 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_loc     0x0000000000000254      0x1de ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_loc     0x0000000000000432       0x2c ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_loc     0x000000000000045e       0x37 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_loc     0x0000000000000495       0x21 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_loc     0x00000000000004b6       0x21 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_loc     0x00000000000004d7       0xcd ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_loc     0x00000000000005a4       0x8b ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_loc     0x000000000000062f       0x67 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_loc     0x0000000000000696       0x1e c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_loc     0x00000000000006b4      0x4ae c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_alt_sim_info
+                0x0000000000000000       0x40
+ *(.debug_alt_sim_info)
+ .debug_alt_sim_info
+                0x0000000000000000       0x10 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+ .debug_alt_sim_info
+                0x0000000000000010       0x30 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+                0x0000000000002000                __alt_data_end = 0x2000
+                0x0000000000002000                PROVIDE (__alt_stack_pointer, __alt_data_end)
+                [!provide]                        PROVIDE (__alt_stack_limit, __alt_stack_base)
+                [!provide]                        PROVIDE (__alt_heap_start, end)
+                [!provide]                        PROVIDE (__alt_heap_limit, 0x2000)
+OUTPUT(battleship_with_sram.elf elf32-littlenios2)
+
+.debug_ranges   0x0000000000000000      0x128
+ .debug_ranges  0x0000000000000000       0x20 ../battleship_with_sram_bsp//obj/HAL/src/crt0.o
+ .debug_ranges  0x0000000000000020       0x18 obj/default/hello_world_small.o
+ .debug_ranges  0x0000000000000038       0x48 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_ranges  0x0000000000000080       0x18 ../battleship_with_sram_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_ranges  0x0000000000000098       0x20 ../battleship_with_sram_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_read.o)
+ .debug_ranges  0x00000000000000b8       0x10 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_ranges  0x00000000000000c8       0x60 c:/altera/16.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.2.0/mno-hw-mul\libgcc.a(lib2-divmod.o)

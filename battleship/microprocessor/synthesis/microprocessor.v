@@ -4,14 +4,19 @@
 
 `timescale 1 ps / 1 ps
 module microprocessor (
-		input  wire       character_received_export, // character_received.export
-		input  wire       character_sent_export,     //     character_sent.export
-		input  wire       clk_clk,                   //                clk.clk
-		input  wire [7:0] data_bus_in_export,        //        data_bus_in.export
-		output wire [7:0] data_bus_out_export,       //       data_bus_out.export
-		output wire       load_export,               //               load.export
-		input  wire       reset_reset_n,             //              reset.reset_n
-		output wire       transmit_enable_export     //    transmit_enable.export
+		input  wire        character_received_export, // character_received.export
+		input  wire        character_sent_export,     //     character_sent.export
+		input  wire        clk_clk,                   //                clk.clk
+		input  wire [7:0]  data_bus_in_export,        //        data_bus_in.export
+		output wire [7:0]  data_bus_out_export,       //       data_bus_out.export
+		output wire        load_export,               //               load.export
+		input  wire        reset_reset_n,             //              reset.reset_n
+		output wire [7:0]  sram_address_sel_export,   //   sram_address_sel.export
+		input  wire [31:0] sram_data_in_port,         //          sram_data.in_port
+		output wire [31:0] sram_data_out_port,        //                   .out_port
+		output wire        sram_oe_export,            //            sram_oe.export
+		output wire        sram_we_export,            //            sram_we.export
+		output wire        transmit_enable_export     //    transmit_enable.export
 	);
 
 	wire  [31:0] nios2_data_master_readdata;                                // mm_interconnect_0:nios2_data_master_readdata -> nios2:d_readdata
@@ -69,9 +74,29 @@ module microprocessor (
 	wire   [1:0] mm_interconnect_0_data_bus_out_s1_address;                 // mm_interconnect_0:data_bus_out_s1_address -> data_bus_out:address
 	wire         mm_interconnect_0_data_bus_out_s1_write;                   // mm_interconnect_0:data_bus_out_s1_write -> data_bus_out:write_n
 	wire  [31:0] mm_interconnect_0_data_bus_out_s1_writedata;               // mm_interconnect_0:data_bus_out_s1_writedata -> data_bus_out:writedata
+	wire         mm_interconnect_0_sram_address_sel_s1_chipselect;          // mm_interconnect_0:sram_address_sel_s1_chipselect -> sram_address_sel:chipselect
+	wire  [31:0] mm_interconnect_0_sram_address_sel_s1_readdata;            // sram_address_sel:readdata -> mm_interconnect_0:sram_address_sel_s1_readdata
+	wire   [1:0] mm_interconnect_0_sram_address_sel_s1_address;             // mm_interconnect_0:sram_address_sel_s1_address -> sram_address_sel:address
+	wire         mm_interconnect_0_sram_address_sel_s1_write;               // mm_interconnect_0:sram_address_sel_s1_write -> sram_address_sel:write_n
+	wire  [31:0] mm_interconnect_0_sram_address_sel_s1_writedata;           // mm_interconnect_0:sram_address_sel_s1_writedata -> sram_address_sel:writedata
+	wire         mm_interconnect_0_sram_data_s1_chipselect;                 // mm_interconnect_0:sram_data_s1_chipselect -> sram_data:chipselect
+	wire  [31:0] mm_interconnect_0_sram_data_s1_readdata;                   // sram_data:readdata -> mm_interconnect_0:sram_data_s1_readdata
+	wire   [1:0] mm_interconnect_0_sram_data_s1_address;                    // mm_interconnect_0:sram_data_s1_address -> sram_data:address
+	wire         mm_interconnect_0_sram_data_s1_write;                      // mm_interconnect_0:sram_data_s1_write -> sram_data:write_n
+	wire  [31:0] mm_interconnect_0_sram_data_s1_writedata;                  // mm_interconnect_0:sram_data_s1_writedata -> sram_data:writedata
+	wire         mm_interconnect_0_sram_oe_s1_chipselect;                   // mm_interconnect_0:sram_oe_s1_chipselect -> sram_oe:chipselect
+	wire  [31:0] mm_interconnect_0_sram_oe_s1_readdata;                     // sram_oe:readdata -> mm_interconnect_0:sram_oe_s1_readdata
+	wire   [1:0] mm_interconnect_0_sram_oe_s1_address;                      // mm_interconnect_0:sram_oe_s1_address -> sram_oe:address
+	wire         mm_interconnect_0_sram_oe_s1_write;                        // mm_interconnect_0:sram_oe_s1_write -> sram_oe:write_n
+	wire  [31:0] mm_interconnect_0_sram_oe_s1_writedata;                    // mm_interconnect_0:sram_oe_s1_writedata -> sram_oe:writedata
+	wire         mm_interconnect_0_sram_we_s1_chipselect;                   // mm_interconnect_0:sram_we_s1_chipselect -> sram_we:chipselect
+	wire  [31:0] mm_interconnect_0_sram_we_s1_readdata;                     // sram_we:readdata -> mm_interconnect_0:sram_we_s1_readdata
+	wire   [1:0] mm_interconnect_0_sram_we_s1_address;                      // mm_interconnect_0:sram_we_s1_address -> sram_we:address
+	wire         mm_interconnect_0_sram_we_s1_write;                        // mm_interconnect_0:sram_we_s1_write -> sram_we:write_n
+	wire  [31:0] mm_interconnect_0_sram_we_s1_writedata;                    // mm_interconnect_0:sram_we_s1_writedata -> sram_we:writedata
 	wire         irq_mapper_receiver0_irq;                                  // jtag_uart:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_irq_irq;                                             // irq_mapper:sender_irq -> nios2:irq
-	wire         rst_controller_reset_out_reset;                            // rst_controller:reset_out -> [character_received:reset_n, character_sent:reset_n, data_bus_in:reset_n, data_bus_out:reset_n, irq_mapper:reset, jtag_uart:rst_n, load:reset_n, mm_interconnect_0:nios2_reset_reset_bridge_in_reset_reset, nios2:reset_n, onchip_memory:reset, rst_translator:in_reset, transmit_enable:reset_n]
+	wire         rst_controller_reset_out_reset;                            // rst_controller:reset_out -> [character_received:reset_n, character_sent:reset_n, data_bus_in:reset_n, data_bus_out:reset_n, irq_mapper:reset, jtag_uart:rst_n, load:reset_n, mm_interconnect_0:nios2_reset_reset_bridge_in_reset_reset, nios2:reset_n, onchip_memory:reset, rst_translator:in_reset, sram_address_sel:reset_n, sram_data:reset_n, sram_oe:reset_n, sram_we:reset_n, transmit_enable:reset_n]
 	wire         rst_controller_reset_out_reset_req;                        // rst_controller:reset_req -> [nios2:reset_req, onchip_memory:reset_req, rst_translator:reset_req_in]
 	wire         nios2_debug_reset_request_reset;                           // nios2:debug_reset_request -> rst_controller:reset_in1
 
@@ -176,6 +201,51 @@ module microprocessor (
 		.reset_req  (rst_controller_reset_out_reset_req)             //       .reset_req
 	);
 
+	microprocessor_data_bus_out sram_address_sel (
+		.clk        (clk_clk),                                          //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                  //               reset.reset_n
+		.address    (mm_interconnect_0_sram_address_sel_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_sram_address_sel_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_sram_address_sel_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_sram_address_sel_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_sram_address_sel_s1_readdata),   //                    .readdata
+		.out_port   (sram_address_sel_export)                           // external_connection.export
+	);
+
+	microprocessor_sram_data sram_data (
+		.clk        (clk_clk),                                   //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),           //               reset.reset_n
+		.address    (mm_interconnect_0_sram_data_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_sram_data_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_sram_data_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_sram_data_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_sram_data_s1_readdata),   //                    .readdata
+		.in_port    (sram_data_in_port),                         // external_connection.export
+		.out_port   (sram_data_out_port)                         //                    .export
+	);
+
+	microprocessor_load sram_oe (
+		.clk        (clk_clk),                                 //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),         //               reset.reset_n
+		.address    (mm_interconnect_0_sram_oe_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_sram_oe_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_sram_oe_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_sram_oe_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_sram_oe_s1_readdata),   //                    .readdata
+		.out_port   (sram_oe_export)                           // external_connection.export
+	);
+
+	microprocessor_load sram_we (
+		.clk        (clk_clk),                                 //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),         //               reset.reset_n
+		.address    (mm_interconnect_0_sram_we_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_sram_we_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_sram_we_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_sram_we_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_sram_we_s1_readdata),   //                    .readdata
+		.out_port   (sram_we_export)                           // external_connection.export
+	);
+
 	microprocessor_load transmit_enable (
 		.clk        (clk_clk),                                         //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),                 //               reset.reset_n
@@ -240,6 +310,26 @@ module microprocessor (
 		.onchip_memory_s1_byteenable             (mm_interconnect_0_onchip_memory_s1_byteenable),             //                                  .byteenable
 		.onchip_memory_s1_chipselect             (mm_interconnect_0_onchip_memory_s1_chipselect),             //                                  .chipselect
 		.onchip_memory_s1_clken                  (mm_interconnect_0_onchip_memory_s1_clken),                  //                                  .clken
+		.sram_address_sel_s1_address             (mm_interconnect_0_sram_address_sel_s1_address),             //               sram_address_sel_s1.address
+		.sram_address_sel_s1_write               (mm_interconnect_0_sram_address_sel_s1_write),               //                                  .write
+		.sram_address_sel_s1_readdata            (mm_interconnect_0_sram_address_sel_s1_readdata),            //                                  .readdata
+		.sram_address_sel_s1_writedata           (mm_interconnect_0_sram_address_sel_s1_writedata),           //                                  .writedata
+		.sram_address_sel_s1_chipselect          (mm_interconnect_0_sram_address_sel_s1_chipselect),          //                                  .chipselect
+		.sram_data_s1_address                    (mm_interconnect_0_sram_data_s1_address),                    //                      sram_data_s1.address
+		.sram_data_s1_write                      (mm_interconnect_0_sram_data_s1_write),                      //                                  .write
+		.sram_data_s1_readdata                   (mm_interconnect_0_sram_data_s1_readdata),                   //                                  .readdata
+		.sram_data_s1_writedata                  (mm_interconnect_0_sram_data_s1_writedata),                  //                                  .writedata
+		.sram_data_s1_chipselect                 (mm_interconnect_0_sram_data_s1_chipselect),                 //                                  .chipselect
+		.sram_oe_s1_address                      (mm_interconnect_0_sram_oe_s1_address),                      //                        sram_oe_s1.address
+		.sram_oe_s1_write                        (mm_interconnect_0_sram_oe_s1_write),                        //                                  .write
+		.sram_oe_s1_readdata                     (mm_interconnect_0_sram_oe_s1_readdata),                     //                                  .readdata
+		.sram_oe_s1_writedata                    (mm_interconnect_0_sram_oe_s1_writedata),                    //                                  .writedata
+		.sram_oe_s1_chipselect                   (mm_interconnect_0_sram_oe_s1_chipselect),                   //                                  .chipselect
+		.sram_we_s1_address                      (mm_interconnect_0_sram_we_s1_address),                      //                        sram_we_s1.address
+		.sram_we_s1_write                        (mm_interconnect_0_sram_we_s1_write),                        //                                  .write
+		.sram_we_s1_readdata                     (mm_interconnect_0_sram_we_s1_readdata),                     //                                  .readdata
+		.sram_we_s1_writedata                    (mm_interconnect_0_sram_we_s1_writedata),                    //                                  .writedata
+		.sram_we_s1_chipselect                   (mm_interconnect_0_sram_we_s1_chipselect),                   //                                  .chipselect
 		.transmit_enable_s1_address              (mm_interconnect_0_transmit_enable_s1_address),              //                transmit_enable_s1.address
 		.transmit_enable_s1_write                (mm_interconnect_0_transmit_enable_s1_write),                //                                  .write
 		.transmit_enable_s1_readdata             (mm_interconnect_0_transmit_enable_s1_readdata),             //                                  .readdata

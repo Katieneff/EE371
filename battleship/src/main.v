@@ -22,6 +22,15 @@ module main(LEDR, CLOCK_50, KEY, GPIO_0);
 	assign GPIO_0[0] = (transmit_enable) ? 1'bz : serial_data_transmitted;
 	
 	assign serial_data_received = GPIO_0[0];
+	
+	
+	wire sramOe;
+	wire sramWe;
+	wire [31:0] sramDataIn;
+	wire [31:0] sramDataOut;
+	wire [7:0] sramAddress;
+	
+	wire [31:0] sramData;
 
 	
 	microprocessor microprocessor(
@@ -32,7 +41,24 @@ module main(LEDR, CLOCK_50, KEY, GPIO_0);
 							.data_bus_out_export(data_bus_transmitted),     
 							.load_export(load),          
 							.reset_reset_n(KEY),           
-							.transmit_enable_export(transmit_enable)  
+							.transmit_enable_export(transmit_enable),
+							.sram_address_sel_export(sramAddress),
+							.sram_oe_export(sramOe),  
+							.sram_data_in_port(sramDataOut),
+							.sram_we_export(sramWe),
+							.sram_data_out_port(sramDataIn)
+	);
+	
+	assign sramData = (sramWe) ? 32'bz : sramDataIn;
+	assign sramDataOut = (sramOe) ? 32'bz : sramData;
+	
+	sram sram(
+				.data(sramData),
+				.addrs(sramAddress), 
+				.we(sramWe), 
+				.oe(sramOe), 
+				.clk(CLOCK_50),
+				.rst(KEY)
 	);
 	
 	
@@ -58,6 +84,8 @@ module main(LEDR, CLOCK_50, KEY, GPIO_0);
 								.rst(KEY)
 	);
 	
+	
+
 	
 	
 	

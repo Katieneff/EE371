@@ -996,7 +996,11 @@ set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_CK_N
 #============================================================
 set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE stp1.stp
-set_global_assignment -name VERILOG_FILE microprocessor/synthesis/microprocessor.v
+set_global_assignment -name VERILOG_FILE src/memory.v
+set_global_assignment -name VERILOG_FILE src/mdr.v
+set_global_assignment -name VERILOG_FILE src/mar.v
+set_global_assignment -name VERILOG_FILE src/sram.v
+set_global_assignment -name VERILOG_FILE microprocessor/synthesis/microprocessor.v -library microprocessor
 set_global_assignment -name QIP_FILE microprocessor/synthesis/microprocessor.qip
 set_global_assignment -name VERILOG_FILE src/up_counter.v
 set_global_assignment -name VERILOG_FILE src/transmitter.v
