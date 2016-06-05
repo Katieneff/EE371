@@ -88,15 +88,7 @@
 #define character_received (volatile char *) 0x3010
 #define character_sent (volatile char *) 0x3020
 
-//#define WATER_CHAR (volatile char) 'w'
-//#define MISS_CHAR (volatile char) 'x'
-//#define HIT_CHAR (volatile char) 'm'
-//#define BATTLESHIP_CHAR (volatile char) 'b'
-//#define CRUISER_CHAR (volatile char) 'r'
-//#define CARRIER_CHAR (volatile char) 'c'
-//#define SUBMARINE_CHAR (volatile char) 's'
-//#define DESTROYER_CHAR (volatile char) 'd'
-//#define NO_OP_CHAR (volatile char) 'n'
+
 
 int getPlayerNum();
 void gameInit();
@@ -125,7 +117,6 @@ int main() {
 	//makes counter for the number of hits on a certain ship
 
 	int battleshipCounter = 0;
-//	int submarineCounter = 0;
 	int destroyerCounter = 0;
 
 	int i, j;
@@ -133,7 +124,7 @@ int main() {
 	// puts in water in the 2d array
 	for (i = 0; i < 10; i++) {
 		for (j = 0; j < 10; j++) {
-			gameBoard[i][j] = WATER_CHAR;
+			gameBoard[i][j] = 'w';
 		}
 	}
 
@@ -141,15 +132,10 @@ int main() {
 	//	 to different positions in the 2d array
 
 	for (i = 0; i < 4; i++) {
-		gameBoard[i + 3][7] = BATTLESHIP_CHAR;
+		gameBoard[i + 3][7] = 'b';
 	}
-
-//	for (j = 0; j < 3; j++) {
-//		gameBoard[7][1 + j] = SUBMARINE_CHAR;
-//	}
-
 	for (j = 0; j < 2; j++) {
-		gameBoard[9][8 + j] = DESTROYER_CHAR;
+		gameBoard[9][8 + j] = 'd';
 	}
 
 	int keepScore = 0;
@@ -259,13 +245,13 @@ int main() {
 			switch (shot) {
 			case 0:
 				alt_putstr("Miss!\n");
-				gameBoard[h][k] = MISS_CHAR;
+				gameBoard[h][k] = 'm';
 				//send(MISS_CHAR);
 				break;
 			case 1:
 				alt_putstr("It was a hit! \n");
 				//send(gameBoard[h][k]);
-				gameBoard[h][k] = HIT_CHAR;
+				gameBoard[h][k] = 'x';
 				break;
 			case 2:
 				alt_putstr("You already hit here\n");
@@ -273,7 +259,7 @@ int main() {
 			}
 			for (i = 0; i < 10; i++) {
 				for (j = 0; j < 10; j++) {
-					gameBoard[i][j] = WATER_CHAR;
+					gameBoard[i][j] = 'w';
 				}
 			}
 
@@ -330,13 +316,13 @@ int main() {
 			switch (shot) {
 			case 0:
 				alt_putstr("Miss!\n");
-				gameBoard[h][k] = MISS_CHAR;
+				gameBoard[h][k] = 'm';
 				//send(MISS_CHAR);
 				break;
 			case 1:
 				alt_putstr("It was a hit! \n");
 				//send(gameBoard[h][k]);
-				gameBoard[h][k] = HIT_CHAR;
+				gameBoard[h][k] = 'x';
 				break;
 			case 2:
 				alt_putstr("Error\n");
@@ -360,27 +346,27 @@ int main() {
 			// Wait for response to hit
 
 			//response = receiveChar();
-
-			switch (response) {
-			case MISS_CHAR :
-				alt_putstr("Miss!\n");
-				break;
-			case BATTLESHIP_CHAR :
-				alt_putstr("You hit the battleship! \n");
-				counter++;
-				battleshipCounter++;
-				break;
-//			case SUBMARINE_CHAR :
-//				alt_putstr("You hit the submarine! \n");
-//				counter++;
-//				submarineCounter++;
+//
+//			switch (response) {
+//			case MISS_CHAR :
+//				alt_putstr("Miss!\n");
 //				break;
-			case DESTROYER_CHAR :
-				alt_putstr("You hit the destroyer! \n");
-				counter++;
-				destroyerCounter++;
-				break;
-			}
+//			case BATTLESHIP_CHAR :
+//				alt_putstr("You hit the battleship! \n");
+//				counter++;
+//				battleshipCounter++;
+//				break;
+////			case SUBMARINE_CHAR :
+////				alt_putstr("You hit the submarine! \n");
+////				counter++;
+////				submarineCounter++;
+////				break;
+//			case DESTROYER_CHAR :
+//				alt_putstr("You hit the destroyer! \n");
+//				counter++;
+//				destroyerCounter++;
+//				break;
+//			}
 
 			//	 The following checks if a certain ship is hit certain
 			//	 number of times and output the message to the user
