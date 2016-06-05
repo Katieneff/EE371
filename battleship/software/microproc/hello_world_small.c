@@ -20,25 +20,24 @@
 
 
 // Globals
-int carrierCounter;
-int battleshipCounter;
-int cruiserCounter;
-int submarineCounter;
-int destroyerCounter;
-int counter;
+//int carrierCounter;
+//int battleshipCounter;
+//int cruiserCounter;
+//int submarineCounter;
+//int destroyerCounter;
+//int counter;
 char gameBoard[10][10];
 
-
 int getPlayerNum();
-void gameInit();
+//void gameInit();
 void printBoard();
 int playerOnePlay();
 int playerTwoPlay();
 void attack();
 void getCoordinates();
 int send(unsigned int str);
-unsigned int receive();
-int checkShot(char gameBoard[10][10], int i, int j);
+int receive();
+int checkShot(int i, int j);
 void getAttacked();
 int send(unsigned int str);
 
@@ -48,16 +47,20 @@ int main() {
 
 	int playerNum = getPlayerNum();
 
+	int counter = 0;
 	gameInit();
+	printBoard();
+
 	int keepScore = 0;
 
 	do {
 		switch (playerNum) {
 		case '1':
 			playerOnePlay();
+
 			break;
 		case '2':
-			//playerTwoPlay();
+			playerTwoPlay();
 			break;
 		}
 
@@ -81,16 +84,16 @@ int getPlayerNum() {
 
 // Initialized board and globals
 void gameInit() {
-
-	counter = 0;
-
-	//makes counter for the number of hits on a certain ship
-
-	carrierCounter = 0;
-	battleshipCounter = 0;
-	cruiserCounter = 0;
-	submarineCounter = 0;
-	destroyerCounter = 0;
+//
+//	counter = 0;
+//
+//	//makes counter for the number of hits on a certain ship
+//
+//	carrierCounter = 0;
+//	battleshipCounter = 0;
+//	cruiserCounter = 0;
+//	submarineCounter = 0;
+//	destroyerCounter = 0;
 
 
 	int i, j;
@@ -124,7 +127,6 @@ void gameInit() {
 		gameBoard[9][8 + j] = DESTROYER_CHAR;
 	}
 
-	printBoard();
 
 }
 
@@ -143,16 +145,16 @@ void printBoard() {
 }
 
 
-int playerOnePlay() {
+int playerOnePlay(char ** gameBoard) {
 	attack();
 	alt_putstr("Player 2's Turn...");
-	getAttacked();
+	getAttacked(gameBoard);
 	return 0;
 }
 
-int playerTwoPlay() {
+int playerTwoPlay(char ** gameBoard) {
 	alt_putstr("Player 1's Turn...");
-	getAttacked();
+	getAttacked(gameBoard);
 	attack();
 	return 0;
 }
@@ -162,9 +164,10 @@ void attack() {
 	getCoordinates();
 
 	// Wait for response to hit
-	unsigned int response = receive();
+	unsigned int response = 0;
+	//response = receive();
 
-	switch (response) {
+	/*switch (response) {
 	case MISS_CHAR :
 		alt_putstr("Miss!\n");
 		break;
@@ -214,7 +217,7 @@ void attack() {
 	} else if (destroyerCounter == 2) {
 		alt_putstr("You just drowned the destroyer\n");
 		destroyerCounter = 0;
-	}
+	} */
 
 }
 
@@ -260,24 +263,24 @@ int send(unsigned int str) {
 
 }
 
-unsigned int receive() {
+int receive() {
 	*transmit_enable = 1;
 	alt_putstr("Receive!\n");
-	unsigned int data;
+	int data = 0;
 	while (1) {
-		data = *data_bus_in;
 		if (*character_received) {
-			alt_putstr("Receive!\n");
-			if (data & 128) {
-				data = (data / 2) & 127;
-			}
+			usleep(100);
+			data = *data_bus_in;
+			return data;
+
 		}
+
 	}
-	return data;
+
 }
 
 // The following function checks the coordinate
-int checkShot(char gameBoard[10][10], int i, int j) {
+int checkShot(int i, int j) {
 	int HIT = 0;
 
 	switch (gameBoard[i][j]) {
@@ -309,13 +312,15 @@ int checkShot(char gameBoard[10][10], int i, int j) {
 void getAttacked() {
 	// Wait for other players attack
 	unsigned int h = receive();
+
+
 	unsigned int k = receive();
 
 
 //	 sends the data to checkShot to see if
 //	 the player hit, miss, or has he already used that input
 
-	int shot = checkShot(gameBoard, h, k);
+	int shot = checkShot(h, k);
 
 //	 gets the data from the checkShot and checks
 //	 if the coordinates entered by the user was a hit
