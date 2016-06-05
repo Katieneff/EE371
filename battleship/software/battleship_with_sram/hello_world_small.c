@@ -205,12 +205,12 @@ void playerOnePlay() {
 	if (h == '\n') {
 		h = alt_getchar();
 	}
+	send(h);
 	alt_putstr("Type a character\n");
 	unsigned int k = alt_getchar();
 	if (k == '\n') {
 		k = alt_getchar();
 	}
-	send(h);
 	send(k);
 	receiveNum();
 	receiveChar();
@@ -225,12 +225,13 @@ void playerTwoPlay() {
 	if (h == '\n') {
 		h = alt_getchar();
 	}
+	send(h);
+
 	alt_putstr("Type a character\n");
 	unsigned int k = alt_getchar();
 	if (k == '\n') {
 		k = alt_getchar();
 	}
-	send(h);
 	send(k);
 }
 
@@ -285,7 +286,7 @@ char receiveChar() {
 				usleep(100);
 				*transmit_enable = 0;
 				data = *data_bus_in;
-				alt_putstr("Number received\n");
+				alt_putstr("Character received\n");
 
 				if (data > 122) {
 					data = data >> 1;
