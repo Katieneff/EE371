@@ -289,7 +289,7 @@ unsigned int receiveChar() {
 				alt_putstr("Character received\n");
 
 				if (data > 122) {
-					data = data >> 1;
+					data = (data >> 1) & 127;
 					alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
 							data);
 				}
