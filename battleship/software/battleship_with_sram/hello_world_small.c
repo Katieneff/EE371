@@ -96,6 +96,10 @@
 #define counter (volatile int *) 0xc9
 #define battleshipCounter (volatile int *) 0xc8
 #define destroyerCounter (volatile int *) 0xc9
+#define h (volatile int *) 0xca
+#define k (volatile int *) 0xcb
+
+
 
 void sramWrite(int address, int data);
 int sramRead(int address);
@@ -108,6 +112,7 @@ void send();
 unsigned int receiveNum();
 int getPlayerNum();
 unsigned int receiveChar();
+void sendMissle();
 
 int main() {
 	*transmit_enable = 0;
@@ -199,7 +204,7 @@ int getPlayerNum() {
 }
 
 void playerOnePlay() {
-
+	/*
 	alt_putstr("Type a number\n");
 	unsigned int h = alt_getchar();
 	if (h == '\n') {
@@ -213,11 +218,14 @@ void playerOnePlay() {
 	}
 	send(k);
 	receiveNum();
-	receiveChar();
+	receiveChar();*/
+	sendMissle();
+	receiveMissle();
+
 }
 
 void playerTwoPlay() {
-	receiveNum();
+	/*receiveNum();
 	receiveChar();
 
 	alt_putstr("Type a number\n");
@@ -232,7 +240,9 @@ void playerTwoPlay() {
 	if (k == '\n') {
 		k = alt_getchar();
 	}
-	send(k);
+	send(k);*/
+	receiveMissle();
+	sendMissle();
 }
 
 void send(unsigned int str) {
@@ -301,4 +311,32 @@ unsigned int receiveChar() {
 			}
 		}
 
+}
+
+
+void sendMissle() {
+
+	alt_putstr("Enter longitude: ");
+	unsigned int lon = alt_getchar();
+	if (lon == '\n') {
+		lon = alt_getchar();
+	}
+
+	send(lon);
+
+	alt_putstr("Enter latitude: ");
+	unsigned int lat = alt_getchar();
+	if (lat == '\n') {
+		lat = alt_getchar();
+	}
+
+	send(lat);
+}
+
+
+void receiveMissle() {
+	unsigned int lon = receiveNum();
+	unsigned int lat = receiveNum();
+	sramWrite(h, lon);
+	sramWrite(k, lon);
 }
