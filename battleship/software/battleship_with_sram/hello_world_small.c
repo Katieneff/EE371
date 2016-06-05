@@ -107,6 +107,7 @@ void playerTwoPlay();
 void send();
 char receiveNum();
 int getPlayerNum();
+char receiveChar();
 
 int main() {
 	*transmit_enable = 0;
@@ -198,21 +199,39 @@ int getPlayerNum() {
 }
 
 void playerOnePlay() {
+
+	alt_putstr("Type a number\n");
 	unsigned int h = alt_getchar();
 	if (h == '\n') {
 		h = alt_getchar();
 	}
+	alt_putstr("Type a character\n");
+	unsigned int k = alt_getchar();
+	if (k == '\n') {
+		k = alt_getchar();
+	}
 	send(h);
+	send(k);
 	receiveNum();
+	receiveChar();
 }
 
 void playerTwoPlay() {
 	receiveNum();
+	receiveChar();
+
+	alt_putstr("Type a number\n");
 	unsigned int h = alt_getchar();
 	if (h == '\n') {
 		h = alt_getchar();
 	}
+	alt_putstr("Type a character\n");
+	unsigned int k = alt_getchar();
+	if (k == '\n') {
+		k = alt_getchar();
+	}
 	send(h);
+	send(k);
 }
 
 void send(unsigned int str) {
@@ -256,3 +275,29 @@ char receiveNum() {
 	}
 }
 
+
+char receiveChar() {
+	alt_putstr("Receiving character...\n");
+	char data;
+		*transmit_enable = 1;
+		while (1) {
+			if (*character_received) {
+				usleep(100);
+				*transmit_enable = 0;
+				data = *data_bus_in;
+				alt_putstr("Number received\n");
+
+				if (data > 122) {
+					data = data >> 1;
+					alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
+							data);
+				}
+
+				alt_printf("Data as a char: %c\n", data);
+				alt_printf("Data as an int: %x\n", data);
+
+				return data;
+			}
+		}
+
+}
