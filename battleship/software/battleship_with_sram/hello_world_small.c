@@ -336,7 +336,7 @@ void receiveMissle() {
 	//sramWrite(k, lat);
 
 
-	switch (readSram(h * 10 + k)) {
+	switch (sramRead(h * 10 + k)) {
 	// when its a miss
 	case 'w':
 		alt_putstr("Miss!\n");
