@@ -221,7 +221,6 @@ void playerTwoPlay() {
 			if (h == '\n') {
 				h = alt_getchar();
 			}
-		send(h);
 	send(h);
 }
 
