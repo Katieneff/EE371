@@ -107,6 +107,8 @@ void printBoard();
 void gameInit();
 void playerOnePlay();
 void playerTwoPlay();
+void send();
+char receiveNum();
 
 
 int main() {
@@ -201,18 +203,18 @@ int getPlayerNum() {
 
 void playerOnePlay() {
 	send('1');
-	receive();
+	receiveNum();
 
 }
 
 
 void playerTwoPlay() {
-	receive();
-	sent('2');
+	receiveNum();
+	send('2');
 }
 
 
-int send(unsigned int str) {
+void send(unsigned int str) {
 	*data_bus_out = str;
 	*transmit_enable = 0;
 	*load = 1;
