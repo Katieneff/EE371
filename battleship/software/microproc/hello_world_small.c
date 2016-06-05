@@ -29,7 +29,7 @@
 char gameBoard[10][10];
 
 int getPlayerNum();
-//void gameInit();
+void gameInit();
 void printBoard();
 int playerOnePlay();
 int playerTwoPlay();
@@ -48,7 +48,28 @@ int main() {
 	int playerNum = getPlayerNum();
 
 	int counter = 0;
-	gameInit();
+	//gameInit();
+	//for (int i = 0; i<10; i++){
+		//for (int j=0;j<10;j++){
+			//gameBoard[i][j] = 'w';
+		//}
+	//}
+	//printBoard();
+
+	gameBoard[1][0] = 'w';
+	gameBoard[1][1] = 'w';
+	gameBoard[1][2] = 'w';
+	gameBoard[1][3] = 'w';
+	gameBoard[1][4] = 'w';
+	gameBoard[1][5] = 'w';
+	gameBoard[1][6] = 'w';
+	gameBoard[1][7] = 'w';
+	gameBoard[1][8] = 'w';
+	gameBoard[1][9] = 'w';
+	//gameBoard[1][0] = 'w';
+
+
+
 	printBoard();
 
 	int keepScore = 0;
@@ -128,6 +149,7 @@ void gameInit() {
 	}
 
 
+
 }
 
 
@@ -152,7 +174,7 @@ int playerOnePlay(char ** gameBoard) {
 	return 0;
 }
 
-int playerTwoPlay(char ** gameBoard) {
+int playerTwoPlay() {
 	alt_putstr("Player 1's Turn...");
 	getAttacked(gameBoard);
 	attack();
@@ -165,36 +187,36 @@ void attack() {
 
 	// Wait for response to hit
 	unsigned int response = 0;
-	//response = receive();
+	response = receive();
 
-	/*switch (response) {
+	switch (response) {
 	case MISS_CHAR :
 		alt_putstr("Miss!\n");
 		break;
 	case CARRIER_CHAR :
 		alt_putstr("You hit the carrierer! \n");
-		counter++;
-		carrierCounter++;
+		//counter++;
+		//carrierCounter++;
 		break;
 	case BATTLESHIP_CHAR :
 		alt_putstr("You hit the battleship! \n");
-		counter++;
-		battleshipCounter++;
+		//counter++;
+		//battleshipCounter++;
 		break;
 	case CRUISER_CHAR :
 		alt_putstr("You hit the cruiser! \n");
-		counter++;
-		cruiserCounter++;
+		//counter++;
+		//cruiserCounter++;
 		break;
 	case SUBMARINE_CHAR :
 		alt_putstr("You hit the submarine! \n");
-		counter++;
-		submarineCounter++;
+		//counter++;
+		//submarineCounter++;
 		break;
 	case DESTROYER_CHAR :
 		alt_putstr("You hit the destroyer! \n");
-		counter++;
-		destroyerCounter++;
+		//counter++;
+		//destroyerCounter++;
 		break;
 	}
 
@@ -202,7 +224,7 @@ void attack() {
 //	 The following checks if a certain ship is hit certain
 //	 number of times and output the message to the user
 //	 saying that the have drowned that particular ship
-	if (carrierCounter == 5) {
+	/*if (carrierCounter == 5) {
 		alt_putstr("You just drowned the carrier\n");
 		carrierCounter = 0;
 	} else if (battleshipCounter == 4) {
@@ -217,7 +239,7 @@ void attack() {
 	} else if (destroyerCounter == 2) {
 		alt_putstr("You just drowned the destroyer\n");
 		destroyerCounter = 0;
-	} */
+	}*/
 
 }
 
@@ -285,16 +307,16 @@ int checkShot(int i, int j) {
 
 	switch (gameBoard[i][j]) {
 	// when its a miss
-	case '~':
+	case 'w':
 		HIT = 0;
 		break;
 
 		// when its a hit
-	case 'c':
-	case 'b':
+	case 'd' :
+	case 'b' :
 	case 'r':
 	case 's':
-	case 'd':
+	case 'c':
 		HIT = 1;
 		break;
 		// when its already been used
@@ -335,8 +357,8 @@ void getAttacked() {
 		break;
 	case 1:
 		alt_putstr("It was a hit! \n");
-		gameBoard[h][k] = HIT_CHAR;
 		send(gameBoard[h][k]);
+		gameBoard[h][k] = HIT_CHAR;
 		break;
 	case 2:
 		alt_putstr("Please pick another value you have already chosen that\n");
