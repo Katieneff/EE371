@@ -92,13 +92,10 @@
 #define sram_we (volatile char *) 0x3000
 #define sram_data (volatile char *) 0x3020
 
-
-
 #define keepScore (volatile int *) 0xc8
 #define counter (volatile int *) 0xc9
 #define battleshipCounter (volatile int *) 0xc8
 #define destroyerCounter (volatile int *) 0xc9
-
 
 void sramWrite(int address, int data);
 int sramRead(int address);
@@ -110,7 +107,6 @@ void playerTwoPlay();
 void send();
 char receiveNum();
 int getPlayerNum();
-
 
 int main() {
 	*transmit_enable = 0;
@@ -180,7 +176,6 @@ void printBoard() {
 	}
 }
 
-
 void gameInit() {
 	sramWrite(keepScore, 0);
 	sramWrite(counter, 0);
@@ -203,27 +198,22 @@ int getPlayerNum() {
 }
 
 void playerOnePlay() {
-
 	unsigned int h = alt_getchar();
-		if (h == '\n') {
-			h = alt_getchar();
-		}
+	if (h == '\n') {
+		h = alt_getchar();
+	}
 	send(h);
-
 	receiveNum();
-
 }
-
 
 void playerTwoPlay() {
 	receiveNum();
 	unsigned int h = alt_getchar();
-			if (h == '\n') {
-				h = alt_getchar();
-			}
+	if (h == '\n') {
+		h = alt_getchar();
+	}
 	send(h);
 }
-
 
 void send(unsigned int str) {
 	*data_bus_out = str;
@@ -247,18 +237,20 @@ char receiveNum() {
 	*transmit_enable = 1;
 	while (1) {
 		if (*character_received) {
-			alt_putstr("Number received\n");
 			usleep(100);
+			*transmit_enable = 0;
 			data = *data_bus_in;
+			alt_putstr("Number received\n");
 
-			if (data > 9) {
+			if (data > 57) {
 				data = data >> 1;
-				alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in, data);
+				alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
+						data);
 			}
 
 			alt_printf("Data as a char: %c\n", data);
 			alt_printf("Data as an int: %x\n", data);
-			*transmit_enable = 0;
+
 			return data;
 		}
 	}
