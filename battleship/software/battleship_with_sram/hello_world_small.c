@@ -92,10 +92,8 @@
 #define sram_we (volatile char *) 0x3000
 #define sram_data (volatile char *) 0x3020
 
-#define keepScore ( int) 0xc8
+#define keepScore (int) 0xc8
 #define counter (int) 0xc9
-#define battleshipCounter (int) 0xc8
-#define destroyerCounter (int) 0xc9
 
 void sramWrite(int address, int data);
 int sramRead(int address);
@@ -120,7 +118,7 @@ int main() {
 	int playerNum = getPlayerNum();
 	printBoard();
 
-	while (sramRead(counter) < 17) {
+	while (sramRead(keepScore) < 17) {
 
 		switch (playerNum) {
 		case '1':
@@ -131,6 +129,8 @@ int main() {
 			break;
 		}
 	}
+
+	alt_putstr("You win!");
 
 	return 0;
 }
@@ -154,7 +154,7 @@ void makeBoard() {
 	int i, j;
 	for (i = 0; i < 10; i++) {
 		for (j = 0; j < 10; j++) {
-			sramWrite(i * 10 + j, 'w');
+			sramWrite(i * 10 + j, '~');
 		}
 	}
 
@@ -164,6 +164,10 @@ void makeBoard() {
 
 	for (i = 0; i < 2; i++) {
 		sramWrite(90 + i + 8, 'd');
+	}
+
+	for (i = 0; i < 5; i++) {
+		sramWrite(i * 10 + 11, 'd');
 	}
 
 }
@@ -183,8 +187,6 @@ void printBoard() {
 void gameInit() {
 	sramWrite(keepScore, 0);
 	sramWrite(counter, 0);
-	sramWrite(destroyerCounter, 0);
-	sramWrite(battleshipCounter, 0);
 
 	makeBoard();
 
@@ -202,21 +204,6 @@ int getPlayerNum() {
 }
 
 void playerOnePlay() {
-	/*
-	 alt_putstr("Type a number\n");
-	 unsigned int h = alt_getchar();
-	 if (h == '\n') {
-	 h = alt_getchar();
-	 }
-	 send(h);
-	 alt_putstr("Type a character\n");
-	 unsigned int k = alt_getchar();
-	 if (k == '\n') {
-	 k = alt_getchar();
-	 }
-	 send(k);
-	 receiveNum();
-	 receiveChar();*/
 	sendMissle();
 	receiveHitResult();
 	alt_putstr("Player 2's turn... ");
@@ -225,22 +212,6 @@ void playerOnePlay() {
 }
 
 void playerTwoPlay() {
-	/*receiveNum();
-	 receiveChar();
-
-	 alt_putstr("Type a number\n");
-	 unsigned int h = alt_getchar();
-	 if (h == '\n') {
-	 h = alt_getchar();
-	 }
-	 send(h);
-
-	 alt_putstr("Type a character\n");
-	 unsigned int k = alt_getchar();
-	 if (k == '\n') {
-	 k = alt_getchar();
-	 }
-	 send(k);*/
 	alt_putstr("Player 1's turn... ");
 	receiveMissle();
 	sendMissle();
@@ -352,21 +323,15 @@ void sendMissle() {
 void receiveMissle() {
 	unsigned int h = receiveNum() - 48;
 	unsigned int k = receiveNum() - 48;
-	//sramWrite(h, lon);
-	//sramWrite(k, lat);
 
 	switch (sramRead(h * 10 + k)) {
 	// when its a miss
-	case 'w':
+	case '~':
 	case 'x':
 		alt_putstr("Miss!\n");
 		send('m');
 		break;
 	case 'd':
-	case 'b':
-	case 'r':
-	case 's':
-	case 'c':
 		alt_putstr("You were hit! \n");
 		sramWrite(h * 10 + k, 'x');
 		send('x');
@@ -382,6 +347,7 @@ void receiveMissle() {
 }
 
 void receiveHitResult() {
+	int score = sramRead(keepScore);
 	unsigned int status = receiveChar();
 	switch (status) {
 	case 'm':
@@ -389,10 +355,13 @@ void receiveHitResult() {
 		break;
 	case 'x':
 		alt_putstr("You hit!\n");
+		score = score + 1;
+
 		break;
 	default:
 		alt_putstr("Error\n");
 		break;
 	}
-
+	sramWrite(keepScore, score + 1);
+	alt_printf("Your score: %x\n", score);
 }
