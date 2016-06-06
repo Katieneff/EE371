@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jun 5, 2016 3:13:27 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1465164807852</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jun 6, 2016 12:05:14 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1465239914628</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\neffk2\EE371\battleship\software\battleship_with_sram_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\microprocessor.sopcinfo</SopcDesignFile>
