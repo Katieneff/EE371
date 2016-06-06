@@ -373,6 +373,7 @@ void receiveMissle() {
 		break;
 	default:
 		alt_putstr("Error\n");
+		send('e');
 		break;
 	}
 
