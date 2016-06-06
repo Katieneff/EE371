@@ -253,7 +253,9 @@ void send(unsigned int str) {
 	*load = 0;
 	while (1) {
 		if (*character_sent) {
-			alt_printf("%c sent!\n", str); // Debugging
+			/* DEBUG
+			 alt_printf("%c sent!\n", str);
+			 */
 			usleep(100);
 			return;
 		}
@@ -262,7 +264,9 @@ void send(unsigned int str) {
 }
 
 unsigned int receiveNum() {
-	alt_putstr("Receiving number...\n");
+	/* DEBUG
+	 alt_putstr("Receiving number...\n");
+	 */
 	unsigned int data;
 	*transmit_enable = 1;
 	while (1) {
@@ -270,16 +274,21 @@ unsigned int receiveNum() {
 			usleep(100);
 			*transmit_enable = 0;
 			data = *data_bus_in;
-			alt_putstr("Number received\n");
+			/* DEBUG
+			 alt_putstr("Number received\n");
+			 */
 
 			if (data > 57) {
 				data = data >> 1;
-				alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
-						data);
+				/* DEBUG
+				 alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
+				 data);
+				 */
 			}
-
-			alt_printf("Data as a char: %c\n", data);
-			alt_printf("Data as an int: %x\n", data);
+			/* DEBUG
+			 alt_printf("Data as a char: %c\n", data);
+			 alt_printf("Data as an int: %x\n", data);
+			 */
 
 			return data;
 		}
@@ -287,7 +296,9 @@ unsigned int receiveNum() {
 }
 
 unsigned int receiveChar() {
-	alt_putstr("Receiving character...\n");
+	/* DEBUG
+	 alt_putstr("Receiving character...\n");
+	 */
 	unsigned int data;
 	*transmit_enable = 1;
 	while (1) {
@@ -295,16 +306,21 @@ unsigned int receiveChar() {
 			usleep(100);
 			*transmit_enable = 0;
 			data = *data_bus_in;
-			alt_putstr("Character received\n");
+			/* DEBUG
+			 alt_putstr("Character received\n");
+			 */
 
 			if (data > 122) {
 				data = (data >> 1) & 127;
-				alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
-						data);
+				/* DEBUG
+				 alt_printf("Data corrupt, hot fix: %c -> %c\n", *data_bus_in,
+				 data);
+				 */
 			}
-
-			alt_printf("Data as a char: %c\n", data);
-			alt_printf("Data as an int: %x\n", data);
+			/* DEBUG
+			 alt_printf("Data as a char: %c\n", data);
+			 alt_printf("Data as an int: %x\n", data);
+			 */
 
 			return data;
 		}
@@ -336,7 +352,6 @@ void receiveMissle() {
 	unsigned int k = receiveNum() - 48;
 	//sramWrite(h, lon);
 	//sramWrite(k, lat);
-
 
 	switch (sramRead(h * 10 + k)) {
 	// when its a miss
