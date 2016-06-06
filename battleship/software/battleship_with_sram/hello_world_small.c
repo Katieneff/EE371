@@ -118,7 +118,7 @@ int main() {
 	int playerNum = getPlayerNum();
 	printBoard();
 
-	while (sramRead(keepScore) < 17) {
+	while (sramRead(keepScore) < 11) {
 
 		switch (playerNum) {
 		case '1':
