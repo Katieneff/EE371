@@ -1164,8 +1164,8 @@ int main() {
     15dc:	1021883a 	mov	r16,r2
 	printBoard();
 
-	while (sramRead(keepScore) < 17) {
-    15e0:	04400404 	movi	r17,16
+	while (sramRead(keepScore) < 11) {
+    15e0:	04400284 	movi	r17,10
 	*transmit_enable = 0;
 	*sram_we = 1;
 	*sram_oe = 1;
@@ -1174,7 +1174,7 @@ int main() {
 	printBoard();
     15e4:	00011740 	call	1174 <printBoard>
 
-	while (sramRead(keepScore) < 17) {
+	while (sramRead(keepScore) < 11) {
 
 		switch (playerNum) {
     15e8:	04800c44 	movi	r18,49
@@ -1184,7 +1184,7 @@ int main() {
 	int playerNum = getPlayerNum();
 	printBoard();
 
-	while (sramRead(keepScore) < 17) {
+	while (sramRead(keepScore) < 11) {
     15f0:	01003204 	movi	r4,200
     15f4:	00010880 	call	1088 <sramRead>
     15f8:	88800616 	blt	r17,r2,1614 <main+0x74>
@@ -1201,7 +1201,7 @@ int main() {
 			break;
     1608:	003ff906 	br	15f0 <_gp+0xffff77bc>
 
-	while (sramRead(keepScore) < 17) {
+	while (sramRead(keepScore) < 11) {
 
 		switch (playerNum) {
 		case '1':

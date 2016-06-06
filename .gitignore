@@ -15,7 +15,6 @@
 *.cdf
 *.vdc
 *.vvp
-*.sof
 
 
 # Some sort of cache used by Quartus II
@@ -31,3 +30,5 @@ output_files/
 simulation/
 
 
+RemoteSystemTempFiles/
+.qsys_edit/
