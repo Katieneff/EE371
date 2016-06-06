@@ -356,12 +356,11 @@ void receiveHitResult() {
 	case 'x':
 		alt_putstr("You hit!\n");
 		score = score + 1;
-
 		break;
 	default:
 		alt_putstr("Error\n");
 		break;
 	}
-	sramWrite(keepScore, score + 1);
+	sramWrite(keepScore, score);
 	alt_printf("Your score: %x\n", score);
 }
