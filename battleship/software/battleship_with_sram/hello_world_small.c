@@ -92,12 +92,10 @@
 #define sram_we (volatile char *) 0x3000
 #define sram_data (volatile char *) 0x3020
 
-#define keepScore (volatile int *) 0xc8
-#define counter (volatile int *) 0xc9
-#define battleshipCounter (volatile int *) 0xc8
-#define destroyerCounter (volatile int *) 0xc9
-//#define h (volatile int *) 0xca
-//#define k (volatile int *) 0xcb
+#define keepScore ( int) 0xc8
+#define counter (int) 0xc9
+#define battleshipCounter (int) 0xc8
+#define destroyerCounter (int) 0xc9
 
 void sramWrite(int address, int data);
 int sramRead(int address);
@@ -111,6 +109,8 @@ unsigned int receiveNum();
 int getPlayerNum();
 unsigned int receiveChar();
 void sendMissle();
+void receiveHitResult();
+void receiveMissle();
 
 int main() {
 	*transmit_enable = 0;
@@ -218,6 +218,7 @@ void playerOnePlay() {
 	 receiveNum();
 	 receiveChar();*/
 	sendMissle();
+	receiveHitResult();
 	receiveMissle();
 
 }
@@ -241,6 +242,7 @@ void playerTwoPlay() {
 	 send(k);*/
 	receiveMissle();
 	sendMissle();
+	receiveHitResult();
 }
 
 void send(unsigned int str) {
@@ -312,14 +314,6 @@ unsigned int receiveChar() {
 
 void sendMissle() {
 
-	alt_putstr("Enter longitude: ");
-	unsigned int lon = alt_getchar();
-	if (lon == '\n') {
-		lon = alt_getchar();
-	}
-
-	send(lon);
-
 	alt_putstr("Enter latitude: ");
 	unsigned int lat = alt_getchar();
 	if (lat == '\n') {
@@ -327,6 +321,14 @@ void sendMissle() {
 	}
 
 	send(lat);
+
+	alt_putstr("Enter longitude: ");
+	unsigned int lon = alt_getchar();
+	if (lon == '\n') {
+		lon = alt_getchar();
+	}
+
+	send(lon);
 }
 
 void receiveMissle() {
@@ -339,7 +341,9 @@ void receiveMissle() {
 	switch (sramRead(h * 10 + k)) {
 	// when its a miss
 	case 'w':
+	case 'x':
 		alt_putstr("Miss!\n");
+		send('m');
 		break;
 	case 'd':
 	case 'b':
@@ -348,10 +352,7 @@ void receiveMissle() {
 	case 'c':
 		alt_putstr("You were hit! \n");
 		sramWrite(h * 10 + k, 'x');
-		break;
-	case 'x':
-	case 'm':
-		alt_putstr("Miss!\n");
+		send('x');
 		break;
 	default:
 		alt_putstr("Error\n");
@@ -359,5 +360,21 @@ void receiveMissle() {
 	}
 
 	printBoard();
+
+}
+
+void receiveHitResult() {
+	unsigned int status = receiveChar();
+	switch (status) {
+	case 'm':
+		alt_putstr("You missed!\n");
+		break;
+	case 'x':
+		alt_putstr("You hit!\n");
+		break;
+	default:
+		alt_putstr("Error\n");
+		break;
+	}
 
 }
