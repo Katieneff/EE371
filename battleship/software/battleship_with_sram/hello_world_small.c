@@ -219,7 +219,7 @@ void playerOnePlay() {
 	 receiveChar();*/
 	sendMissle();
 	receiveHitResult();
-	alt_putstr("Player 2's turn... ")
+	alt_putstr("Player 2's turn... ");
 	receiveMissle();
 
 }
@@ -241,7 +241,7 @@ void playerTwoPlay() {
 	 k = alt_getchar();
 	 }
 	 send(k);*/
-	alt_putstr("Player 1's turn... ")
+	alt_putstr("Player 1's turn... ");
 	receiveMissle();
 	sendMissle();
 	receiveHitResult();
