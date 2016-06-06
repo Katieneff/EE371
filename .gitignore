@@ -32,3 +32,6 @@ simulation/
 
 RemoteSystemTempFiles/
 .qsys_edit/
+
+
+*.out
